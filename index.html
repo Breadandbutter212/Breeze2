@@ -31,10 +31,10 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
 .splash-glow-1{position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,79,79,0.22) 0%,transparent 70%);top:-80px;left:-80px;animation:sdrift1 8s ease-in-out infinite;pointer-events:none;}
 .splash-glow-2{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(77,142,255,0.15) 0%,transparent 70%);bottom:-40px;right:-80px;animation:sdrift2 10s ease-in-out infinite;pointer-events:none;}
 .splash-glow-3{position:absolute;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(0,201,122,0.12) 0%,transparent 70%);top:40%;left:10%;animation:sdrift3 12s ease-in-out infinite;pointer-events:none;}
-.gc-1{background:linear-gradient(135deg,rgba(0,201,122,0.22),rgba(0,201,122,0.08));border-color:rgba(0,201,122,0.28);top:230px;animation:gc1in 0.85s 0.15s cubic-bezier(0.22,1,0.36,1) both;z-index:1;}
-.gc-2{background:linear-gradient(135deg,rgba(255,79,79,0.22),rgba(255,79,79,0.08));border-color:rgba(255,79,79,0.28);top:160px;animation:gc2in 0.85s 0.35s cubic-bezier(0.22,1,0.36,1) both;z-index:2;}
-.gc-3{background:linear-gradient(135deg,rgba(77,142,255,0.22),rgba(77,142,255,0.08));border-color:rgba(77,142,255,0.28);top:90px;animation:gc3in 0.85s 0.55s cubic-bezier(0.22,1,0.36,1) both;z-index:3;}
-.gc-4{background:linear-gradient(135deg,rgba(255,176,32,0.22),rgba(255,176,32,0.08));border-color:rgba(255,176,32,0.28);top:20px;animation:gc4in 0.85s 0.75s cubic-bezier(0.22,1,0.36,1) both;z-index:4;}
+.gc-1{background:linear-gradient(135deg,rgba(0,201,122,0.28),rgba(0,201,122,0.12));border-color:rgba(0,201,122,0.35);top:230px;animation:gc1in 0.85s 0.15s cubic-bezier(0.22,1,0.36,1) both;z-index:1;}
+.gc-2{background:linear-gradient(135deg,rgba(255,79,79,0.28),rgba(255,79,79,0.12));border-color:rgba(255,79,79,0.35);top:160px;animation:gc2in 0.85s 0.35s cubic-bezier(0.22,1,0.36,1) both;z-index:2;}
+.gc-3{background:linear-gradient(135deg,rgba(77,142,255,0.28),rgba(77,142,255,0.12));border-color:rgba(77,142,255,0.35);top:90px;animation:gc3in 0.85s 0.55s cubic-bezier(0.22,1,0.36,1) both;z-index:3;}
+.gc-4{background:linear-gradient(135deg,rgba(255,176,32,0.28),rgba(255,176,32,0.12));border-color:rgba(255,176,32,0.35);top:20px;animation:gc4in 0.85s 0.75s cubic-bezier(0.22,1,0.36,1) both;z-index:4;}
 @keyframes sdrift1{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,30px)}}
 @keyframes sdrift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-25px,-20px)}}
 @keyframes sdrift3{0%,100%{transform:translate(0,0)}50%{transform:translate(15px,-25px)}}
@@ -170,21 +170,21 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
 .nudge-body{flex:1;}
 .nudge-tag{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}
 .nudge-headline{font-size:15px;font-weight:700;color:var(--text);letter-spacing:-0.03em;line-height:1.3;margin-top:2px;}
-.nudge-sub{font-size:13px;color:var(--text2);margin-top:3px;line-height:1.45;font-weight:400;}
+.nudge-sub{font-size:13px;color:var(--text2);margin-top:3px;line-height:1.45;font-weight:400;display:none;}
+.nudge.open .nudge-sub{display:block;}
 .nudge-caret{font-size:18px;color:var(--text3);flex-shrink:0;transition:transform 0.22s;line-height:1.2;}
 .nudge.open .nudge-caret{transform:rotate(90deg);}
-.breakdown{display:none;border-top:1px solid var(--border);background:var(--card2);padding:12px 14px 14px;}
+.breakdown{display:none;border-top:1px solid var(--border);background:var(--card2);padding:10px 14px 12px;}
 .nudge.open .breakdown{display:block;}
-.bd-row{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;border-bottom:1px solid var(--border);font-size:14px;gap:8px;}
+.bd-row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--border);font-size:13px;gap:8px;}
 .bd-row:last-of-type{border-bottom:none;}
 .bd-label{color:var(--text2);font-weight:400;flex-shrink:0;}
 .bd-val{font-weight:700;color:var(--text);letter-spacing:-0.02em;text-align:right;}
 .bd-val.pos{color:var(--green);}
 .bd-val.neg{color:var(--coral);}
-.bd-desc{padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text2);line-height:1.5;font-weight:400;}
-.bd-desc span{color:var(--text);font-weight:600;}
-.cta{width:100%;margin-top:12px;padding:13px;border:none;border-radius:10px;font-size:14px;font-weight:700;font-family:var(--font);cursor:pointer;letter-spacing:-0.02em;color:#fff;transition:opacity 0.15s;text-decoration:none;display:block;text-align:center;}
+.cta{width:100%;margin-top:10px;padding:12px;border:none;border-radius:10px;font-size:13px;font-weight:700;font-family:var(--font);cursor:pointer;letter-spacing:-0.02em;color:#fff;transition:opacity 0.15s;text-decoration:none;display:block;text-align:center;}
 .cta:active{opacity:0.8;}
+.cta-secondary{background:var(--card3)!important;color:var(--text2)!important;margin-top:5px;}
 
 .debt-alert{margin:0 14px 8px;background:var(--coral-bg);border:1.5px solid var(--coral);border-radius:var(--radius);padding:14px;}
 .debt-alert-title{font-size:15px;font-weight:700;color:var(--coral);letter-spacing:-0.03em;}
@@ -499,7 +499,23 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
       <button class="ob-back" onclick="goOb(2)">‹</button>
       <div class="ob-body">
         <div class="ob-q">What's your annual income?</div>
-        <div class="ob-hint">Gross salary before tax. Used to calculate your exact tax band, pension relief, and ISA strategy. <b>Never shared.</b></div>
+        <div class="ob-hint">Gross salary before tax. Used to calculate your tax band, pension relief, and ISA strategy. <b>Never shared.</b></div>
+
+        <!-- Payslip scan option -->
+        <div id="payslip-upload-zone" style="margin-bottom:18px;border:1.5px dashed var(--border);border-radius:14px;padding:16px;text-align:center;cursor:pointer;transition:border-color 0.2s;" onclick="document.getElementById('payslip-file').click()" ondragover="event.preventDefault();this.style.borderColor='var(--coral)'" ondragleave="this.style.borderColor='var(--border)'" ondrop="handlePayslipDrop(event)">
+          <input type="file" id="payslip-file" accept="image/*,application/pdf" style="display:none" onchange="handlePayslipUpload(this)"/>
+          <div style="font-size:22px;margin-bottom:6px;">📄</div>
+          <div style="font-size:14px;font-weight:700;color:var(--text);letter-spacing:-0.02em;">Scan your payslip</div>
+          <div style="font-size:12px;color:var(--text3);margin-top:3px;">We'll read your gross salary automatically</div>
+          <div id="payslip-status" style="font-size:12px;color:var(--coral);margin-top:6px;font-weight:600;display:none;"></div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+          <div style="flex:1;height:1px;background:var(--border);"></div>
+          <span style="font-size:12px;color:var(--text3);font-weight:500;">or enter manually</span>
+          <div style="flex:1;height:1px;background:var(--border);"></div>
+        </div>
+
         <div class="ob-field">
           <div class="ob-input-wrap">
             <span class="ob-prefix">£</span>
@@ -509,6 +525,26 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
         </div>
         <button class="ob-next" onclick="submitSalary()">Continue →</button>
         <span class="ob-skip" onclick="skipSalary()">Prefer not to say — skip</span>
+      </div>
+    </div>
+
+    <!-- 3b. Student Loan (inserted after salary) -->
+    <div class="ob-page" id="ob-3b">
+      <div class="ob-prog-wrap" id="prog-3b"></div>
+      <button class="ob-back" onclick="goOb(3)">‹</button>
+      <div class="ob-body">
+        <div class="ob-q">Do you have a student loan?</div>
+        <div class="ob-hint">Repayments come straight off your pay — we need this to show your accurate take-home.</div>
+        <div class="ob-opts">
+          <button class="ob-opt" id="sl-none" onclick="setStudentLoan('none',this)">No student loan</button>
+          <button class="ob-opt" id="sl-plan1" onclick="setStudentLoan('plan1',this)">Plan 1 <span class="sub">Started before Sep 2012 (England/Wales) · threshold £24,990</span></button>
+          <button class="ob-opt" id="sl-plan2" onclick="setStudentLoan('plan2',this)">Plan 2 <span class="sub">Started Sep 2012 or later · threshold £27,295</span></button>
+          <button class="ob-opt" id="sl-plan4" onclick="setStudentLoan('plan4',this)">Plan 4 <span class="sub">Scotland · threshold £27,660</span></button>
+          <button class="ob-opt" id="sl-plan5" onclick="setStudentLoan('plan5',this)">Plan 5 <span class="sub">Started Aug 2023 or later · threshold £25,000</span></button>
+          <button class="ob-opt" id="sl-postgrad" onclick="setStudentLoan('postgrad',this)">Postgraduate loan <span class="sub">Master's or PhD · threshold £21,000 · 6%</span></button>
+        </div>
+        <div id="sl-insight" style="font-size:13px;color:var(--text2);line-height:1.5;margin-top:12px;padding:10px 12px;background:var(--card);border-radius:10px;display:none;"></div>
+        <button class="ob-next" onclick="goOb(4)" style="margin-top:18px;">Continue →</button>
       </div>
     </div>
 
@@ -718,7 +754,7 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
       <button class="ob-back" onclick="goOb(6)">‹</button>
       <div class="ob-body">
         <div class="ob-q">What about savings?</div>
-        <div class="ob-hint">We use this to spot savings tax exposure and check your ISA headroom for this tax year.</div>
+        <div class="ob-hint">We use this to spot savings tax exposure, check your ISA headroom, and find you a better rate.</div>
         <div class="ob-field">
           <span class="ob-field-label">Total savings outside your pension</span>
           <div class="ob-input-wrap">
@@ -733,6 +769,36 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
             <input class="ob-input" id="inp-isa" type="number" placeholder="4200" min="0" oninput="updateIsaHint()"/>
           </div>
           <div id="isa-remaining" style="font-size:13px;color:var(--text3);margin-top:8px;min-height:18px;"></div>
+        </div>
+        <div class="ob-field">
+          <span class="ob-field-label">Where are your savings held?</span>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;" id="savings-bank-grid">
+            <button class="ob-opt savings-bank-btn" style="padding:10px 12px;" onclick="setSavingsBank('lloyds',1.5,this)">
+              <img src="https://www.google.com/s2/favicons?domain=lloydsbank.com&sz=32" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'">Lloyds <span style="color:var(--text3);font-size:11px;">1.50%</span>
+            </button>
+            <button class="ob-opt savings-bank-btn" style="padding:10px 12px;" onclick="setSavingsBank('barclays',1.16,this)">
+              <img src="https://www.google.com/s2/favicons?domain=barclays.co.uk&sz=32" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'">Barclays <span style="color:var(--text3);font-size:11px;">1.16%</span>
+            </button>
+            <button class="ob-opt savings-bank-btn" style="padding:10px 12px;" onclick="setSavingsBank('hsbc',1.0,this)">
+              <img src="https://www.google.com/s2/favicons?domain=hsbc.co.uk&sz=32" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'">HSBC <span style="color:var(--text3);font-size:11px;">1.00%</span>
+            </button>
+            <button class="ob-opt savings-bank-btn" style="padding:10px 12px;" onclick="setSavingsBank('natwest',1.75,this)">
+              <img src="https://www.google.com/s2/favicons?domain=natwest.com&sz=32" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'">NatWest <span style="color:var(--text3);font-size:11px;">1.75%</span>
+            </button>
+            <button class="ob-opt savings-bank-btn" style="padding:10px 12px;" onclick="setSavingsBank('santander',1.8,this)">
+              <img src="https://www.google.com/s2/favicons?domain=santander.co.uk&sz=32" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'">Santander <span style="color:var(--text3);font-size:11px;">1.80%</span>
+            </button>
+            <button class="ob-opt savings-bank-btn" style="padding:10px 12px;" onclick="setSavingsBank('monzo',3.5,this)">
+              <img src="https://www.google.com/s2/favicons?domain=monzo.com&sz=32" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'">Monzo <span style="color:var(--green);font-size:11px;">3.50%</span>
+            </button>
+            <button class="ob-opt savings-bank-btn" style="padding:10px 12px;" onclick="setSavingsBank('starling',3.25,this)">
+              <img src="https://www.google.com/s2/favicons?domain=starlingbank.com&sz=32" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'">Starling <span style="color:var(--green);font-size:11px;">3.25%</span>
+            </button>
+            <button class="ob-opt savings-bank-btn" style="padding:10px 12px;" onclick="setSavingsBank('chase',4.1,this)">
+              <img src="https://www.google.com/s2/favicons?domain=chase.co.uk&sz=32" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'">Chase <span style="color:var(--green);font-size:11px;">4.10%</span>
+            </button>
+          </div>
+          <div id="savings-bank-insight" style="font-size:13px;line-height:1.5;margin-top:10px;min-height:18px;"></div>
         </div>
         <button class="ob-next" onclick="submitSavings()">Continue →</button>
         <span class="ob-skip" onclick="goOb(8)">Skip for now</span>
@@ -782,35 +848,35 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
         <div class="ob-hint"><b>Open Banking</b> is a UK government-backed standard. Read-only — we can never move money or make payments. FCA regulated.</div>
         <div class="ob-bank-grid">
           <div class="ob-bank" onclick="connectBank(this,'Barclays')">
-            <div class="ob-bank-icon" style="background:#1a3a6b;color:#fff;">B</div>
+            <div class="ob-bank-icon" style="background:#1a3a6b;"><img src="https://www.google.com/s2/favicons?domain=barclays.co.uk&sz=32" style="width:26px;height:26px;border-radius:4px;" onerror="this.outerHTML='<span style=\'color:#fff;font-weight:700\'>B</span>'"></div>
             <div><div class="ob-bank-name">Barclays</div><div class="ob-bank-status">Tap to connect</div></div>
           </div>
           <div class="ob-bank" onclick="connectBank(this,'HSBC')">
-            <div class="ob-bank-icon" style="background:#db0011;color:#fff;">H</div>
+            <div class="ob-bank-icon" style="background:#db0011;"><img src="https://www.google.com/s2/favicons?domain=hsbc.co.uk&sz=32" style="width:26px;height:26px;border-radius:4px;" onerror="this.outerHTML='<span style=\'color:#fff;font-weight:700\'>H</span>'"></div>
             <div><div class="ob-bank-name">HSBC</div><div class="ob-bank-status">Tap to connect</div></div>
           </div>
           <div class="ob-bank" onclick="connectBank(this,'Lloyds')">
-            <div class="ob-bank-icon" style="background:#006a4d;color:#fff;">Ll</div>
+            <div class="ob-bank-icon" style="background:#006a4d;"><img src="https://www.google.com/s2/favicons?domain=lloydsbank.com&sz=32" style="width:26px;height:26px;border-radius:4px;" onerror="this.outerHTML='<span style=\'color:#fff;font-weight:700\'>Ll</span>'"></div>
             <div><div class="ob-bank-name">Lloyds</div><div class="ob-bank-status">Tap to connect</div></div>
           </div>
           <div class="ob-bank" onclick="connectBank(this,'NatWest')">
-            <div class="ob-bank-icon" style="background:#4a1d7c;color:#fff;">N</div>
+            <div class="ob-bank-icon" style="background:#4a1d7c;"><img src="https://www.google.com/s2/favicons?domain=natwest.com&sz=32" style="width:26px;height:26px;border-radius:4px;" onerror="this.outerHTML='<span style=\'color:#fff;font-weight:700\'>N</span>'"></div>
             <div><div class="ob-bank-name">NatWest</div><div class="ob-bank-status">Tap to connect</div></div>
           </div>
           <div class="ob-bank" onclick="connectBank(this,'Nationwide')">
-            <div class="ob-bank-icon" style="background:#0f4c96;color:#fff;">Nw</div>
+            <div class="ob-bank-icon" style="background:#0f4c96;"><img src="https://www.google.com/s2/favicons?domain=nationwide.co.uk&sz=32" style="width:26px;height:26px;border-radius:4px;" onerror="this.outerHTML='<span style=\'color:#fff;font-weight:700\'>Nw</span>'"></div>
             <div><div class="ob-bank-name">Nationwide</div><div class="ob-bank-status">Tap to connect</div></div>
           </div>
           <div class="ob-bank" onclick="connectBank(this,'Monzo')">
-            <div class="ob-bank-icon" style="background:#ff3a43;color:#fff;">M</div>
+            <div class="ob-bank-icon" style="background:#ff3a43;"><img src="https://www.google.com/s2/favicons?domain=monzo.com&sz=32" style="width:26px;height:26px;border-radius:4px;" onerror="this.outerHTML='<span style=\'color:#fff;font-weight:700\'>M</span>'"></div>
             <div><div class="ob-bank-name">Monzo</div><div class="ob-bank-status">Tap to connect</div></div>
           </div>
           <div class="ob-bank" onclick="connectBank(this,'Starling')">
-            <div class="ob-bank-icon" style="background:#6935d3;color:#fff;">St</div>
+            <div class="ob-bank-icon" style="background:#6935d3;"><img src="https://www.google.com/s2/favicons?domain=starlingbank.com&sz=32" style="width:26px;height:26px;border-radius:4px;" onerror="this.outerHTML='<span style=\'color:#fff;font-weight:700\'>St</span>'"></div>
             <div><div class="ob-bank-name">Starling</div><div class="ob-bank-status">Tap to connect</div></div>
           </div>
           <div class="ob-bank" onclick="connectBank(this,'Santander')">
-            <div class="ob-bank-icon" style="background:#ec0000;color:#fff;">Sa</div>
+            <div class="ob-bank-icon" style="background:#ec0000;"><img src="https://www.google.com/s2/favicons?domain=santander.co.uk&sz=32" style="width:26px;height:26px;border-radius:4px;" onerror="this.outerHTML='<span style=\'color:#fff;font-weight:700\'>Sa</span>'"></div>
             <div><div class="ob-bank-name">Santander</div><div class="ob-bank-status">Tap to connect</div></div>
           </div>
         </div>
@@ -882,6 +948,15 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
 
       <div class="sec-hd"><h2>For You</h2><span id="action-count">5 actions</span></div>
 
+      <!-- Opportunity bar -->
+      <div style="margin:0 14px 12px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 16px 14px;">
+        <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">Your financial upside</div>
+        <div style="font-size:26px;font-weight:900;color:var(--text);letter-spacing:-0.05em;line-height:1;" id="opp-total">£—</div>
+        <div style="font-size:12px;color:var(--text3);margin-top:3px;margin-bottom:14px;" id="opp-sub">across your nudges this year</div>
+        <div style="height:10px;border-radius:6px;overflow:hidden;display:flex;gap:2px;background:var(--card3);" id="opp-bar"></div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;" id="opp-legend"></div>
+      </div>
+
       <!-- Debt alert -->
       <div class="debt-alert" id="debt-priority-card" style="display:none;">
         <div class="debt-alert-title">⚠ Pay off high-interest debt first</div>
@@ -926,7 +1001,7 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
       </div>
       <div class="bill-card" onclick="window.open('https://www.uswitch.com/broadband/postcode/','_blank')">
         <div class="bill-row">
-          <div class="bill-icon" style="background:var(--blue-bg)">📡</div>
+          <div class="bill-icon" style="background:var(--blue-bg)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5" stroke-linecap="round"><path d="M1.5 8.5C5.5 4.5 10.5 2.5 12 2.5s6.5 2 10.5 6"/><path d="M5 12.5c1.9-1.9 4.3-3 7-3s5.1 1.1 7 3"/><path d="M8.5 16c1-1 2.2-1.5 3.5-1.5s2.5.5 3.5 1.5"/><circle cx="12" cy="20" r="1.5" fill="var(--blue)"/></svg></div>
           <div class="bill-info"><div class="bill-name">Broadband</div><div class="bill-sub">Virgin Media · £54/mo · renews in 6 weeks</div></div>
           <div class="bill-right"><div class="bill-save">Save £216/yr</div><div class="bill-link">via Uswitch →</div></div>
         </div>
@@ -948,17 +1023,17 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
       <div class="sec-hd" style="padding-top:6px;"><h2>Detected subscriptions</h2><span id="sub-waste-label">£22.98 may be waste</span></div>
       <div style="padding:0 14px 8px;"><span style="font-size:11px;color:var(--text3);font-weight:500;">Found from your transaction history · last 90 days</span></div>
       <div class="subs-card" id="subs-detected">
-        <!-- Spotify — consistent payments -->
+        <!-- Spotify -->
         <div class="sub-row" onclick="toggleSub(this)">
-          <div class="sub-icon" style="background:#1DB95418;color:#1DB954">S</div>
+          <div class="sub-icon" style="background:#1DB95418;color:#1DB954;font-weight:800;">S</div>
           <div class="sub-info"><div class="sub-name">Spotify</div><div class="sub-usage" style="color:var(--text3)">Paid consistently · 12 months</div></div>
           <div class="sub-right"><div class="sub-amt">£11.99/mo</div><div class="sub-flag" style="color:var(--green)">Keep</div></div>
         </div>
         <div class="sub-expand"><div class="sub-alt-label">Last 3 payments</div><div style="font-size:13px;color:var(--text2);line-height:2;">10 Mar · £11.99 · Spotify AB<br>8 Feb · £11.99 · Spotify AB<br>8 Jan · £11.99 · Spotify AB</div></div>
 
-        <!-- Netflix — still being charged, worth reviewing -->
+        <!-- Netflix -->
         <div class="sub-row" onclick="toggleSub(this)">
-          <div class="sub-icon" style="background:#E5000018;color:#FF4444">N</div>
+          <div class="sub-icon" style="background:#E5000018;color:#E50914;font-weight:800;">N</div>
           <div class="sub-info"><div class="sub-name">Netflix</div><div class="sub-usage" style="color:var(--text3)">Paid 8 months · £143.92 total</div></div>
           <div class="sub-right"><div class="sub-amt">£17.99/mo</div><div class="sub-flag" style="color:var(--coral)">Review</div></div>
         </div>
@@ -970,9 +1045,9 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
           <a class="cta" style="background:var(--coral);margin-top:10px;" href="https://www.moneysavingexpert.com/deals/cheap-tv-streaming/" target="_blank">Compare streaming deals →</a>
         </div>
 
-        <!-- PureGym — payments continuing but worth questioning -->
+        <!-- PureGym -->
         <div class="sub-row" onclick="toggleSub(this)">
-          <div class="sub-icon" style="background:#FFB02018;color:#FFB020">💪</div>
+          <div class="sub-icon" style="background:#FFB02018;color:#FFB020;font-size:18px;">💪</div>
           <div class="sub-info"><div class="sub-name">PureGym</div><div class="sub-usage" style="color:var(--text3)">Paid 12 months · £539.88 total</div></div>
           <div class="sub-right"><div class="sub-amt">£44.99/mo</div><div class="sub-flag" style="color:var(--coral)">£540/yr</div></div>
         </div>
@@ -984,19 +1059,19 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
           <a class="cta" style="background:var(--amber);margin-top:10px;" href="https://www.thegymgroup.com" target="_blank">See The Gym Group near you →</a>
         </div>
 
-        <!-- Disney+ — low monthly cost, easy to forget -->
+        <!-- Disney+ -->
         <div class="sub-row" onclick="toggleSub(this)">
-          <div class="sub-icon" style="background:#1C69D418;color:#4D8EFF">D</div>
+          <div class="sub-icon" style="background:#1C69D418;color:#1C69D4;font-weight:800;">D+</div>
           <div class="sub-info"><div class="sub-name">Disney+</div><div class="sub-usage" style="color:var(--text3)">Paid 6 months · £29.94 total</div></div>
           <div class="sub-right"><div class="sub-amt">£4.99/mo</div><div class="sub-flag" style="color:var(--amber)">Review</div></div>
         </div>
         <div class="sub-expand">
-          <div style="font-size:13px;color:var(--text2);">At £4.99/mo it's easy to forget about. Cancelling saves £59.88/yr. Disney+ lets you pause for up to 3 months if you're not sure — your watchlist is kept.</div>
+          <div style="font-size:13px;color:var(--text2);">At £4.99/mo it's easy to forget about. Cancelling saves £59.88/yr. Disney+ lets you pause for up to 3 months — your watchlist is kept.</div>
         </div>
 
-        <!-- Apple Music — duplicate with Spotify -->
+        <!-- Apple Music -->
         <div class="sub-row" onclick="toggleSub(this)">
-          <div class="sub-icon" style="background:#FC3C4418;color:#FC3C44">♪</div>
+          <div class="sub-icon" style="background:#FC3C4418;color:#FC3C44;font-size:16px;">♪</div>
           <div class="sub-info"><div class="sub-name">Apple Music</div><div class="sub-usage" style="color:var(--amber)">⚠ You're also paying for Spotify</div></div>
           <div class="sub-right"><div class="sub-amt">£10.99/mo</div><div class="sub-flag" style="color:var(--amber)">Duplicate</div></div>
         </div>
@@ -1010,20 +1085,40 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
     <div id="page-picture" class="page">
       <div class="sec-hd"><h2>Your Picture</h2></div>
 
-      <!-- Tax at a glance — NEW -->
+      <!-- Tax at a glance — donut version -->
       <div class="snap-section-label">Tax at a glance</div>
       <div class="tax-breakdown-card">
-        <div class="snap-row" style="border-bottom:1px solid var(--border);padding-bottom:8px;">
-          <span class="snap-label">Gross salary</span><span class="snap-val" id="pic-salary">£53,000</span>
-        </div>
-        <div class="tax-bar-wrap">
-          <div class="tax-bar">
-            <div class="tax-bar-fill" id="tax-bar-fill" style="width:22%;background:linear-gradient(90deg,var(--coral),var(--amber))"></div>
+        <!-- Large donut centred -->
+        <div style="display:flex;flex-direction:column;align-items:center;padding:20px 16px 16px;border-bottom:1px solid var(--border);">
+          <div style="position:relative;">
+            <svg width="160" height="160" viewBox="0 0 160 160" id="donut-svg">
+              <circle cx="80" cy="80" r="60" fill="none" stroke="var(--card3)" stroke-width="18"/>
+              <circle cx="80" cy="80" r="60" fill="none" stroke="var(--coral)" stroke-width="18"
+                stroke-dasharray="377" stroke-dashoffset="377" id="donut-tax"
+                stroke-linecap="butt" transform="rotate(-90 80 80)"/>
+              <circle cx="80" cy="80" r="60" fill="none" stroke="var(--amber)" stroke-width="18"
+                stroke-dasharray="377" stroke-dashoffset="377" id="donut-ni"
+                stroke-linecap="butt" transform="rotate(-90 80 80)"/>
+              <circle cx="80" cy="80" r="60" fill="none" stroke="var(--purple)" stroke-width="18"
+                stroke-dasharray="377" stroke-dashoffset="377" id="donut-loan"
+                stroke-linecap="butt" transform="rotate(-90 80 80)"/>
+            </svg>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;">
+              <div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;">Take-home</div>
+              <div style="font-size:28px;font-weight:900;color:var(--green);letter-spacing:-0.05em;line-height:1;" id="donut-pct">—</div>
+              <div style="font-size:13px;font-weight:700;color:var(--text);letter-spacing:-0.02em;" id="donut-takehome">£—/mo</div>
+            </div>
           </div>
-          <div class="tax-legend" id="tax-legend"></div>
+          <!-- Donut legend -->
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px 18px;margin-top:16px;" id="donut-legend"></div>
+        </div>
+        <!-- All the original data rows preserved -->
+        <div class="snap-row" style="border-bottom:1px solid var(--border);">
+          <span class="snap-label">Gross salary</span><span class="snap-val" id="pic-salary">£53,000</span>
         </div>
         <div class="snap-row"><span class="snap-label">Income tax (est.)</span><span class="snap-val neg" id="pic-tax">−£8,632</span></div>
         <div class="snap-row"><span class="snap-label">National Insurance (est.)</span><span class="snap-val neg" id="pic-ni">−£3,071</span></div>
+        <div class="snap-row" id="pic-sl-row" style="display:none;"><span class="snap-label">Student loan repayment</span><span class="snap-val neg" id="pic-sl-amt">−£0</span></div>
         <div class="snap-row"><span class="snap-label">Total deductions</span><span class="snap-val neg" id="pic-total-deduct">−£11,703</span></div>
         <div class="snap-row"><span class="snap-label">Estimated take-home</span><span class="snap-val snap-good" id="pic-takehome">~£3,441/mo</span></div>
         <div class="snap-row"><span class="snap-label">Effective tax rate</span><span class="snap-val" id="pic-effective-rate">22.1%</span></div>
@@ -1194,11 +1289,23 @@ for (let i = 1; i <= 10; i++) {
 // ═══════════════════════════════
 let curOb = 1;
 function goOb(n) {
-  document.getElementById('ob-' + curOb).classList.remove('active');
+  const prev = document.getElementById('ob-' + curOb);
+  if (prev) { prev.classList.remove('active'); prev.style.display = 'none'; }
   curOb = n;
   const pg = document.getElementById('ob-' + n);
+  pg.style.display = 'flex';
   pg.classList.add('active');
   pg.scrollTop = 0;
+}
+
+function goObSL() {
+  const prev = document.getElementById('ob-' + curOb);
+  if (prev) { prev.classList.remove('active'); prev.style.display = 'none'; }
+  curOb = '3b';
+  const sl = document.getElementById('ob-3b');
+  sl.style.display = 'flex';
+  sl.classList.add('active');
+  sl.scrollTop = 0;
 }
 
 // Screen 1
@@ -1227,9 +1334,132 @@ function updateTaxBand() {
 function submitSalary() {
   const v = parseInt(document.getElementById('inp-salary').value);
   if (v > 0) p.salary = v;
-  goOb(p.employment === 'self' ? 5 : 4);
+  // Go to student loan screen before pension
+  if (p.employment === 'self') { goOb(5); return; }
+  goObSL();
 }
-function skipSalary() { goOb(p.employment === 'self' ? 5 : 4); }
+function skipSalary() {
+  if (p.employment === 'self') { goOb(5); return; }
+  goObSL();
+}
+// Student loan
+const SL_PLANS = {
+  none:    { threshold:0,      rate:0,    label:null },
+  plan1:   { threshold:24990,  rate:0.09, label:'Plan 1 · 9% above £24,990' },
+  plan2:   { threshold:27295,  rate:0.09, label:'Plan 2 · 9% above £27,295' },
+  plan4:   { threshold:27660,  rate:0.09, label:'Plan 4 · 9% above £27,660' },
+  plan5:   { threshold:25000,  rate:0.09, label:'Plan 5 · 9% above £25,000' },
+  postgrad:{ threshold:21000,  rate:0.06, label:'Postgrad · 6% above £21,000' },
+};
+function setStudentLoan(plan, el) {
+  p.studentLoan = plan;
+  ['sl-none','sl-plan1','sl-plan2','sl-plan4','sl-plan5','sl-postgrad'].forEach(id => {
+    const b = document.getElementById(id); if(b) b.classList.remove('selected');
+  });
+  el.classList.add('selected');
+  const insight = document.getElementById('sl-insight');
+  if (plan === 'none') { insight.style.display='none'; return; }
+  const cfg = SL_PLANS[plan];
+  if (p.salary > 0 && cfg.threshold > 0) {
+    const annual = Math.max(0, Math.round((p.salary - cfg.threshold) * cfg.rate));
+    if (annual > 0) {
+      insight.style.display = 'block';
+      insight.innerHTML = `Repayment: <strong style="color:var(--text)">£${annual.toLocaleString()}/yr (£${Math.round(annual/12).toLocaleString()}/mo)</strong> deducted from pay · ${cfg.label}`;
+    } else {
+      insight.style.display = 'block';
+      insight.textContent = `You earn below the ${cfg.label.split('·')[0].trim()} threshold — no repayments until salary increases.`;
+    }
+  } else {
+    insight.style.display = 'none';
+  }
+}
+
+// Payslip upload — calls Anthropic API to extract salary
+async function handlePayslipUpload(input) {
+  if (!input.files || !input.files[0]) return;
+  const file = input.files[0];
+  await parsePayslip(file);
+}
+function handlePayslipDrop(event) {
+  event.preventDefault();
+  document.getElementById('payslip-upload-zone').style.borderColor = 'var(--border)';
+  const file = event.dataTransfer.files[0];
+  if (file) parsePayslip(file);
+}
+async function parsePayslip(file) {
+  const status = document.getElementById('payslip-status');
+  const zone = document.getElementById('payslip-upload-zone');
+  status.style.display = 'block';
+  status.style.color = 'var(--text3)';
+  status.textContent = 'Reading payslip…';
+  zone.style.borderColor = 'var(--coral)';
+  try {
+    const base64 = await new Promise((res, rej) => {
+      const r = new FileReader();
+      r.onload = () => res(r.result.split(',')[1]);
+      r.onerror = rej;
+      r.readAsDataURL(file);
+    });
+    const isImage = file.type.startsWith('image/');
+    const mediaType = isImage ? file.type : 'application/pdf';
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 400,
+        messages: [{
+          role: 'user',
+          content: [
+            { type: isImage ? 'image' : 'document',
+              source: { type: 'base64', media_type: mediaType, data: base64 } },
+            { type: 'text', text: 'Extract all payroll details from this UK payslip. Reply ONLY with a JSON object, no markdown: {"annual_gross":null,"monthly_gross":null,"tax_code":null,"income_tax_monthly":null,"ni_monthly":null,"student_loan_monthly":null,"student_loan_plan":null,"employee_pension_pct":null,"employer_pension_pct":null,"net_pay_monthly":null}' }
+          ]
+        }]
+      })
+    });
+    const data = await response.json();
+    const text = data.content?.find(b => b.type === 'text')?.text || '';
+    const parsed = JSON.parse(text.replace(/```json|```/g,'').trim());
+    const filled = [];
+    const annual = parsed.annual_gross || (parsed.monthly_gross ? Math.round(parsed.monthly_gross*12) : null);
+    if (annual > 0) {
+      document.getElementById('inp-salary').value = annual;
+      updateTaxBand(); p.salary = annual;
+      filled.push('Salary £' + annual.toLocaleString());
+      if (parsed.tax_code) filled.push('Tax code ' + parsed.tax_code);
+    }
+    if (parsed.student_loan_monthly > 0 && parsed.student_loan_plan && parsed.student_loan_plan !== 'null') {
+      p.studentLoan = parsed.student_loan_plan;
+      const slBtn = document.getElementById('sl-' + parsed.student_loan_plan);
+      if (slBtn) slBtn.classList.add('selected');
+      filled.push('Student loan ' + parsed.student_loan_plan.replace('plan','Plan '));
+    }
+    if (parsed.employee_pension_pct > 0) {
+      p.myPct = parsed.employee_pension_pct;
+      const myEl = document.getElementById('inp-my-pension');
+      if (myEl) myEl.value = parsed.employee_pension_pct;
+      filled.push('Your pension ' + parsed.employee_pension_pct + '%');
+    }
+    if (parsed.employer_pension_pct > 0) {
+      p.empPct = parsed.employer_pension_pct;
+      const empEl = document.getElementById('inp-emp-pension');
+      if (empEl) empEl.value = parsed.employer_pension_pct;
+      filled.push('Employer ' + parsed.employer_pension_pct + '%');
+    }
+    if (filled.length > 0) {
+      status.style.color = 'var(--green)';
+      status.innerHTML = '✓ Pre-filled: ' + filled.join(' · ') + '<br><span style="color:var(--text3);font-size:11px;">Check each screen and skip any that look right</span>';
+      zone.style.borderColor = 'var(--green)';
+    } else {
+      throw new Error('no data');
+    }
+  } catch(e) {
+    status.style.color = 'var(--coral)';
+    status.textContent = "Couldn't read payslip — enter manually below";
+    zone.style.borderColor = 'var(--border)';
+  }
+}
 
 // Screen 4 — pension type
 function setPensionType(type, el) {
@@ -1351,6 +1581,24 @@ function submitHousing() {
 }
 
 // Screen 7
+function setSavingsBank(bank, rate, el) {
+  p.savingsBank = bank; p.savingsRate = rate;
+  document.querySelectorAll('.savings-bank-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  const sav = parseInt(document.getElementById('inp-savings').value) || 0;
+  const insight = document.getElementById('savings-bank-insight');
+  const bestRate = 0.052;
+  if (rate >= 4.5) {
+    insight.innerHTML = `<span style="color:var(--green)">✓ Already on a good rate. Make sure it's inside an ISA to keep the interest tax-free.</span>`;
+  } else if (sav > 0) {
+    const currentYr = Math.round(sav * rate / 100);
+    const bestYr    = Math.round(sav * bestRate);
+    const gain      = bestYr - currentYr;
+    if (gain > 0) insight.innerHTML = `<span style="color:var(--amber)">At ${rate}%, your £${sav.toLocaleString()} earns £${currentYr.toLocaleString()}/yr. Best accounts pay ~5.2% — that's £${gain.toLocaleString()} more.</span>`;
+  } else {
+    insight.innerHTML = `<span style="color:var(--text3)">Enter your savings amount above to see the difference.</span>`;
+  }
+}
 function updateIsaHint() {
   const isa = parseInt(document.getElementById('inp-isa').value) || 0;
   const rem = 20000 - isa;
@@ -1399,11 +1647,10 @@ function connectBank(el, name) {
 function calcTax(salary) {
   const pa = 12570, bTop = 50270, hTop = 125140;
   let tax = 0;
-  if (salary <= pa) return { tax:0, ni:0, total:0 };
+  if (salary <= pa) return { tax:0, ni:0, loan:0, total:0 };
   if (salary <= bTop)  tax = (salary - pa) * 0.2;
   else if (salary < 100000) tax = (bTop - pa) * 0.2 + (salary - bTop) * 0.4;
   else if (salary <= hTop) {
-    // Personal allowance taper
     const taper = Math.min((salary - 100000) / 2, pa);
     const effectivePa = pa - taper;
     tax = Math.max(0, Math.min(bTop, salary) - effectivePa) * 0.2;
@@ -1416,7 +1663,14 @@ function calcTax(salary) {
     ni = (Math.min(salary, bTop) - 12570) * 0.08;
     if (salary > bTop) ni += (salary - bTop) * 0.02;
   }
-  return { tax: Math.round(tax), ni: Math.round(ni), total: Math.round(tax + ni) };
+  // Student loan
+  let loan = 0;
+  const slPlan = p.studentLoan || 'none';
+  if (slPlan !== 'none' && SL_PLANS && SL_PLANS[slPlan]) {
+    const cfg = SL_PLANS[slPlan];
+    loan = Math.max(0, Math.round((salary - cfg.threshold) * cfg.rate));
+  }
+  return { tax: Math.round(tax), ni: Math.round(ni), loan: Math.round(loan), total: Math.round(tax + ni + loan) };
 }
 
 function getSalaryBand(salary) {
@@ -1542,6 +1796,12 @@ function buildApp() {
   // Build nudges
   buildNudges();
 
+  // Build opportunity bar
+  buildOpportunityBar();
+
+  // Build donut (Picture page)
+  buildDonut();
+
   // Build missing out
   buildMissingOut();
 
@@ -1550,6 +1810,119 @@ function buildApp() {
 
   // Build picture
   buildPicture();
+}
+
+// ═══════════════════════════════
+// OPPORTUNITY BAR (For You page)
+// ═══════════════════════════════
+function buildOpportunityBar() {
+  if (!p.salary) return;
+  const t = calcTax(p.salary);
+  const band = getSalaryBand(p.salary);
+  const segments = [];
+
+  // Pension gap
+  if (p.pensionMatch && p.employment !== 'self' && p.myPct < p.empPct) {
+    const gap = p.empPct - p.myPct;
+    const gain = Math.round(p.salary * gap / 100);
+    segments.push({ label:'Pension match', val: gain, color:'var(--green)' });
+  }
+
+  // Savings rate
+  if ((p.savings||0) > 1000) {
+    const currentRate = p.savingsRate || 1.5;
+    if (currentRate < 4.5) {
+      const gain = Math.round((p.savings||0) * (0.052 - currentRate/100));
+      if (gain > 50) segments.push({ label:'Savings rate', val: gain, color:'var(--blue)' });
+    }
+  }
+
+  // ISA — assume full allowance remaining is the opportunity
+  const isaRem = 20000 - (p.isaUsed||0);
+  if (isaRem > 5000) {
+    // Rough: if they invested it at 7% vs 0%, tax saving matters more
+    // Just show as a softer £ if in higher rate
+    const taxSaving = band.band === 'higher' || band.band === 'sixty' ? Math.round(isaRem * 0.072 * 0.4) : Math.round(isaRem * 0.072 * 0.2);
+    if (taxSaving > 0) segments.push({ label:'ISA tax saving', val: taxSaving, color:'var(--coral)' });
+  }
+
+  // Bills — static estimate
+  segments.push({ label:'Bills switching', val: 892, color:'var(--amber)' });
+
+  // Credit card rewards
+  if (p.creditCard === 'basic' || p.creditCard === 'none') {
+    const spend = Math.round((p.salary||36000) * 0.25);
+    segments.push({ label:'Card rewards', val: Math.round(spend * 0.01), color:'var(--purple)' });
+  }
+
+  const total = segments.reduce((s, x) => s + x.val, 0);
+  if (total === 0) return;
+
+  document.getElementById('opp-total').textContent = `£${total.toLocaleString()}`;
+  document.getElementById('opp-sub').textContent = `across ${segments.length} opportunities this year`;
+
+  // Bar segments
+  const bar = document.getElementById('opp-bar');
+  bar.innerHTML = segments.map(s =>
+    `<div style="flex:${s.val};background:${s.color};height:100%;cursor:pointer;transition:opacity 0.15s;" title="${s.label}: £${s.val.toLocaleString()}"></div>`
+  ).join('');
+
+  // Legend
+  document.getElementById('opp-legend').innerHTML = segments.map(s =>
+    `<div style="display:flex;align-items:center;gap:5px;cursor:pointer;">
+      <div style="width:8px;height:8px;border-radius:2px;background:${s.color};flex-shrink:0;"></div>
+      <span style="font-size:11px;color:var(--text3);">${s.label}</span>
+      <span style="font-size:11px;font-weight:700;color:var(--text);">£${s.val.toLocaleString()}</span>
+    </div>`
+  ).join('');
+}
+
+// ═══════════════════════════════
+// TAKE-HOME DONUT (Picture page)
+// ═══════════════════════════════
+function buildDonut() {
+  if (!p.salary) return;
+  const t = calcTax(p.salary);
+  const circ = 377; // 2*PI*60
+  const taxPct  = t.tax  / p.salary;
+  const niPct   = t.ni   / p.salary;
+  const loanPct = t.loan / p.salary;
+  const takePct = 1 - taxPct - niPct - loanPct;
+  const takehome = Math.round((p.salary - t.total) / 12);
+
+  function setSegment(id, pct, rotDeg) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.setAttribute('stroke-dasharray', `${pct * circ} ${circ}`);
+    el.setAttribute('stroke-dashoffset', '0');
+    el.setAttribute('transform', `rotate(${rotDeg} 80 80)`);
+  }
+
+  const taxDeg  = -90;
+  const niDeg   = taxDeg  + taxPct  * 360;
+  const loanDeg = niDeg   + niPct   * 360;
+
+  setSegment('donut-tax',  taxPct,  taxDeg);
+  setSegment('donut-ni',   niPct,   niDeg);
+  setSegment('donut-loan', loanPct, loanDeg);
+
+  document.getElementById('donut-pct').textContent = Math.round(takePct * 100) + '%';
+  document.getElementById('donut-takehome').textContent = `£${takehome.toLocaleString()}/mo`;
+
+  const items = [
+    { color:'var(--coral)', label:'Income tax', val:`${(taxPct*100).toFixed(1)}%` },
+    { color:'var(--amber)', label:'NI', val:`${(niPct*100).toFixed(1)}%` },
+  ];
+  if (t.loan > 0) items.push({ color:'var(--purple)', label:'Student loan', val:`${(loanPct*100).toFixed(1)}%` });
+  items.push({ color:'var(--green)', label:'Take-home', val:`${Math.round(takePct*100)}%` });
+
+  document.getElementById('donut-legend').innerHTML = items.map(i =>
+    `<div style="display:flex;align-items:center;gap:5px;">
+      <div style="width:8px;height:8px;border-radius:2px;background:${i.color};flex-shrink:0;"></div>
+      <span style="font-size:11px;color:var(--text3);">${i.label}</span>
+      <span style="font-size:11px;font-weight:700;color:var(--text);">${i.val}</span>
+    </div>`
+  ).join('');
 }
 
 // ═══════════════════════════════
@@ -1684,28 +2057,26 @@ function buildNudges() {
 
   // Savings rate nudge — if savings exist
   if ((p.savings||0) > 1000) {
-    // Assume current bank rate is ~1.5% (typical high-street bank)
-    // unless they connected Open Banking, still use conservative estimate for prototype
-    const currentRate = 0.015;
-    const bestRate    = 0.052; // Chase / Chip easy-access ~5.2%
-    const currentYr   = Math.round((p.savings||0) * currentRate);
+    const currentRate = p.savingsRate || 1.5;
+    const bankName    = p.savingsBank ? ({lloyds:'Lloyds',barclays:'Barclays',hsbc:'HSBC',natwest:'NatWest',santander:'Santander',monzo:'Monzo',starling:'Starling',chase:'Chase'}[p.savingsBank] || 'your bank') : 'your bank';
+    const bestRate    = 0.052;
+    const currentYr   = Math.round((p.savings||0) * currentRate / 100);
     const bestYr      = Math.round((p.savings||0) * bestRate);
     const gain        = bestYr - currentYr;
-    if (gain > 50) {
+    if (gain > 50 && currentRate < 4.5) {
       nudges.push(makeNudge({
         color:'var(--green)', tag:'Savings Rate',
-        headline: `Your savings could be earning £${gain.toLocaleString()} more per year`,
-        sub: `You're likely on ~1.5% at your main bank. Easy-access accounts now pay up to 5.2%.`,
+        headline: `${bankName} is costing you £${gain.toLocaleString()}/yr in lost interest`,
+        sub: `At ${currentRate}%, your £${(p.savings||0).toLocaleString()} earns £${currentYr.toLocaleString()}/yr. Easy-access accounts now pay up to 5.2%.`,
         breakdown: [
-          ['Savings balance', `£${(p.savings||0).toLocaleString()}`, false],
-          ['Est. current rate', `~1.5% → £${currentYr.toLocaleString()}/yr`, false],
-          ['Best easy-access rate', `~5.2% → £${bestYr.toLocaleString()}/yr`, true],
-          ['Extra per year for 10 mins work', `£${gain.toLocaleString()}`, true],
+          [`${bankName} (${currentRate}%)`, `£${currentYr.toLocaleString()}/yr`, false],
+          ['Best easy-access (~5.2%)', `£${bestYr.toLocaleString()}/yr`, true],
+          ['Extra for 10 mins work', `£${gain.toLocaleString()}/yr`, true],
         ],
         ctaMulti: [
           { text:'Chase Saver — 5.1% AER, instant access', url:'https://www.chase.co.uk/gb/en/product/savings/', bg:'var(--green)' },
           { text:'Chip — up to 5.2% AER', url:'https://getchip.uk/savings', bg:'var(--card3)', color:'var(--text)' },
-          { text:'Compare all rates on MoneySavingExpert', url:'https://www.moneysavingexpert.com/savings/savings-accounts-best-interest/', bg:'var(--card3)', color:'var(--text)' },
+          { text:'Compare all rates — MoneySavingExpert', url:'https://www.moneysavingexpert.com/savings/savings-accounts-best-interest/', bg:'var(--card3)', color:'var(--text)' },
         ]
       }));
     }
@@ -1739,14 +2110,15 @@ function buildNudges() {
 }
 
 function makeNudge({color, tag, headline, sub, breakdown, cta, ctaMulti}) {
-  const rows = breakdown.map(([label, val, pos, neg]) =>
+  const rows = breakdown.slice(0,3).map(([label, val, pos, neg]) =>
     `<div class="bd-row"><span class="bd-label">${label}</span><span class="bd-val${pos?' pos':neg?' neg':''}">${val}</span></div>`
   ).join('');
   let ctaHtml = '';
   if (ctaMulti) {
-    ctaHtml = ctaMulti.map((c,i) =>
-      `<a class="cta" style="background:${c.bg};color:${c.color||'#fff'};margin-top:${i===0?'12':'6'}px;" href="${c.url}" target="_blank">${c.text}</a>`
-    ).join('');
+    ctaHtml = `<a class="cta" style="background:${ctaMulti[0].bg}" href="${ctaMulti[0].url}" target="_blank">${ctaMulti[0].text}</a>`;
+    ctaMulti.slice(1).forEach(c =>
+      ctaHtml += `<a class="cta cta-secondary" href="${c.url}" target="_blank">${c.text}</a>`
+    );
   } else if (cta) {
     ctaHtml = `<a class="cta" style="background:${cta.bg}" href="${cta.url}" target="_blank">${cta.text}</a>`;
   }
@@ -2066,18 +2438,19 @@ function buildPicture() {
   document.getElementById('pic-salary').textContent = `£${p.salary.toLocaleString()}`;
   document.getElementById('pic-tax').textContent = `−£${t.tax.toLocaleString()}`;
   document.getElementById('pic-ni').textContent = `−£${t.ni.toLocaleString()}`;
+  // Student loan row
+  const slRow = document.getElementById('pic-sl-row');
+  if (slRow) {
+    if (t.loan > 0) {
+      slRow.style.display = 'flex';
+      document.getElementById('pic-sl-amt').textContent = `−£${t.loan.toLocaleString()}`;
+    } else {
+      slRow.style.display = 'none';
+    }
+  }
   document.getElementById('pic-total-deduct').textContent = `−£${t.total.toLocaleString()}`;
   document.getElementById('pic-takehome').textContent = `~£${takehome.toLocaleString()}/mo`;
   document.getElementById('pic-effective-rate').textContent = effectiveRate + '%';
-
-  // Tax bar
-  const taxPct = (t.tax / p.salary * 100).toFixed(1);
-  const niPct  = (t.ni  / p.salary * 100).toFixed(1);
-  document.getElementById('tax-bar-fill').style.width = (parseFloat(taxPct)+parseFloat(niPct)) + '%';
-  document.getElementById('tax-legend').innerHTML = `
-    <div class="tax-legend-item"><div class="tax-legend-dot" style="background:var(--coral)"></div>Income tax ${taxPct}%</div>
-    <div class="tax-legend-item"><div class="tax-legend-dot" style="background:var(--amber)"></div>NI ${niPct}%</div>
-    <div class="tax-legend-item"><div class="tax-legend-dot" style="background:var(--green)"></div>Take-home ${(100-parseFloat(taxPct)-parseFloat(niPct)).toFixed(1)}%</div>`;
 
   // Over 40% row
   if (band.band === 'higher') {
