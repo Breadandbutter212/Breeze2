@@ -298,11 +298,104 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
 .page.active{display:block;}
 @keyframes enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .page.active{animation:enter 0.24s cubic-bezier(0.22,1,0.36,1) forwards;}
+
+/* ═══════════════════
+   LOGIN SCREEN
+   ═══════════════════ */
+.login-screen{position:absolute;inset:0;z-index:300;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;}
+.login-glow{position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,79,79,0.14) 0%,transparent 70%);top:-80px;left:-60px;pointer-events:none;}
+.login-body{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:0 28px 44px;position:relative;z-index:1;}
+.login-logo{font-size:38px;font-weight:900;color:var(--text);letter-spacing:-0.06em;margin-bottom:6px;}
+.login-logo span{color:var(--coral);}
+.login-sub{font-size:14px;color:var(--text3);font-weight:500;margin-bottom:36px;}
+.login-field{margin-bottom:12px;}
+.login-label{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:7px;display:block;}
+.login-input{width:100%;background:var(--card);border:1.5px solid var(--border);border-radius:14px;padding:16px;font-size:16px;font-weight:600;color:var(--text);font-family:var(--font);outline:none;transition:border-color 0.2s;box-sizing:border-box;}
+.login-input:focus{border-color:var(--coral);}
+.login-input::placeholder{color:var(--text3);}
+.login-btn{width:100%;padding:18px;background:var(--coral);border:none;border-radius:16px;font-size:17px;font-weight:800;color:#fff;cursor:pointer;font-family:var(--font);letter-spacing:-0.03em;margin-top:8px;transition:opacity 0.15s,transform 0.15s;}
+.login-btn:active{opacity:0.85;transform:scale(0.98);}
+.login-forgot{display:block;text-align:center;font-size:13px;color:var(--text3);margin-top:14px;cursor:pointer;}
+.login-signup{display:block;text-align:center;font-size:13px;color:var(--text2);margin-top:8px;cursor:pointer;}
+.login-signup span{color:var(--coral);font-weight:700;}
+
+/* ═══════════════════
+   FACE ID SCREEN
+   ═══════════════════ */
+.faceid-screen{position:absolute;inset:0;z-index:300;background:var(--bg);display:none;flex-direction:column;align-items:center;justify-content:center;}
+.faceid-logo{font-size:28px;font-weight:900;color:var(--text);letter-spacing:-0.06em;margin-bottom:4px;}
+.faceid-logo span{color:var(--coral);}
+.faceid-name{font-size:15px;color:var(--text3);font-weight:500;margin-bottom:48px;}
+.faceid-ring{width:96px;height:96px;border-radius:28px;border:2.5px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:24px;}
+.faceid-ring svg{width:60px;height:60px;}
+.faceid-ring.scanning{border-color:var(--coral);}
+.faceid-ring.scanning::before{content:'';position:absolute;inset:-6px;border-radius:34px;border:2px solid var(--coral);opacity:0;animation:facePulse 1.2s ease-out forwards;}
+@keyframes facePulse{0%{opacity:0.8;transform:scale(1)}100%{opacity:0;transform:scale(1.15)}}
+.faceid-status{font-size:14px;color:var(--text3);font-weight:500;}
+.faceid-status.ok{color:var(--green);}
+.faceid-manual{font-size:13px;color:var(--coral);font-weight:600;margin-top:32px;cursor:pointer;}
+
+/* ═══════════════════
+   DETECTED SUBS
+   ═══════════════════ */
+.sub-row{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border);cursor:pointer;}
+.sub-row:last-child{border-bottom:none;}
+.sub-expand{display:none;background:var(--card2);border-top:1px solid var(--border);padding:12px 16px 14px;}
+.sub-row.open + .sub-expand{display:block;}
+.sub-alt-label{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;}
+.sub-alt{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.sub-alt:last-of-type{border-bottom:none;}
+.sub-alt-name{color:var(--text);font-weight:600;}
+.sub-alt-price{color:var(--green);font-weight:700;}
 </style>
 </head>
 <body>
 <div class="phone">
   <div class="island"></div>
+
+  <!-- ════════════════════════
+       LOGIN SCREEN
+       ════════════════════════ -->
+  <div id="login-screen" class="login-screen">
+    <div class="login-glow"></div>
+    <div class="login-body">
+      <div class="login-logo">breeze<span>.</span></div>
+      <div class="login-sub">Your money, working harder.</div>
+      <div class="login-field">
+        <label class="login-label">Email</label>
+        <input class="login-input" type="email" placeholder="you@example.com" id="login-email"/>
+      </div>
+      <div class="login-field">
+        <label class="login-label">Password</label>
+        <input class="login-input" type="password" placeholder="••••••••" id="login-password"/>
+      </div>
+      <button class="login-btn" onclick="doLogin()">Sign in →</button>
+      <span class="login-forgot">Forgot password?</span>
+      <span class="login-signup">New here? <span onclick="doLogin()">Create account →</span></span>
+    </div>
+  </div>
+
+  <!-- ════════════════════════
+       FACE ID SCREEN
+       ════════════════════════ -->
+  <div id="faceid-screen" class="faceid-screen">
+    <div class="faceid-logo">breeze<span>.</span></div>
+    <div class="faceid-name" id="faceid-name">Welcome back, Sarah</div>
+    <div class="faceid-ring" id="faceid-ring">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 8C14 8 8 14 8 20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M40 8C46 8 52 14 52 20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M20 52C14 52 8 46 8 40" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M40 52C46 52 52 46 52 40" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="22" cy="26" r="2.5" fill="currentColor"/>
+        <circle cx="38" cy="26" r="2.5" fill="currentColor"/>
+        <path d="M22 38C22 38 25 42 30 42C35 42 38 38 38 38" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M30 26V33" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="faceid-status" id="faceid-status">Touch to unlock</div>
+    <span class="faceid-manual" onclick="skipFaceId()">Use password instead</span>
+  </div>
 
   <!-- ════════════════════════
        SPLASH SCREEN — Option E
@@ -359,6 +452,7 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
         <div class="splash-pill">Open Banking · FCA regulated</div>
         <div class="splash-pill">Read-only</div>
       </div>
+      <span class="login-forgot" style="display:block;text-align:center;margin-top:16px;" onclick="showLoginScreen()">Already have an account? Sign in</span>
     </div>
   </div>
 
@@ -424,34 +518,111 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
       <button class="ob-back" onclick="goOb(3)">‹</button>
       <div class="ob-body">
         <div class="ob-q">Tell us about your pension</div>
-        <div class="ob-hint">Employer matching is often the biggest quick win we find. Check your payslip or HR portal if unsure.</div>
+        <div class="ob-hint">Employer contributions are often the biggest quick win we find. Check your payslip, HR portal, or contract if unsure.</div>
+
         <div class="ob-field">
-          <span class="ob-field-label">Does your employer offer pension matching?</span>
-          <div class="ob-opts" style="margin-bottom:18px;">
-            <button class="ob-opt" id="pension-yes" onclick="selectPensionMatch(true,this)">Yes — they match my contributions</button>
-            <button class="ob-opt" id="pension-no" onclick="selectPensionMatch(false,this)">No / not sure</button>
+          <span class="ob-field-label">How does your employer contribute?</span>
+          <div class="ob-opts">
+            <button class="ob-opt" id="pmatch-fixed" onclick="setPensionType('fixed',this)">
+              Fixed match — they match what I put in
+              <span class="sub">e.g. you put in 5%, they put in 5%</span>
+            </button>
+            <button class="ob-opt" id="pmatch-sliding" onclick="setPensionType('sliding',this)">
+              Sliding scale — higher my contribution, more they add
+              <span class="sub">e.g. 3%→3%, 5%→5%, 7%→8%</span>
+            </button>
+            <button class="ob-opt" id="pmatch-fixed-employer" onclick="setPensionType('fixed-employer',this)">
+              Fixed employer contribution — they pay regardless
+              <span class="sub">e.g. they always pay 5% whatever I contribute</span>
+            </button>
+            <button class="ob-opt" id="pmatch-none" onclick="setPensionType('none',this)">
+              No employer pension / not sure
+            </button>
           </div>
         </div>
-        <div id="pension-details" style="display:none;">
+
+        <!-- Fixed match details -->
+        <div id="pension-fixed-details" style="display:none;margin-top:4px;">
           <div class="ob-two-col">
             <div class="ob-field">
               <span class="ob-field-label">Your contribution</span>
               <div class="ob-input-wrap">
-                <input class="ob-input small" id="inp-my-pension" type="number" placeholder="4" min="0" max="100"/>
+                <input class="ob-input small" id="inp-my-pension" type="number" placeholder="4" min="0" max="100" oninput="updatePensionInsight()"/>
                 <span class="ob-suffix">%</span>
               </div>
             </div>
             <div class="ob-field">
-              <span class="ob-field-label">Employer matches up to</span>
+              <span class="ob-field-label">Max employer match</span>
               <div class="ob-input-wrap">
-                <input class="ob-input small" id="inp-emp-pension" type="number" placeholder="8" min="0" max="100"/>
+                <input class="ob-input small" id="inp-emp-pension" type="number" placeholder="8" min="0" max="100" oninput="updatePensionInsight()"/>
                 <span class="ob-suffix">%</span>
               </div>
             </div>
           </div>
           <div id="pension-insight" style="font-size:13px;color:var(--text3);line-height:1.5;margin-top:4px;min-height:18px;"></div>
         </div>
-        <button class="ob-next" onclick="submitPension()">Continue →</button>
+
+        <!-- Sliding scale tiers -->
+        <div id="pension-sliding-details" style="display:none;margin-top:4px;">
+          <div class="ob-hint" style="margin-bottom:12px;">Enter the tiers your employer offers — add as many as apply.</div>
+          <div id="pension-tiers">
+            <div class="ob-two-col" style="margin-bottom:8px;">
+              <div class="ob-field" style="margin-bottom:0">
+                <span class="ob-field-label">You contribute</span>
+                <div class="ob-input-wrap"><input class="ob-input small" type="number" placeholder="3" min="0" max="100" oninput="calcBestTier()"/><span class="ob-suffix">%</span></div>
+              </div>
+              <div class="ob-field" style="margin-bottom:0">
+                <span class="ob-field-label">Employer adds</span>
+                <div class="ob-input-wrap"><input class="ob-input small" type="number" placeholder="3" min="0" max="100" oninput="calcBestTier()"/><span class="ob-suffix">%</span></div>
+              </div>
+            </div>
+            <div class="ob-two-col" style="margin-bottom:8px;">
+              <div class="ob-field" style="margin-bottom:0">
+                <div class="ob-input-wrap"><input class="ob-input small" type="number" placeholder="5" min="0" max="100" oninput="calcBestTier()"/><span class="ob-suffix">%</span></div>
+              </div>
+              <div class="ob-field" style="margin-bottom:0">
+                <div class="ob-input-wrap"><input class="ob-input small" type="number" placeholder="5" min="0" max="100" oninput="calcBestTier()"/><span class="ob-suffix">%</span></div>
+              </div>
+            </div>
+            <div class="ob-two-col" style="margin-bottom:8px;">
+              <div class="ob-field" style="margin-bottom:0">
+                <div class="ob-input-wrap"><input class="ob-input small" type="number" placeholder="7" min="0" max="100" oninput="calcBestTier()"/><span class="ob-suffix">%</span></div>
+              </div>
+              <div class="ob-field" style="margin-bottom:0">
+                <div class="ob-input-wrap"><input class="ob-input small" type="number" placeholder="8" min="0" max="100" oninput="calcBestTier()"/><span class="ob-suffix">%</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="ob-field" style="margin-top:4px;">
+            <span class="ob-field-label">Your current contribution</span>
+            <div class="ob-input-wrap">
+              <input class="ob-input small" id="inp-my-pension-sliding" type="number" placeholder="3" min="0" max="100" oninput="calcBestTier()"/>
+              <span class="ob-suffix">%</span>
+            </div>
+          </div>
+          <div id="sliding-insight" style="font-size:13px;line-height:1.5;margin-top:6px;min-height:18px;"></div>
+        </div>
+
+        <!-- Fixed employer details -->
+        <div id="pension-employer-details" style="display:none;margin-top:4px;">
+          <div class="ob-field">
+            <span class="ob-field-label">Employer contribution (regardless of yours)</span>
+            <div class="ob-input-wrap">
+              <input class="ob-input small" id="inp-emp-fixed" type="number" placeholder="5" min="0" max="100" oninput="updateFixedEmployerInsight()"/>
+              <span class="ob-suffix">%</span>
+            </div>
+          </div>
+          <div class="ob-field">
+            <span class="ob-field-label">Your contribution</span>
+            <div class="ob-input-wrap">
+              <input class="ob-input small" id="inp-my-fixed" type="number" placeholder="3" min="0" max="100"/>
+              <span class="ob-suffix">%</span>
+            </div>
+          </div>
+          <div id="fixed-employer-insight" style="font-size:13px;color:var(--text3);line-height:1.5;margin-top:4px;"></div>
+        </div>
+
+        <button class="ob-next" onclick="submitPension()" style="margin-top:18px;">Continue →</button>
         <span class="ob-skip" onclick="goOb(5)">Skip for now</span>
       </div>
     </div>
@@ -461,13 +632,13 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
       <div class="ob-prog-wrap" id="prog-5"></div>
       <button class="ob-back" onclick="goOb(4)">‹</button>
       <div class="ob-body">
-        <div class="ob-q">Do you have high-interest debt?</div>
-        <div class="ob-hint">Credit cards, store cards, or personal loans above ~5%. This changes your priorities — clearing these first often beats any investment return.</div>
-        <div class="ob-opts" id="debt-opts">
-          <button class="ob-opt" onclick="setDebt(false,this)">No — debt free<span class="sub">Or only a mortgage</span></button>
-          <button class="ob-opt" onclick="setDebt(true,this)">Yes — credit card or loan debt</button>
+        <div class="ob-q">Debt &amp; credit cards</div>
+        <div class="ob-hint">This shapes your entire priority order. Be honest — it's just for your calculations.</div>
+        <div class="ob-opts" id="debt-opts" style="margin-bottom:16px;">
+          <button class="ob-opt" onclick="setDebt(false,this)">No high-interest debt<span class="sub">Mortgage only, or completely debt free</span></button>
+          <button class="ob-opt" onclick="setDebt(true,this)">Yes — credit card or loan balance I carry<span class="sub">Unpaid balance month to month</span></button>
         </div>
-        <div id="debt-details" style="display:none;margin-top:16px;">
+        <div id="debt-details" style="display:none;margin-bottom:16px;">
           <div class="ob-field">
             <span class="ob-field-label">Roughly how much in total?</span>
             <div class="ob-input-wrap">
@@ -476,9 +647,26 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
             </div>
           </div>
           <div style="font-size:13px;color:var(--amber);line-height:1.5;margin-top:8px;padding:10px 12px;background:var(--amber-bg);border-radius:10px;">
-            ⚠ We'll show clearing this as your top priority. At typical rates (20%+), it beats every other option.
+            ⚠ We'll rank clearing this above everything else. At ~20%+ rates, it beats every ISA or investment return.
           </div>
         </div>
+
+        <!-- Credit card type — separate question -->
+        <div class="ob-field">
+          <span class="ob-field-label">Do you use a credit card for day-to-day spending?</span>
+          <div class="ob-opts">
+            <button class="ob-opt" id="cc-rewards" onclick="setCreditCard('rewards',this)">Yes — rewards / cashback card (cleared monthly)<span class="sub">Amex, Chase, Barclaycard Avios etc.</span></button>
+            <button class="ob-opt" id="cc-basic" onclick="setCreditCard('basic',this)">Yes — standard card, cleared monthly</button>
+            <button class="ob-opt" id="cc-none" onclick="setCreditCard('none',this)">No — I use debit card / don't use credit cards</button>
+          </div>
+        </div>
+        <div id="cc-rewards-hint" style="display:none;font-size:13px;color:var(--green);line-height:1.5;margin-top:8px;padding:10px 12px;background:var(--green-bg);border-radius:10px;">
+          ✓ Great — rewards cards cleared monthly are free money. We'll check you're on the best one for your spending.
+        </div>
+        <div id="cc-basic-hint" style="display:none;font-size:13px;color:var(--text3);line-height:1.5;margin-top:8px;padding:10px 12px;background:var(--card);border-radius:10px;">
+          You could be earning cashback or Avios on the same spending at no extra cost. We'll show you what you're missing.
+        </div>
+
         <button class="ob-next" onclick="submitDebt()">Continue →</button>
       </div>
     </div>
@@ -665,7 +853,7 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
           <div class="header-date">Thursday, 12 March 2026</div>
           <div class="header-name" id="greeting">Morning, Sarah.</div>
         </div>
-        <div class="avatar" id="avatar-el">S</div>
+        <div class="avatar" id="avatar-el" onclick="doLogout()" title="Sign out" style="cursor:pointer;">S</div>
       </div>
     </div>
 
@@ -757,27 +945,63 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
           <div class="bill-right"><div class="bill-save">Save £150/yr</div><div class="bill-link">SIM-only deals →</div></div>
         </div>
       </div>
-      <div class="sec-hd" style="padding-top:6px;"><h2>Subscriptions</h2><span>4 active</span></div>
-      <div class="subs-card">
-        <div class="sub-row">
+      <div class="sec-hd" style="padding-top:6px;"><h2>Detected subscriptions</h2><span id="sub-waste-label">£22.98 may be waste</span></div>
+      <div style="padding:0 14px 8px;"><span style="font-size:11px;color:var(--text3);font-weight:500;">Found from your transaction history · last 90 days</span></div>
+      <div class="subs-card" id="subs-detected">
+        <!-- Spotify — consistent payments -->
+        <div class="sub-row" onclick="toggleSub(this)">
           <div class="sub-icon" style="background:#1DB95418;color:#1DB954">S</div>
-          <div class="sub-info"><div class="sub-name">Spotify</div><div class="sub-usage" style="color:var(--green)">Used regularly</div></div>
+          <div class="sub-info"><div class="sub-name">Spotify</div><div class="sub-usage" style="color:var(--text3)">Paid consistently · 12 months</div></div>
           <div class="sub-right"><div class="sub-amt">£11.99/mo</div><div class="sub-flag" style="color:var(--green)">Keep</div></div>
         </div>
-        <div class="sub-row">
+        <div class="sub-expand"><div class="sub-alt-label">Last 3 payments</div><div style="font-size:13px;color:var(--text2);line-height:2;">10 Mar · £11.99 · Spotify AB<br>8 Feb · £11.99 · Spotify AB<br>8 Jan · £11.99 · Spotify AB</div></div>
+
+        <!-- Netflix — still being charged, worth reviewing -->
+        <div class="sub-row" onclick="toggleSub(this)">
           <div class="sub-icon" style="background:#E5000018;color:#FF4444">N</div>
-          <div class="sub-info"><div class="sub-name">Netflix</div><div class="sub-usage" style="color:var(--text3)">Last used 3 weeks ago</div></div>
+          <div class="sub-info"><div class="sub-name">Netflix</div><div class="sub-usage" style="color:var(--text3)">Paid 8 months · £143.92 total</div></div>
           <div class="sub-right"><div class="sub-amt">£17.99/mo</div><div class="sub-flag" style="color:var(--coral)">Review</div></div>
         </div>
-        <div class="sub-row">
-          <div class="sub-icon" style="background:#1C69D418;color:#4D8EFF">D</div>
-          <div class="sub-info"><div class="sub-name">Disney+</div><div class="sub-usage" style="color:var(--text3)">Last used 5 weeks ago</div></div>
-          <div class="sub-right"><div class="sub-amt">£4.99/mo</div><div class="sub-flag" style="color:var(--coral)">Review</div></div>
+        <div class="sub-expand">
+          <div style="font-size:13px;color:var(--text2);margin-bottom:10px;">You've spent £143.92 on Netflix in the last 8 months. Is it worth £17.99/mo to you? Cheaper plans available:</div>
+          <div class="sub-alt"><span class="sub-alt-name">Netflix Standard with Ads</span><span class="sub-alt-price">£4.99/mo</span></div>
+          <div class="sub-alt"><span class="sub-alt-name">Apple TV+ (all originals)</span><span class="sub-alt-price">£8.99/mo</span></div>
+          <div class="sub-alt"><span class="sub-alt-name">Amazon Prime Video</span><span class="sub-alt-price">£8.99/mo</span></div>
+          <a class="cta" style="background:var(--coral);margin-top:10px;" href="https://www.moneysavingexpert.com/deals/cheap-tv-streaming/" target="_blank">Compare streaming deals →</a>
         </div>
-        <div class="sub-row">
+
+        <!-- PureGym — payments continuing but worth questioning -->
+        <div class="sub-row" onclick="toggleSub(this)">
+          <div class="sub-icon" style="background:#FFB02018;color:#FFB020">💪</div>
+          <div class="sub-info"><div class="sub-name">PureGym</div><div class="sub-usage" style="color:var(--text3)">Paid 12 months · £539.88 total</div></div>
+          <div class="sub-right"><div class="sub-amt">£44.99/mo</div><div class="sub-flag" style="color:var(--coral)">£540/yr</div></div>
+        </div>
+        <div class="sub-expand">
+          <div style="font-size:13px;color:var(--text2);margin-bottom:10px;">You've paid £539.88 this year. If you're going regularly, worth it — but if not, here are cheaper options:</div>
+          <div class="sub-alt"><span class="sub-alt-name">PureGym Off-Peak</span><span class="sub-alt-price">£19.99/mo</span></div>
+          <div class="sub-alt"><span class="sub-alt-name">Anytime Fitness</span><span class="sub-alt-price">£29.99/mo</span></div>
+          <div class="sub-alt"><span class="sub-alt-name">The Gym Group</span><span class="sub-alt-price">£18.99/mo</span></div>
+          <a class="cta" style="background:var(--amber);margin-top:10px;" href="https://www.thegymgroup.com" target="_blank">See The Gym Group near you →</a>
+        </div>
+
+        <!-- Disney+ — low monthly cost, easy to forget -->
+        <div class="sub-row" onclick="toggleSub(this)">
+          <div class="sub-icon" style="background:#1C69D418;color:#4D8EFF">D</div>
+          <div class="sub-info"><div class="sub-name">Disney+</div><div class="sub-usage" style="color:var(--text3)">Paid 6 months · £29.94 total</div></div>
+          <div class="sub-right"><div class="sub-amt">£4.99/mo</div><div class="sub-flag" style="color:var(--amber)">Review</div></div>
+        </div>
+        <div class="sub-expand">
+          <div style="font-size:13px;color:var(--text2);">At £4.99/mo it's easy to forget about. Cancelling saves £59.88/yr. Disney+ lets you pause for up to 3 months if you're not sure — your watchlist is kept.</div>
+        </div>
+
+        <!-- Apple Music — duplicate with Spotify -->
+        <div class="sub-row" onclick="toggleSub(this)">
           <div class="sub-icon" style="background:#FC3C4418;color:#FC3C44">♪</div>
-          <div class="sub-info"><div class="sub-name">Apple Music</div><div class="sub-usage" style="color:var(--amber)">Overlaps with Spotify</div></div>
+          <div class="sub-info"><div class="sub-name">Apple Music</div><div class="sub-usage" style="color:var(--amber)">⚠ You're also paying for Spotify</div></div>
           <div class="sub-right"><div class="sub-amt">£10.99/mo</div><div class="sub-flag" style="color:var(--amber)">Duplicate</div></div>
+        </div>
+        <div class="sub-expand">
+          <div style="font-size:13px;color:var(--text2);">You're paying for both Spotify (£11.99) and Apple Music (£10.99) — £22.98/mo in music streaming. Cancelling one saves <strong style="color:var(--green)">£131.88/yr</strong>.</div>
         </div>
       </div>
     </div>
@@ -923,6 +1147,21 @@ const p = {
   married:false, children:false, childAge:null
 };
 
+function doLogout() {
+  if (!confirm('Sign out of Breeze?')) return;
+  document.getElementById('main-screen').style.display = 'none';
+  document.getElementById('main-nav').style.display = 'none';
+  // Show Face ID next time
+  const fi = document.getElementById('faceid-screen');
+  fi.style.display = 'flex';
+  fi.style.opacity = '1';
+  const ring = document.getElementById('faceid-ring');
+  const status = document.getElementById('faceid-status');
+  ring.classList.remove('scanning');
+  status.textContent = 'Touch to unlock';
+  status.classList.remove('ok');
+}
+
 // ═══════════════════════════════
 // SPLASH → ONBOARDING
 // ═══════════════════════════════
@@ -992,33 +1231,91 @@ function submitSalary() {
 }
 function skipSalary() { goOb(p.employment === 'self' ? 5 : 4); }
 
-// Screen 4
-function selectPensionMatch(val, el) {
-  p.pensionMatch = val;
-  ['pension-yes','pension-no'].forEach(id => document.getElementById(id).classList.remove('selected'));
+// Screen 4 — pension type
+function setPensionType(type, el) {
+  p.pensionType = type;
+  p.pensionMatch = (type !== 'none');
+  ['pmatch-fixed','pmatch-sliding','pmatch-fixed-employer','pmatch-none'].forEach(id => {
+    const b = document.getElementById(id); if(b) b.classList.remove('selected');
+  });
   el.classList.add('selected');
-  document.getElementById('pension-details').style.display = val ? 'block' : 'none';
+  document.getElementById('pension-fixed-details').style.display = type==='fixed' ? 'block' : 'none';
+  document.getElementById('pension-sliding-details').style.display = type==='sliding' ? 'block' : 'none';
+  document.getElementById('pension-employer-details').style.display = type==='fixed-employer' ? 'block' : 'none';
 }
-document.getElementById('inp-my-pension').oninput = updatePensionInsight;
-document.getElementById('inp-emp-pension').oninput = updatePensionInsight;
 function updatePensionInsight() {
   const mine = parseFloat(document.getElementById('inp-my-pension').value)||0;
   const emp  = parseFloat(document.getElementById('inp-emp-pension').value)||0;
   const gap  = Math.max(0, emp - mine);
   const el   = document.getElementById('pension-insight');
+  if (!el) return;
   if (gap > 0 && p.salary > 0) {
     const gain = Math.round((p.salary * gap / 100) / 12);
-    el.innerHTML = `<span style="color:var(--green)">↑ You could gain £${gain}/mo from your employer by closing this gap</span>`;
+    el.innerHTML = `<span style="color:var(--green)">↑ Increasing to ${emp}% gains you £${gain}/mo from your employer</span>`;
   } else if (gap === 0 && mine > 0) {
-    el.innerHTML = `<span style="color:var(--green)">✓ You're already claiming your full employer match</span>`;
+    el.innerHTML = `<span style="color:var(--green)">✓ You're already claiming your full match</span>`;
   } else { el.textContent = ''; }
 }
+function calcBestTier() {
+  const tierRows = document.querySelectorAll('#pension-tiers .ob-two-col');
+  const tiers = [];
+  tierRows.forEach(row => {
+    const inputs = row.querySelectorAll('input');
+    const mine = parseFloat(inputs[0].value)||0;
+    const emp  = parseFloat(inputs[1].value)||0;
+    if (mine > 0 && emp > 0) tiers.push({mine, emp});
+  });
+  const current = parseFloat(document.getElementById('inp-my-pension-sliding')?.value)||0;
+  const el = document.getElementById('sliding-insight');
+  if (!el || tiers.length === 0) return;
+  // Find best tier above current
+  const better = tiers.filter(t => t.mine > current).sort((a,b) => a.mine-b.mine)[0];
+  const currentTier = tiers.filter(t => t.mine <= current).sort((a,b) => b.mine-a.mine)[0];
+  if (better && p.salary > 0) {
+    const extraGain = Math.round((p.salary * (better.emp - (currentTier?.emp||0)) / 100) / 12);
+    el.innerHTML = `<span style="color:var(--green)">↑ Increase to ${better.mine}% to unlock ${better.emp}% employer match — gains you ~£${extraGain}/mo</span>`;
+    p.myPct = current; p.empPct = currentTier?.emp||0;
+    p.nextTierMine = better.mine; p.nextTierEmp = better.emp;
+  } else if (currentTier) {
+    el.innerHTML = `<span style="color:var(--green)">✓ You're at the ${currentTier.mine}%→${currentTier.emp}% tier</span>`;
+    p.myPct = current; p.empPct = currentTier.emp;
+  }
+}
+function updateFixedEmployerInsight() {
+  const emp = parseFloat(document.getElementById('inp-emp-fixed').value)||0;
+  const el = document.getElementById('fixed-employer-insight');
+  if (!el) return;
+  if (emp > 0 && p.salary > 0) {
+    const mo = Math.round((p.salary * emp / 100) / 12);
+    el.innerHTML = `<span style="color:var(--green)">✓ Your employer puts in £${mo}/mo regardless of your contribution</span>`;
+    p.empPct = emp; p.pensionMatch = false; // fixed employer, no gap logic
+  }
+}
 function submitPension() {
-  const mine = parseFloat(document.getElementById('inp-my-pension').value);
-  const emp  = parseFloat(document.getElementById('inp-emp-pension').value);
-  if (!isNaN(mine)) p.myPct = mine;
-  if (!isNaN(emp))  p.empPct = emp;
+  const type = p.pensionType || 'none';
+  if (type === 'fixed') {
+    const mine = parseFloat(document.getElementById('inp-my-pension')?.value);
+    const emp  = parseFloat(document.getElementById('inp-emp-pension')?.value);
+    if (!isNaN(mine)) p.myPct = mine;
+    if (!isNaN(emp))  p.empPct = emp;
+  } else if (type === 'fixed-employer') {
+    const emp  = parseFloat(document.getElementById('inp-emp-fixed')?.value);
+    const mine = parseFloat(document.getElementById('inp-my-fixed')?.value);
+    if (!isNaN(emp))  p.empPct = emp;
+    if (!isNaN(mine)) p.myPct = mine;
+  }
   goOb(5);
+}
+
+// Screen 5 — credit card
+function setCreditCard(type, el) {
+  p.creditCard = type;
+  ['cc-rewards','cc-basic','cc-none'].forEach(id => {
+    const b = document.getElementById(id); if(b) b.classList.remove('selected');
+  });
+  el.classList.add('selected');
+  document.getElementById('cc-rewards-hint').style.display = type==='rewards' ? 'block' : 'none';
+  document.getElementById('cc-basic-hint').style.display = type==='basic' ? 'block' : 'none';
 }
 
 // Screen 5
@@ -1030,6 +1327,7 @@ function setDebt(val, el) {
 }
 function submitDebt() {
   if (p.hasDebt) { const v = parseInt(document.getElementById('inp-debt').value); if (v>0) p.debtAmt = v; }
+  // credit card type already captured in p.creditCard via setCreditCard()
   goOb(6);
 }
 
@@ -1174,15 +1472,28 @@ function startLoading() {
 }
 
 function computeScore() {
-  let s = 42;
-  if (!p.hasDebt) s += 10;
+  let s = 50; // base
+  // Debt (-15 if has debt)
+  if (p.hasDebt) s -= 15;
+  // Pension match gap (max ±8, not ±17)
   const gap = p.pensionMatch && p.employment!=='self' ? Math.max(0, p.empPct-p.myPct) : 0;
-  if (gap === 0 && p.pensionMatch) s += 12;
-  else if (gap > 0) s -= 5;
+  if (gap === 0 && p.pensionMatch) s += 8;
+  else if (gap > 0) s -= 4;
+  // ISA usage (+6 if using allowance, -2 if barely touched)
   const isaRem = 20000 - (p.isaUsed||0);
-  if (isaRem < 10000) s += 8;
-  if (p.savings > 10000) s += 5;
-  if (p.married) s += 3;
+  if (isaRem < 5000) s += 6;
+  else if (isaRem < 15000) s += 3;
+  else s -= 2;
+  // Savings cushion (+5 if >3mo expenses, rough proxy)
+  const expenses = (p.salary||0) / 12 * 0.6;
+  if ((p.savings||0) > expenses * 3) s += 5;
+  else if ((p.savings||0) > expenses) s += 2;
+  // Bills — everyone loses 3 until they switch
+  s -= 3;
+  // Tax efficiency (+4 if no 60% zone exposure)
+  if (p.salary < 100000) s += 4;
+  // Housing — mortgage with equity is positive
+  if (p.housing === 'mortgage') s += 3;
   return Math.max(20, Math.min(95, s));
 }
 
@@ -1312,7 +1623,11 @@ function buildNudges() {
       ['Remaining allowance', `£${isaRem.toLocaleString()}`, true],
       ['Allowance resets', '5 April 2026', false],
     ],
-    cta: { text:'Top up your ISA →', url:'https://www.gov.uk/individual-savings-accounts', bg:'var(--coral)' }
+    ctaMulti: [
+      { text:'Vanguard S&S ISA — low cost index funds', url:'https://www.vanguardinvestor.co.uk/investing-explained/stocks-shares-isa', bg:'var(--coral)' },
+      { text:'Moneybox Cash ISA — 5.16% AER', url:'https://www.moneyboxapp.com/cash-isa/', bg:'var(--card3)', color:'var(--text)' },
+      { text:'Trading 212 — 0% commission', url:'https://www.trading212.com/isa', bg:'var(--card3)', color:'var(--text)' },
+    ]
   }));
 
   // Savings tax
@@ -1351,14 +1666,90 @@ function buildNudges() {
     cta: { text:'Compare on Uswitch →', url:'https://www.uswitch.com/gas-electricity/journey/postcode/', bg:'var(--blue)' }
   }));
 
+  // Rent reporting (renters only)
+  if (p.housing === 'rent') {
+    nudges.push(makeNudge({
+      color:'var(--purple)', tag:'Credit Score',
+      headline: `Your rent payments aren't building your credit score`,
+      sub: `Report them to Experian, Equifax and TransUnion. Could add 20–40 points — free to do.`,
+      breakdown: [
+        ['Rent reported to bureaus', 'Not yet', false],
+        ['Potential score boost', '+20–40 points', true],
+        ['Mortgage eligibility impact', 'Significant', true],
+        ['Cost', 'Free', true],
+      ],
+      cta: { text:'Start with CreditLadder — free →', url:'https://www.creditladder.co.uk', bg:'var(--purple)' }
+    }));
+  }
+
+  // Savings rate nudge — if savings exist
+  if ((p.savings||0) > 1000) {
+    // Assume current bank rate is ~1.5% (typical high-street bank)
+    // unless they connected Open Banking, still use conservative estimate for prototype
+    const currentRate = 0.015;
+    const bestRate    = 0.052; // Chase / Chip easy-access ~5.2%
+    const currentYr   = Math.round((p.savings||0) * currentRate);
+    const bestYr      = Math.round((p.savings||0) * bestRate);
+    const gain        = bestYr - currentYr;
+    if (gain > 50) {
+      nudges.push(makeNudge({
+        color:'var(--green)', tag:'Savings Rate',
+        headline: `Your savings could be earning £${gain.toLocaleString()} more per year`,
+        sub: `You're likely on ~1.5% at your main bank. Easy-access accounts now pay up to 5.2%.`,
+        breakdown: [
+          ['Savings balance', `£${(p.savings||0).toLocaleString()}`, false],
+          ['Est. current rate', `~1.5% → £${currentYr.toLocaleString()}/yr`, false],
+          ['Best easy-access rate', `~5.2% → £${bestYr.toLocaleString()}/yr`, true],
+          ['Extra per year for 10 mins work', `£${gain.toLocaleString()}`, true],
+        ],
+        ctaMulti: [
+          { text:'Chase Saver — 5.1% AER, instant access', url:'https://www.chase.co.uk/gb/en/product/savings/', bg:'var(--green)' },
+          { text:'Chip — up to 5.2% AER', url:'https://getchip.uk/savings', bg:'var(--card3)', color:'var(--text)' },
+          { text:'Compare all rates on MoneySavingExpert', url:'https://www.moneysavingexpert.com/savings/savings-accounts-best-interest/', bg:'var(--card3)', color:'var(--text)' },
+        ]
+      }));
+    }
+  }
+
+  // Credit card rewards nudge — if using basic card or debit only
+  if (p.creditCard === 'basic' || p.creditCard === 'none') {
+    // Estimate £800/mo typical spending → ~£9,600/yr
+    const spend = Math.round((p.salary||36000) * 0.25); // rough 25% of salary as discretionary spend
+    const cashbackEst = Math.round(spend * 0.01); // 1% avg cashback on Amex
+    nudges.push(makeNudge({
+      color:'var(--amber)', tag:'Rewards Card',
+      headline: `You could earn ~£${cashbackEst.toLocaleString()}/yr on your existing spending`,
+      sub: `A rewards card cleared monthly costs nothing extra. You're leaving cashback or Avios on the table.`,
+      breakdown: [
+        ['Est. annual card spend', `~£${spend.toLocaleString()}`, false],
+        ['Amex Cashback (1% avg)', `~£${cashbackEst.toLocaleString()}/yr`, true],
+        ['Amex Avios (BA/hotel points)', 'Worth £100–£300+ in flights', true],
+        ['Annual fee (basic cards)', '£0 – £25/yr', false],
+      ],
+      ctaMulti: [
+        { text:'Amex Platinum Cashback (1.25%)', url:'https://www.americanexpress.com/en-gb/credit-cards/cashback-credit-cards/', bg:'var(--amber)' },
+        { text:'Amex BA Avios — 5,000 bonus Avios', url:'https://www.americanexpress.com/en-gb/credit-cards/british-airways/', bg:'var(--card3)', color:'var(--text)' },
+        { text:'Chase Cashback — 1% on all spending', url:'https://www.chase.co.uk/gb/en/product/debit-card/', bg:'var(--card3)', color:'var(--text)' },
+      ]
+    }));
+  }
+
   document.getElementById('nudge-container').innerHTML = nudges.join('');
   document.getElementById('action-count').textContent = nudges.length + ' actions';
 }
 
-function makeNudge({color, tag, headline, sub, breakdown, cta}) {
+function makeNudge({color, tag, headline, sub, breakdown, cta, ctaMulti}) {
   const rows = breakdown.map(([label, val, pos, neg]) =>
     `<div class="bd-row"><span class="bd-label">${label}</span><span class="bd-val${pos?' pos':neg?' neg':''}">${val}</span></div>`
   ).join('');
+  let ctaHtml = '';
+  if (ctaMulti) {
+    ctaHtml = ctaMulti.map((c,i) =>
+      `<a class="cta" style="background:${c.bg};color:${c.color||'#fff'};margin-top:${i===0?'12':'6'}px;" href="${c.url}" target="_blank">${c.text}</a>`
+    ).join('');
+  } else if (cta) {
+    ctaHtml = `<a class="cta" style="background:${cta.bg}" href="${cta.url}" target="_blank">${cta.text}</a>`;
+  }
   return `<div class="nudge" onclick="toggleNudge(this)">
     <div class="nudge-main">
       <div class="nudge-dot" style="background:${color}"></div>
@@ -1369,10 +1760,84 @@ function makeNudge({color, tag, headline, sub, breakdown, cta}) {
       </div>
       <div class="nudge-caret">›</div>
     </div>
-    <div class="breakdown">${rows}
-      <a class="cta" style="background:${cta.bg}" href="${cta.url}" target="_blank">${cta.text}</a>
-    </div>
+    <div class="breakdown">${rows}${ctaHtml}</div>
   </div>`;
+}
+
+// ═══════════════════════════════
+// TOGGLE SUBSCRIPTION ROW
+// ═══════════════════════════════
+function toggleSub(row) {
+  const wasOpen = row.classList.contains('open');
+  document.querySelectorAll('.sub-row.open').forEach(r => r.classList.remove('open'));
+  if (!wasOpen) row.classList.add('open');
+}
+
+// ═══════════════════════════════
+// LOGIN + FACE ID
+// ═══════════════════════════════
+let hasLoggedInBefore = false;
+
+function doLogin() {
+  const screen = document.getElementById('login-screen');
+  screen.style.transition = 'opacity 0.35s';
+  screen.style.opacity = '0';
+  setTimeout(() => {
+    screen.style.display = 'none';
+    hasLoggedInBefore = true;
+    // Returning user goes straight to app
+    buildApp();
+    document.getElementById('main-screen').style.display = 'block';
+    document.getElementById('main-nav').style.display = 'flex';
+  }, 350);
+}
+
+function showFaceId() {
+  const fi = document.getElementById('faceid-screen');
+  fi.style.display = 'flex';
+  fi.style.opacity = '1';
+  document.getElementById('faceid-name').textContent = `Welcome back, ${p.name}`;
+  // Auto-trigger after 800ms
+  setTimeout(() => {
+    const ring = document.getElementById('faceid-ring');
+    const status = document.getElementById('faceid-status');
+    ring.classList.add('scanning');
+    status.textContent = 'Scanning...';
+    setTimeout(() => {
+      status.textContent = '✓ Unlocked';
+      status.classList.add('ok');
+      setTimeout(() => {
+        fi.style.transition = 'opacity 0.35s';
+        fi.style.opacity = '0';
+        setTimeout(() => {
+          fi.style.display = 'none';
+          document.getElementById('main-screen').style.display = 'block';
+          document.getElementById('main-nav').style.display = 'flex';
+          buildApp();
+        }, 350);
+      }, 600);
+    }, 1200);
+  }, 800);
+}
+
+function skipFaceId() {
+  const fi = document.getElementById('faceid-screen');
+  fi.style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('login-screen').style.opacity = '1';
+}
+
+// On load: show splash. Login only if user taps "already have account".
+window.addEventListener('load', () => {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('splash-screen').style.display = 'flex';
+});
+
+function showLoginScreen() {
+  document.getElementById('splash-screen').style.display = 'none';
+  const ls = document.getElementById('login-screen');
+  ls.style.display = 'flex';
+  ls.style.opacity = '1';
 }
 
 // ═══════════════════════════════
