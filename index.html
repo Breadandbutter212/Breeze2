@@ -8,13 +8,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:#0F0F12;--card:#1A1A20;--card2:#15151A;--card3:#222228;
-  --text:#F2F2F5;--text2:#8E8E99;--text3:#4A4A55;
-  --border:rgba(255,255,255,0.07);
-  --coral:#FF4F4F;--coral-bg:rgba(255,79,79,0.12);
-  --green:#00C97A;--green-bg:rgba(0,201,122,0.12);
-  --blue:#4D8EFF;--blue-bg:rgba(77,142,255,0.12);
-  --amber:#FFB020;--amber-bg:rgba(255,176,32,0.12);
+  --bg:#F5F3EF;--card:#FFFFFF;--card2:#EEECe7;--card3:#E8E5DF;
+  --text:#1A1A1A;--text2:#555550;--text3:#999990;
+  --border:#E0DDD7;
+  --coral:#E03A3A;--coral-bg:rgba(224,58,58,0.10);
+  --green:#00A862;--green-bg:rgba(0,168,98,0.10);
+  --blue:#3A7AE0;--blue-bg:rgba(77,142,255,0.12);
+  --amber:#C8880A;--amber-bg:rgba(200,136,10,0.10);
   --purple:#A855F7;--purple-bg:rgba(168,85,247,0.12);
   --radius:16px;--nav-h:82px;
   --font:'Plus Jakarta Sans',system-ui,sans-serif;
@@ -27,37 +27,37 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
 /* ═══════════════════════════════════
    SPLASH SCREEN — Option E glassmorphism card stack
    ═══════════════════════════════════ */
-.splash-screen{position:absolute;inset:0;z-index:200;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;}
+.splash-screen{position:absolute;inset:0;z-index:200;background:#F5F3EF;display:flex;flex-direction:column;overflow:hidden;}
 .splash-glow-1{position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,79,79,0.22) 0%,transparent 70%);top:-80px;left:-80px;animation:sdrift1 8s ease-in-out infinite;pointer-events:none;}
 .splash-glow-2{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(77,142,255,0.15) 0%,transparent 70%);bottom:-40px;right:-80px;animation:sdrift2 10s ease-in-out infinite;pointer-events:none;}
 .splash-glow-3{position:absolute;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(0,201,122,0.12) 0%,transparent 70%);top:40%;left:10%;animation:sdrift3 12s ease-in-out infinite;pointer-events:none;}
-.gc-1{background:linear-gradient(135deg,rgba(0,201,122,0.28),rgba(0,201,122,0.12));border-color:rgba(0,201,122,0.35);top:230px;animation:gc1in 0.85s 0.15s cubic-bezier(0.22,1,0.36,1) both;z-index:1;}
-.gc-2{background:linear-gradient(135deg,rgba(255,79,79,0.28),rgba(255,79,79,0.12));border-color:rgba(255,79,79,0.35);top:160px;animation:gc2in 0.85s 0.35s cubic-bezier(0.22,1,0.36,1) both;z-index:2;}
-.gc-3{background:linear-gradient(135deg,rgba(77,142,255,0.28),rgba(77,142,255,0.12));border-color:rgba(77,142,255,0.35);top:90px;animation:gc3in 0.85s 0.55s cubic-bezier(0.22,1,0.36,1) both;z-index:3;}
-.gc-4{background:linear-gradient(135deg,rgba(255,176,32,0.28),rgba(255,176,32,0.12));border-color:rgba(255,176,32,0.35);top:20px;animation:gc4in 0.85s 0.75s cubic-bezier(0.22,1,0.36,1) both;z-index:4;}
+.gc-1{background:linear-gradient(135deg,rgba(0,168,98,0.12),rgba(0,168,98,0.04));border-color:rgba(0,168,98,0.22);top:230px;animation:gc1in 0.85s 0.15s cubic-bezier(0.22,1,0.36,1) both;z-index:1;}
+.gc-2{background:linear-gradient(135deg,rgba(224,58,58,0.12),rgba(224,58,58,0.04));border-color:rgba(224,58,58,0.22);top:160px;animation:gc2in 0.85s 0.35s cubic-bezier(0.22,1,0.36,1) both;z-index:2;}
+.gc-3{background:linear-gradient(135deg,rgba(58,122,224,0.12),rgba(58,122,224,0.04));border-color:rgba(58,122,224,0.22);top:90px;animation:gc3in 0.85s 0.55s cubic-bezier(0.22,1,0.36,1) both;z-index:3;}
+.gc-4{background:linear-gradient(135deg,rgba(200,136,10,0.12),rgba(200,136,10,0.04));border-color:rgba(200,136,10,0.22);top:20px;animation:gc4in 0.85s 0.75s cubic-bezier(0.22,1,0.36,1) both;z-index:4;}
 @keyframes sdrift1{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,30px)}}
 @keyframes sdrift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-25px,-20px)}}
 @keyframes sdrift3{0%,100%{transform:translate(0,0)}50%{transform:translate(15px,-25px)}}
 .splash-stack{position:absolute;top:110px;left:0;right:0;height:440px;}
-.glass-card{position:absolute;left:32px;right:32px;height:90px;border-radius:20px;border:1px solid rgba(255,255,255,0.08);padding:16px 18px;display:flex;align-items:center;gap:14px;transform-origin:center bottom;}
+.glass-card{position:absolute;left:32px;right:32px;height:90px;border-radius:20px;border:1px solid rgba(0,0,0,0.08);padding:16px 18px;display:flex;align-items:center;gap:14px;transform-origin:center bottom;}
 .gc-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
 .gc-body{flex:1;}
-.gc-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;opacity:0.7;}
-.gc-val{font-size:22px;font-weight:900;letter-spacing:-0.05em;margin-top:2px;line-height:1;}
-.gc-sub{font-size:12px;opacity:0.5;margin-top:3px;font-weight:500;}
+.gc-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;opacity:0.6;color:#1A1A1A;}
+.gc-val{font-size:22px;font-weight:900;letter-spacing:-0.05em;margin-top:2px;line-height:1;color:#1A1A1A;}
+.gc-sub{font-size:12px;opacity:0.45;margin-top:3px;font-weight:500;color:#1A1A1A;}
 .gc-badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:50px;flex-shrink:0;white-space:nowrap;}
 @keyframes gc1in{from{opacity:0;transform:rotate(-6deg) translateY(60px) scale(0.9)}to{opacity:1;transform:rotate(-6deg) translateY(0) scale(1)}}
 @keyframes gc2in{from{opacity:0;transform:rotate(-3deg) translateY(50px) scale(0.92)}to{opacity:1;transform:rotate(-3deg) translateY(0) scale(1)}}
 @keyframes gc3in{from{opacity:0;transform:rotate(0deg) translateY(40px) scale(0.94)}to{opacity:1;transform:rotate(0deg) translateY(0) scale(1)}}
 @keyframes gc4in{from{opacity:0;transform:rotate(2deg) translateY(30px) scale(0.96)}to{opacity:1;transform:rotate(2deg) translateY(0) scale(1)}}
 .splash-bottom{position:absolute;bottom:0;left:0;right:0;padding:0 28px 44px;}
-.splash-logo{font-size:38px;font-weight:900;color:var(--text);letter-spacing:-0.06em;margin-bottom:8px;animation:fadeUp 0.7s 1.0s both;}
+.splash-logo{font-size:38px;font-weight:900;color:#1A1A1A;letter-spacing:-0.06em;margin-bottom:8px;animation:fadeUp 0.7s 1.0s both;}
 .splash-logo span{color:var(--coral);}
-.splash-tagline{font-size:15px;font-weight:500;color:rgba(255,255,255,0.35);letter-spacing:-0.02em;margin-bottom:24px;line-height:1.5;animation:fadeUp 0.7s 1.1s both;}
+.splash-tagline{font-size:15px;font-weight:500;color:rgba(0,0,0,0.40);letter-spacing:-0.02em;margin-bottom:24px;line-height:1.5;animation:fadeUp 0.7s 1.1s both;}
 .splash-start{width:100%;padding:18px;background:var(--coral);border:none;border-radius:16px;font-size:17px;font-weight:800;color:#fff;cursor:pointer;font-family:var(--font);letter-spacing:-0.03em;animation:fadeUp 0.7s 1.2s both;transition:opacity 0.15s,transform 0.15s;}
 .splash-start:active{opacity:0.85;transform:scale(0.98);}
 .splash-pills{display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap;animation:fadeUp 0.5s 1.3s both;}
-.splash-pill{font-size:11px;font-weight:600;color:var(--text3);background:var(--card);border:1px solid var(--border);border-radius:50px;padding:5px 11px;}
+.splash-pill{font-size:11px;font-weight:600;color:rgba(0,0,0,0.45);background:rgba(0,0,0,0.05);border:1px solid rgba(0,0,0,0.12);border-radius:50px;padding:5px 11px;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
 /* ═══════════════════
@@ -163,7 +163,7 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
 .avatar{width:36px;height:36px;border-radius:50%;background:var(--coral);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;}
 
 /* Score card — in page content, scrolls normally */
-.score-card{margin:16px 14px 4px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;}
+.score-card{margin:4px 14px 8px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;}
 .score-row{display:flex;align-items:center;gap:14px;}
 .score-arc-wrap{position:relative;flex-shrink:0;width:56px;height:56px;display:flex;align-items:center;justify-content:center;}
 .score-arc-wrap svg{position:absolute;top:0;left:0;}
@@ -173,7 +173,7 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
 .score-drag{font-size:14px;font-weight:700;color:var(--text);letter-spacing:-0.02em;margin-top:3px;line-height:1.2;}
 .score-sub{font-size:12px;color:var(--text3);font-weight:500;margin-top:3px;}
 
-.sec-hd{display:flex;justify-content:space-between;align-items:baseline;padding:20px 20px 10px;}
+.sec-hd{display:flex;justify-content:space-between;align-items:baseline;padding:14px 20px 6px;}
 .sec-hd h2{font-size:19px;font-weight:800;color:var(--text);letter-spacing:-0.04em;}
 .sec-hd span{font-size:13px;color:var(--coral);font-weight:600;cursor:pointer;}
 
@@ -189,7 +189,7 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
 .nudge-headline{font-size:12px;font-weight:600;color:var(--text2);margin-top:6px;line-height:1.35;display:none;}
 .nudge.open .nudge-headline{display:block;}
 .nudge-dot{width:6px;height:6px;border-radius:50%;margin-bottom:8px;}
-.breakdown{display:none;border-top:1px solid var(--border);background:var(--card2);padding:10px 13px 12px;}
+.breakdown{display:none;border-top:1px solid var(--border);background:var(--card);padding:10px 13px 12px;}
 .nudge.open .breakdown{display:block;}
 .bd-row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px;gap:8px;}
 .bd-row:last-of-type{border-bottom:none;}
@@ -451,7 +451,7 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
         <div class="gc-body">
           <div class="gc-label" style="color:var(--green)">Pension</div>
           <div class="gc-val" style="color:var(--green)">£2,400<span style="font-size:13px;font-weight:600;opacity:0.5">/yr</span></div>
-          <div class="gc-sub">Unclaimed employer match</div>
+          <div class="gc-sub">Company pension contribution</div>
         </div>
       </div>
       <!-- Card 2 — ISA -->
@@ -523,7 +523,15 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
       <button class="ob-back" onclick="goOb(1)">‹</button>
       <div class="ob-body">
         <div class="ob-q">How are you employed?</div>
-        <div class="ob-hint">Affects pension options, tax relief, and self-assessment calculations.</div>
+        <div style="margin-bottom:14px;">
+          <div style="display:flex;align-items:center;gap:6px;cursor:pointer;" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.querySelector('.emp-caret').style.transform=this.nextElementSibling.style.display==='block'?'rotate(90deg)':'rotate(0deg)'">
+            <span style="font-size:13px;color:var(--text3);font-weight:500;">Why do we ask?</span>
+            <span class="emp-caret" style="font-size:14px;color:var(--text3);transition:transform 0.2s;display:inline-block;">›</span>
+          </div>
+          <div style="display:none;margin-top:8px;padding:10px 12px;background:var(--card2);border-radius:10px;border:1px solid var(--border);font-size:13px;color:var(--text3);line-height:1.5;">
+            Affects your pension options, tax relief routes and whether you need to file a self-assessment. Directors get a separate set of nudges.
+          </div>
+        </div>
         <div class="ob-opts">
           <button class="ob-opt" onclick="setEmployment('paye',this)">PAYE — employed<span class="sub">Payslip, P60, workplace pension</span></button>
           <button class="ob-opt" onclick="setEmployment('self',this)">Self-employed / sole trader<span class="sub">Self-assessment, no employer pension</span></button>
@@ -533,29 +541,13 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
         </div>
         <!-- WFH question — shown for PAYE / both -->
         <div id="wfh-q" style="display:none;margin-top:18px;border-top:1px solid var(--border);padding-top:18px;">
-          <div class="ob-field-label" style="margin-bottom:10px;">Does your employer require you to work from home?</div>
+          <div class="ob-field-label" style="margin-bottom:10px;">Do you work from home?</div>
           <div class="ob-opts" style="flex-direction:row;">
             <button class="ob-opt" style="flex:1;" id="wfh-yes" onclick="setWfh(true,this)">Yes</button>
             <button class="ob-opt" style="flex:1;" id="wfh-no" onclick="setWfh(false,this)">No</button>
           </div>
-          <div style="font-size:12px;color:var(--text3);margin-top:6px;">HMRC allows £6/week flat-rate relief if required by employer</div>
         </div>
 
-        <!-- Work mileage — shown for PAYE / both -->
-        <div id="work-extras-q" style="display:none;margin-top:18px;border-top:1px solid var(--border);padding-top:18px;">
-          <div class="ob-field-label" style="margin-bottom:10px;">Do you use your own car for work trips? <span style="font-weight:400;color:var(--text3)">(not commuting)</span></div>
-          <div class="ob-opts" style="flex-direction:row;margin-bottom:0;">
-            <button class="ob-opt" style="flex:1;" id="miles-yes" onclick="setMileage(true,this)">Yes</button>
-            <button class="ob-opt" style="flex:1;" id="miles-no" onclick="setMileage(false,this)">No</button>
-          </div>
-          <div id="mileage-detail" style="display:none;margin-top:10px;">
-            <div class="ob-input-wrap">
-              <input class="ob-input" id="inp-miles" type="number" placeholder="3000" min="0"/>
-              <span class="ob-suffix">miles/yr</span>
-            </div>
-          </div>
-          <button class="ob-next" onclick="goOb(3)" style="margin-top:18px;">Continue →</button>
-        </div>
       </div>
     </div>
 
@@ -583,11 +575,19 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
         </div>
 
         <div class="ob-field">
+          <span class="ob-field-label">Base salary</span>
           <div class="ob-input-wrap">
             <span class="ob-prefix">£</span>
             <input class="ob-input" id="inp-salary" type="number" placeholder="45000" min="0" max="999999" oninput="updateTaxBand()"/>
           </div>
           <div id="tax-band-pill" class="ob-band-pill ob-band-none" style="margin-top:10px;">Enter your salary above</div>
+        </div>
+        <div class="ob-field">
+          <span class="ob-field-label">Bonus / commission <span style="font-weight:400;text-transform:none;letter-spacing:0;">(optional — leave blank if none)</span></span>
+          <div class="ob-input-wrap">
+            <span class="ob-prefix">£</span>
+            <input class="ob-input" id="inp-bonus" type="number" placeholder="0" min="0" max="999999" oninput="updateTaxBand()"/>
+          </div>
         </div>
         <button class="ob-next" onclick="submitSalary()">Continue →</button>
         <span class="ob-skip" onclick="skipSalary()">Prefer not to say — skip</span>
@@ -602,17 +602,20 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
         <div class="ob-q">Student loan?</div>
         <div class="ob-hint">Repayments come off your pay before you see it — affects your real take-home.</div>
 
-        <details class="ob-accordion">
-          <summary>Not sure which plan you're on? <span class="acc-caret">›</span></summary>
-          <div class="ob-accordion-body">
-            <div class="ob-acc-row"><span class="al">England/Wales, started before Sep 2012</span><span class="ar">Plan 1</span></div>
-            <div class="ob-acc-row"><span class="al">England/Wales, Sep 2012 – Jul 2023</span><span class="ar">Plan 2</span></div>
-            <div class="ob-acc-row"><span class="al">England, started Aug 2023 or later</span><span class="ar">Plan 5</span></div>
-            <div class="ob-acc-row"><span class="al">Scotland, any year</span><span class="ar">Plan 4</span></div>
-            <div class="ob-acc-row"><span class="al">Master's or PhD loan</span><span class="ar">Postgraduate</span></div>
-            <div style="font-size:11px;color:var(--text3);margin-top:8px;">Check your Student Loans Company account if still unsure.</div>
+        <div style="margin-bottom:14px;">
+            <div style="display:flex;align-items:center;gap:6px;cursor:pointer;" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.querySelector('.sl-caret').style.transform=this.nextElementSibling.style.display==='block'?'rotate(90deg)':'rotate(0deg)'">
+              <span style="font-size:13px;color:var(--text3);font-weight:500;">Not sure which plan you're on?</span>
+              <span class="sl-caret" style="font-size:14px;color:var(--text3);transition:transform 0.2s;display:inline-block;">›</span>
+            </div>
+            <div style="display:none;margin-top:8px;padding:10px 12px;background:var(--card2);border-radius:10px;border:1px solid var(--border);">
+              <div class="ob-acc-row"><span class="al">England/Wales, started before Sep 2012</span><span class="ar">Plan 1</span></div>
+              <div class="ob-acc-row"><span class="al">England/Wales, Sep 2012 – Jul 2023</span><span class="ar">Plan 2</span></div>
+              <div class="ob-acc-row"><span class="al">England, started Aug 2023 or later</span><span class="ar">Plan 5</span></div>
+              <div class="ob-acc-row"><span class="al">Scotland, any year</span><span class="ar">Plan 4</span></div>
+              <div class="ob-acc-row"><span class="al">Master's or PhD loan</span><span class="ar">Postgraduate</span></div>
+              <div style="font-size:11px;color:var(--text3);margin-top:8px;">Check your Student Loans Company account if still unsure.</div>
+            </div>
           </div>
-        </details>
 
         <div class="ob-select-wrap" style="margin-top:16px;">
           <select class="ob-select" id="sl-select" onchange="setStudentLoanSelect(this.value)">
@@ -684,15 +687,18 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
           <div class="ob-q">Your pension</div>
           <div class="ob-hint">Employer contributions are often the biggest quick win. Check your payslip or HR portal.</div>
 
-          <details class="ob-accordion" style="margin-bottom:14px;">
-            <summary>Not sure how your pension works? <span class="acc-caret">›</span></summary>
-            <div class="ob-accordion-body">
+          <div style="margin-bottom:14px;">
+            <div style="display:flex;align-items:center;gap:6px;cursor:pointer;" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.querySelector('.pension-caret').style.transform=this.nextElementSibling.style.display==='block'?'rotate(90deg)':'rotate(0deg)'">
+              <span style="font-size:13px;color:var(--text3);font-weight:500;">Not sure how your pension works?</span>
+              <span class="pension-caret" style="font-size:14px;color:var(--text3);transition:transform 0.2s;display:inline-block;">›</span>
+            </div>
+            <div style="display:none;margin-top:8px;padding:10px 12px;background:var(--card2);border-radius:10px;border:1px solid var(--border);">
               <div class="ob-acc-row"><span class="al">"We'll match up to X%"</span><span class="ar">Fixed match</span></div>
               <div class="ob-acc-row"><span class="al">"3% gets you 3%, 5% gets you 6%..."</span><span class="ar">Sliding scale</span></div>
               <div class="ob-acc-row"><span class="al">"We pay X% regardless of what you do"</span><span class="ar">Fixed employer</span></div>
               <div style="font-size:11px;color:var(--text3);margin-top:8px;">Sliding scale schemes often have a sweet spot — worth thousands/yr if you're under-contributing.</div>
             </div>
-          </details>
+          </div>
 
           <div class="ob-opts">
             <button class="ob-opt" id="pmatch-fixed" onclick="setPensionType('fixed',this)">They match my contributions</button>
@@ -766,14 +772,18 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
             <div id="fixed-employer-insight" style="font-size:13px;color:var(--text3);line-height:1.5;margin-top:4px;"></div>
           </div>
 
-          <!-- Salary sacrifice question — shown once a pension type is selected -->
+          <!-- Salary sacrifice question — shown once a pension type is selected (hidden for fixed-employer) -->
           <div id="sal-sac-q" style="display:none;margin-top:18px;border-top:1px solid var(--border);padding-top:18px;">
             <div class="ob-field-label" style="margin-bottom:6px;">How are your contributions deducted?</div>
             <div style="font-size:12px;color:var(--text3);margin-bottom:10px;">Salary sacrifice comes off before tax. Relief at source comes off your take-home pay.</div>
-            <div class="ob-opts" style="flex-direction:row;">
-              <button class="ob-opt" style="flex:1;" id="salsac-yes" onclick="setSalSac(true,this)">Salary sacrifice</button>
-              <button class="ob-opt" style="flex:1;" id="salsac-no" onclick="setSalSac(false,this)">Relief at source</button>
-              <button class="ob-opt" style="flex:1;" id="salsac-unsure" onclick="setSalSac(null,this)">Not sure</button>
+            <div class="ob-select-wrap">
+              <select class="ob-select" id="salsac-select" onchange="setSalSacSelect(this.value)">
+                <option value="">Select...</option>
+                <option value="yes">Salary sacrifice</option>
+                <option value="no">Relief at source</option>
+                <option value="unsure">Not sure</option>
+              </select>
+              <span class="ob-select-arrow">▾</span>
             </div>
           </div>
         </div>
@@ -830,7 +840,7 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
 
         <div class="ob-field">
           <span class="ob-field-label">Do you carry any unpaid debt month to month?</span>
-          <div style="font-size:12px;color:var(--text3);margin-bottom:10px;">A balance you don't fully clear — personal loans, store cards, overdrafts. Not your mortgage.</div>
+          <div style="font-size:12px;color:var(--text3);margin-bottom:10px;">Personal loans, store cards, overdrafts — balances you carry month to month. Not your mortgage, and not credit cards you clear in full.</div>
           <div class="ob-opts" style="flex-direction:row;">
             <button class="ob-opt" style="flex:1;" onclick="setDebt(false,this)">No</button>
             <button class="ob-opt" style="flex:1;" onclick="setDebt(true,this)">Yes</button>
@@ -906,6 +916,14 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
               <span class="ob-suffix">%</span>
             </div>
           </div>
+        </div>
+        <div class="ob-field" style="margin-top:18px;border-top:1px solid var(--border);padding-top:18px;">
+          <span class="ob-field-label">Your postcode</span>
+          <div style="font-size:12px;color:var(--text3);margin-bottom:8px;">Optional — pre-fills your Uswitch energy &amp; broadband search</div>
+          <div class="ob-input-wrap" style="max-width:180px;">
+            <input class="ob-input" id="inp-postcode" type="text" placeholder="" maxlength="8" style="text-transform:uppercase;" oninput="this.value=this.value.toUpperCase();p.postcode=this.value.trim()"/>
+          </div>
+          <div style="font-size:12px;color:var(--text3);margin-top:6px;">We'll use this to pre-fill your Uswitch energy &amp; broadband search.</div>
         </div>
         <button class="ob-next" onclick="submitHousing()">Continue →</button>
       </div>
@@ -1008,17 +1026,20 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
         <div class="ob-field">
           <span class="ob-field-label">Occupation <span style="font-weight:400;color:var(--text3)">(optional — for job-specific tax relief)</span></span>
           <div class="ob-select-wrap">
-            <select class="ob-select" id="occupation-select" onchange="setOccupation(this.value)">
+            <select class="ob-select" id="occupation-select" onchange="setOccupation(this.value, null)">
               <option value="">Select if applicable...</option>
-              <option value="teacher">Teacher</option>
-              <option value="nurse">Nurse / NHS worker</option>
-              <option value="police">Police officer</option>
-              <option value="firefighter">Firefighter</option>
-              <option value="military">Armed forces</option>
-              <option value="construction">Construction / trades</option>
-              <option value="engineer">Engineer</option>
-              <option value="retail">Retail worker</option>
-              <option value="other">Other — I claim expenses</option>
+              <optgroup label="Public services">
+                <option value="nurse">NHS / Nurse</option>
+                <option value="teacher">Teacher</option>
+                <option value="police">Police</option>
+                <option value="firefighter">Fire service</option>
+                <option value="military">Military</option>
+              </optgroup>
+              <optgroup label="Trades &amp; engineering">
+                <option value="construction">Construction</option>
+                <option value="engineer">Engineer</option>
+              </optgroup>
+              <option value="other">Other</option>
             </select>
             <span class="ob-select-arrow">▾</span>
           </div>
@@ -1123,12 +1144,14 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
     <!-- ══ FOR YOU ══ -->
     <div id="page-home" class="page active">
 
-      <!-- Score card — IN page, scrolls normally -->
+      <div class="sec-hd"><h2>For You</h2></div>
+
+      <!-- Score card — sits under For You heading -->
       <div class="score-card">
         <div class="score-row">
           <div class="score-arc-wrap">
             <svg width="56" height="56" viewBox="0 0 56 56">
-              <circle cx="28" cy="28" r="23" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/>
+              <circle cx="28" cy="28" r="23" fill="none" stroke="rgba(0,0,0,0.07)" stroke-width="4"/>
               <circle cx="28" cy="28" r="23" fill="none" stroke="#FFB020" stroke-width="4"
                 stroke-dasharray="144.5" stroke-dashoffset="43.4" id="score-arc"
                 stroke-linecap="round" transform="rotate(-90 28 28)"/>
@@ -1138,12 +1161,11 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
           <div class="score-body">
             <div class="score-label">Financial health score</div>
             <div class="score-drag" id="score-drag">Pension contributions holding you back</div>
-            <div class="score-sub">Act on today's nudges to improve it</div>
           </div>
         </div>
       </div>
 
-      <div class="sec-hd"><h2>For You</h2><span id="action-count">5 actions</span></div>
+      <!-- Opportunity bar -->
 
       <!-- Opportunity bar -->
       <div style="margin:0 14px 12px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:11px 14px 12px;">
@@ -1164,20 +1186,20 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
       <div class="nudge-grid" id="nudge-container"></div>
 
       <svg viewBox="0 0 312 44" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;margin:4px 0;">
-        <rect width="312" height="44" fill="#0F0F12"/>
-        <line x1="0" y1="22" x2="230" y2="22" stroke="#252530" stroke-width="0.8"/>
-        <circle cx="244" cy="11" r="1.5" fill="#ffffff" opacity="0.35"/>
-        <circle cx="256" cy="11" r="1.5" fill="#ffffff" opacity="0.28"/>
-        <circle cx="268" cy="11" r="1.5" fill="#ffffff" opacity="0.18"/>
-        <circle cx="280" cy="11" r="1.5" fill="#ffffff" opacity="0.10"/>
-        <circle cx="244" cy="22" r="1.5" fill="#ffffff" opacity="0.45"/>
-        <circle cx="256" cy="22" r="1.5" fill="#ffffff" opacity="0.35"/>
-        <circle cx="268" cy="22" r="1.5" fill="#ffffff" opacity="0.22"/>
-        <circle cx="280" cy="22" r="1.5" fill="#ffffff" opacity="0.12"/>
-        <circle cx="244" cy="33" r="1.5" fill="#ffffff" opacity="0.35"/>
-        <circle cx="256" cy="33" r="1.5" fill="#ffffff" opacity="0.28"/>
-        <circle cx="268" cy="33" r="1.5" fill="#ffffff" opacity="0.18"/>
-        <circle cx="280" cy="33" r="1.5" fill="#ffffff" opacity="0.10"/>
+        <rect width="312" height="44" fill="#F5F3EF"/>
+        <line x1="0" y1="22" x2="230" y2="22" stroke="#C8C4BC" stroke-width="0.8"/>
+        <circle cx="244" cy="11" r="1.5" fill="#1A1A1A" opacity="0.20"/>
+        <circle cx="256" cy="11" r="1.5" fill="#1A1A1A" opacity="0.15"/>
+        <circle cx="268" cy="11" r="1.5" fill="#1A1A1A" opacity="0.10"/>
+        <circle cx="280" cy="11" r="1.5" fill="#1A1A1A" opacity="0.06"/>
+        <circle cx="244" cy="22" r="1.5" fill="#1A1A1A" opacity="0.28"/>
+        <circle cx="256" cy="22" r="1.5" fill="#1A1A1A" opacity="0.20"/>
+        <circle cx="268" cy="22" r="1.5" fill="#1A1A1A" opacity="0.13"/>
+        <circle cx="280" cy="22" r="1.5" fill="#1A1A1A" opacity="0.07"/>
+        <circle cx="244" cy="33" r="1.5" fill="#1A1A1A" opacity="0.20"/>
+        <circle cx="256" cy="33" r="1.5" fill="#1A1A1A" opacity="0.15"/>
+        <circle cx="268" cy="33" r="1.5" fill="#1A1A1A" opacity="0.10"/>
+        <circle cx="280" cy="33" r="1.5" fill="#1A1A1A" opacity="0.06"/>
       </svg>
 
       <div class="sec-hd" style="padding-top:6px;"><h2>You could be missing out on</h2></div>
@@ -1193,11 +1215,12 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
         <div class="alloc-card-hd" style="display:flex;align-items:center;justify-content:space-between;">
           <div>
             <div class="alloc-card-title">Best use of spare cash</div>
-            <div class="alloc-card-sub" id="alloc-sub">Ranked by effective return, based on your salary, tax band, pension and mortgage.</div>
+            <div class="alloc-card-sub" id="alloc-sub">Ranked by effective annual return, based on your salary, tax band, pension and mortgage.</div>
           </div>
           <div style="font-size:18px;color:var(--text3);flex-shrink:0;padding-left:8px;">›</div>
         </div>
         <!-- Populated by JS -->
+        <div style="padding:8px 16px 0;font-size:11px;color:var(--text3);font-weight:500;">All returns shown are estimated annual figures</div>
         <div id="alloc-rows"></div>
       </div>
 
@@ -1208,14 +1231,14 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
     <!-- ══ SWITCH ══ -->
     <div id="page-bills" class="page">
       <div class="sec-hd"><h2>Switch &amp; Save</h2><span>£892/yr available</span></div>
-      <div class="bill-card" onclick="window.open('https://www.uswitch.com/gas-electricity/journey/postcode/','_blank')">
+      <div class="bill-card" onclick="window.open(p.postcode ? 'https://www.uswitch.com/gas-electricity/journey/choose-address/?postcode='+encodeURIComponent(p.postcode) : 'https://www.uswitch.com/gas-electricity/journey/postcode/','_blank')">
         <div class="bill-row">
           <div class="bill-icon" style="background:var(--amber-bg)">⚡</div>
           <div class="bill-info"><div class="bill-name">Energy</div><div class="bill-sub">British Gas · £187/mo</div></div>
           <div class="bill-right"><div class="bill-save">Save £348/yr</div><div class="bill-link">via Uswitch →</div></div>
         </div>
       </div>
-      <div class="bill-card" onclick="window.open('https://www.uswitch.com/broadband/postcode/','_blank')">
+      <div class="bill-card" onclick="window.open('https://www.uswitch.com/broadband/','_blank')">
         <div class="bill-row">
           <div class="bill-icon" style="background:var(--blue-bg)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5" stroke-linecap="round"><path d="M1.5 8.5C5.5 4.5 10.5 2.5 12 2.5s6.5 2 10.5 6"/><path d="M5 12.5c1.9-1.9 4.3-3 7-3s5.1 1.1 7 3"/><path d="M8.5 16c1-1 2.2-1.5 3.5-1.5s2.5.5 3.5 1.5"/><circle cx="12" cy="20" r="1.5" fill="var(--blue)"/></svg></div>
           <div class="bill-info"><div class="bill-name">Broadband</div><div class="bill-sub">Virgin Media · £54/mo</div></div>
@@ -1529,15 +1552,18 @@ for (let i = 1; i <= 10; i++) {
 // ═══════════════════════════════
 let curOb = 1;
 function goOb(n) {
-  const prev = document.getElementById('ob-' + curOb);
-  if (prev) { prev.classList.remove('active'); prev.style.display = 'none'; }
-  curOb = n;
-  const pg = document.getElementById('ob-' + n);
-  pg.style.display = 'flex';
-  pg.classList.add('active');
-  pg.scrollTop = 0;
-  // Post-nav hooks
-  if (n === 4) initPensionScreen();
+  try {
+    const prev = document.getElementById('ob-' + curOb);
+    if (prev) { prev.classList.remove('active'); prev.style.display = 'none'; }
+    curOb = n;
+    const pg = document.getElementById('ob-' + n);
+    if (!pg) { console.error('goOb: page not found: ob-' + n); return; }
+    pg.style.display = 'flex';
+    pg.classList.add('active');
+    pg.scrollTop = 0;
+    // Post-nav hooks
+    if (n === 4) initPensionScreen();
+  } catch(e) { console.error('goOb error:', e); }
 }
 
 function goObSL() {
@@ -1564,13 +1590,13 @@ function setEmployment(type, el) {
   el.classList.add('selected');
   const showWfh = (type === 'paye' || type === 'both');
   document.getElementById('wfh-q').style.display = showWfh ? 'block' : 'none';
-  document.getElementById('work-extras-q').style.display = showWfh ? 'block' : 'none';
   if (!showWfh) flash(el, () => goOb(3));
 }
 function setWfh(val, el) {
   p.wfh = val;
   document.getElementById('wfh-yes').classList.toggle('selected', val === true);
   document.getElementById('wfh-no').classList.toggle('selected', val === false);
+  flash(el, () => goOb(3));
 }
 
 // ── OB-4 BACK ROUTING (employment-aware) ──
@@ -1619,15 +1645,29 @@ function setMileage(val, el) {
   p.hasMileage = val;
   ['miles-yes','miles-no'].forEach(id => document.getElementById(id)?.classList.remove('selected'));
   el.classList.add('selected');
-  document.getElementById('mileage-detail').style.display = val ? '' : 'none';
+  document.getElementById('mileage-detail')?.style && (document.getElementById('mileage-detail').style.display = val ? '' : 'none');
 }
 function setInvestments(val, el) {
   p.hasInvestments = val;
   ['invest-yes','invest-no'].forEach(id => document.getElementById(id)?.classList.remove('selected'));
   el.classList.add('selected');
 }
-function setOccupation(val) {
+function setOccupationBtn(group, el) {
+  document.querySelectorAll('#occ-btns .ob-opt').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('occ-public-sub')?.style && (document.getElementById('occ-public-sub').style.display = group === 'public' ? '' : 'none');
+  document.getElementById('occ-trades-sub')?.style && (document.getElementById('occ-trades-sub').style.display = group === 'trades' ? '' : 'none');
+  if (group === 'other') { p.occupation = 'other'; }
+  else { p.occupation = null; } // wait for sub-selection
+  // clear any sub-selections
+  document.querySelectorAll('.occ-sub').forEach(b => b.classList.remove('selected'));
+}
+function setOccupation(val, el) {
   p.occupation = val || null;
+  if (el) {
+    document.querySelectorAll('.occ-sub').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+  }
 }
 function setCTW(val, el) {
   p.employerCTW = val;
@@ -1659,18 +1699,25 @@ function setEA(val, el) {
 
 // Screen 3
 function updateTaxBand() {
-  const sal = parseInt(document.getElementById('inp-salary').value) || 0;
+  const base = parseInt(document.getElementById('inp-salary').value) || 0;
+  const bonus = parseInt(document.getElementById('inp-bonus')?.value) || 0;
+  const sal = base + bonus;
   const pill = document.getElementById('tax-band-pill');
   if (!sal) { pill.className='ob-band-pill ob-band-none'; pill.textContent='Enter your salary above'; return; }
   if (sal <= 12570) { pill.className='ob-band-pill ob-band-none'; pill.textContent='Under personal allowance — no income tax'; }
-  else if (sal <= 50270) { pill.className='ob-band-pill ob-band-basic'; pill.textContent='Basic rate · 20% — take-home ~£'+Math.round((sal-calcTax(sal).total)/12).toLocaleString()+'/mo'; }
+  else if (sal <= 50270) { pill.className='ob-band-pill ob-band-basic'; pill.textContent='Basic rate · 20% — take-home ~£'+Math.round((sal-calcTax(sal).total)/12).toLocaleString()+'/mo'+(bonus?' (inc. bonus)':''); }
   else if (sal < 100000) { pill.className='ob-band-pill ob-band-higher'; pill.textContent='Higher rate · 40% — take-home ~£'+Math.round((sal-calcTax(sal).total)/12).toLocaleString()+'/mo'; }
   else if (sal <= 125140) { pill.className='ob-band-pill ob-band-60'; pill.textContent='⚠ 60% effective zone — personal allowance withdrawn'; }
   else { pill.className='ob-band-pill ob-band-add'; pill.textContent='Additional rate · 45%'; }
 }
 function submitSalary() {
   const v = parseInt(document.getElementById('inp-salary').value);
-  if (v > 0) p.salary = v;
+  const bonus = parseInt(document.getElementById('inp-bonus')?.value) || 0;
+  if (v > 0) {
+    p.baseSalary = v;
+    p.bonus = bonus;
+    p.salary = v + bonus; // total comp for tax calcs
+  }
   if (p.employment === 'director') { goOb('3c'); return; }
   if (p.employment === 'self') { goOb(5); return; }
   goObSL();
@@ -1777,7 +1824,8 @@ async function parsePayslip(file) {
     const annual = parsed.annual_gross || (parsed.monthly_gross ? Math.round(parsed.monthly_gross*12) : null);
     if (annual > 0) {
       document.getElementById('inp-salary').value = annual;
-      updateTaxBand(); p.salary = annual;
+      p.baseSalary = annual; p.bonus = 0; p.salary = annual;
+      updateTaxBand();
       filled.push('Salary £' + annual.toLocaleString());
       if (parsed.tax_code) filled.push('Tax code ' + parsed.tax_code);
     }
@@ -1824,14 +1872,15 @@ function setPensionType(type, el) {
   document.getElementById('pension-fixed-details').style.display = type==='fixed' ? 'block' : 'none';
   document.getElementById('pension-sliding-details').style.display = type==='sliding' ? 'block' : 'none';
   document.getElementById('pension-employer-details').style.display = type==='fixed-employer' ? 'block' : 'none';
-  // Show salary sacrifice question for any active pension type
+  // Show salary sacrifice question — hide for fixed-employer (they pay, you don't)
   const salSacQ = document.getElementById('sal-sac-q');
-  if (salSacQ) salSacQ.style.display = type === 'none' ? 'none' : 'block';
+  if (salSacQ) salSacQ.style.display = (type === 'none' || type === 'fixed-employer') ? 'none' : 'block';
 }
 function setSalSac(val, el) {
   p.salSac = val;
-  ['salsac-yes','salsac-no','salsac-unsure'].forEach(id => document.getElementById(id)?.classList.remove('selected'));
-  el.classList.add('selected');
+}
+function setSalSacSelect(val) {
+  p.salSac = val === 'yes' ? true : val === 'no' ? false : null;
 }
 function updatePensionInsight() {
   const mine = parseFloat(document.getElementById('inp-my-pension').value)||0;
@@ -2089,41 +2138,86 @@ function startLoading() {
 }
 
 function computeScore() {
-  let s = 50; // base
-  // Debt (-15 if has debt)
-  if (p.hasDebt) s -= 15;
-  // Director expenses / corp tax saving
+  let s = 0;
+
+  // ── PENSION (0–25) ──
   if (p.employment === 'director') {
-    s += 5; // bump score slightly — director tax planning opportunities exist
+    // Director: using company pension is best practice
+    s += p.hasDirPension ? 20 : 8;
+  } else if (p.pensionMatch && p.employment !== 'self') {
+    const gap = Math.max(0, (p.empPct||0) - (p.myPct||0));
+    if (gap === 0) s += 25;       // fully claiming match
+    else if (gap <= 2) s += 15;   // small gap
+    else s += 5;                  // large gap — significant miss
+  } else if (p.employment === 'self') {
+    s += p.myPct > 0 ? 18 : 8;   // self-employed with/without pension
+  } else {
+    s += 8; // no pension info
   }
 
-  // Pension match gap (max ±8, not ±17)
-  const gap = p.pensionMatch && p.employment!=='self' ? Math.max(0, p.empPct-p.myPct) : 0;
-  if (gap === 0 && p.pensionMatch) s += 8;
-  else if (gap > 0) s -= 4;
-  // ISA usage (+6 if using allowance, -2 if barely touched)
-  const isaRem = 20000 - (p.isaUsed||0);
-  if (isaRem < 5000) s += 6;
-  else if (isaRem < 15000) s += 3;
-  else s -= 2;
-  // Savings cushion (+5 if >3mo expenses, rough proxy)
-  const expenses = (p.salary||0) / 12 * 0.6;
-  if ((p.savings||0) > expenses * 3) s += 5;
-  else if ((p.savings||0) > expenses) s += 2;
-  // Bills — everyone loses 3 until they switch
-  s -= 3;
-  // Tax efficiency (+4 if no 60% zone exposure)
-  if (p.salary < 100000) s += 4;
-  // Housing — mortgage with equity is positive
-  if (p.housing === 'mortgage') s += 3;
-  return Math.max(20, Math.min(95, s));
+  // ── ISA USAGE (0–15) ──
+  const isaUsed = p.isaUsed || 0;
+  if (isaUsed >= 15000) s += 15;
+  else if (isaUsed >= 5000) s += 10;
+  else if (isaUsed >= 1000) s += 5;
+  // 0 if untouched
+
+  // ── SAVINGS RATE (0–15) ──
+  const rate = p.savingsRate || 0;
+  if (rate >= 4.0) s += 15;
+  else if (rate >= 2.5) s += 8;
+  else if (rate >= 1.0) s += 3;
+  // 0 if very low or no savings
+
+  // ── EMERGENCY FUND (0–10) ──
+  const monthlyExp = (p.salary||0) / 12 * 0.6;
+  const sav = p.savings || 0;
+  if (sav >= monthlyExp * 6) s += 10;
+  else if (sav >= monthlyExp * 3) s += 7;
+  else if (sav >= monthlyExp) s += 3;
+
+  // ── DEBT (-15 if carrying high-interest debt) ──
+  if (p.hasDebt) s -= 15;
+
+  // ── TAX EFFICIENCY (0–15) ──
+  const sal = p.salary || 0;
+  if (sal >= 100000 && sal <= 125140) s += 0;  // in 60% trap — no points
+  else if (sal > 50270 && p.myPct > 0) s += 12; // higher rate + contributing
+  else if (sal > 50270) s += 4;                 // higher rate, not contributing
+  else if (sal > 12570) s += 10;                // basic rate, reasonably efficient
+  else s += 15;                                 // below PA — no tax to worry about
+
+  // ── BILLS (0–5) ──
+  // Everyone loses until they switch — no way to know yet, penalise gently
+  s += 2;
+
+  // ── HOUSING (0–5) ──
+  if (p.housing === 'owned') s += 5;
+  else if (p.housing === 'mortgage') s += 3;
+
+  return Math.max(10, Math.min(92, Math.round(s)));
 }
 
 function getScoreDrag() {
-  if (p.hasDebt) return 'Pay off high-interest debt first';
-  if (p.pensionMatch && p.myPct < p.empPct) return 'Unclaimed employer pension match';
-  if (20000 - (p.isaUsed||0) > 10000) return 'ISA allowance expiring — act now';
-  return 'Bills savings available right now';
+  const s = computeScore();
+  const sal = p.salary || 0;
+
+  if (p.hasDebt) return 'Clearing that debt first will make a big difference';
+
+  if (s >= 75) return 'Looking good — a couple of tweaks left';
+  if (s >= 60) {
+    if (sal >= 100000 && sal <= 125140) return 'Solid — but you\'re in the 60% tax trap';
+    return 'Solid — your tax efficiency could improve';
+  }
+  if (s >= 45) {
+    if (p.pensionMatch && (p.myPct||0) < (p.empPct||0)) return 'Room to grow — pension match is the priority';
+    return 'Room to grow — pension and ISA are the priority';
+  }
+  if (s >= 30) {
+    if ((p.savingsRate||0) < 2.0 && (p.savings||0) > 1000) return 'A few gaps — your savings rate is an easy fix';
+    return 'A few gaps — let\'s sort your pension first';
+  }
+  return 'Early days — good opportunities ahead';
 }
 
 // ═══════════════════════════════
@@ -2483,7 +2577,7 @@ function buildNudges() {
       color:'var(--coral)', tag:'WFH Relief',
       headline: `Claim £${relief}/yr tax relief for working from home`,
       impact: `£${relief}/yr — takes 5 mins`,
-      sub: `HMRC allows £6/week flat rate if your employer requires you to WFH. Backdatable 4 years.`,
+      sub: `HMRC allows £6/week (£64.40/yr) tax relief — but only if your employer requires you to WFH, not just by choice. Check your contract or ask HR. Backdatable 4 years.`,
       breakdown: [
         ['Flat rate', '£6/week (HMRC approved)', false],
         ['Annual relief at your rate', `£${relief}/yr`, true],
@@ -2567,7 +2661,7 @@ function buildNudges() {
         ],
         ctaMulti: [
           { text:'Chase Saver — 4.5% AER', url:'https://www.chase.co.uk/gb/en/product/savings/', bg:'var(--green)' },
-          { text:'Chip — up to 4.8% AER', url:'https://getchip.uk/savings', bg:'var(--card3)', color:'var(--text)' },
+          { text:'Chip — up to 4.8% AER', url:'https://www.getchip.uk/savings-accounts', bg:'var(--card3)', color:'var(--text)' },
           { text:'Compare all rates — MoneySavingExpert', url:'https://www.moneysavingexpert.com/savings/savings-accounts-best-interest/', bg:'var(--card3)', color:'var(--text)' },
         ]
       }));
@@ -2654,7 +2748,6 @@ function buildNudges() {
   }
 
   document.getElementById('nudge-container').innerHTML = nudges.join('');
-  document.getElementById('action-count').textContent = nudges.length + ' actions';
 }
 
 function makeNudge({color, tag, headline, sub, breakdown, cta, ctaMulti, impact, wide, _card}) {
@@ -2857,7 +2950,7 @@ function buildMissingOut() {
       ['Best available tariff','~£158/mo',true],
       ['Annual saving','~£348/yr',true],
     ],
-    cta:{text:'Compare on Uswitch →',url:'https://www.uswitch.com/gas-electricity/journey/postcode/',bg:'var(--blue)'}
+    cta:{text:'Compare on Uswitch →',url:p.postcode ? `https://www.uswitch.com/gas-electricity/journey/choose-address/?postcode=${encodeURIComponent(p.postcode)}` : 'https://www.uswitch.com/gas-electricity/journey/postcode/',bg:'var(--blue)'}
   }));
 
   // Cycle to Work — PAYE only, and only if employer offers it (or unknown)
@@ -2893,15 +2986,15 @@ function buildMissingOut() {
     cta:{text:'HMRC approved list →',url:'https://www.gov.uk/tax-relief-for-employees/professional-fees-and-subscriptions',bg:'var(--blue)'}
   }));
 
-  // Mileage — only if they confirmed they drive for work
-  if (p.hasMileage) {
-    const miles = parseInt(document.getElementById('inp-miles')?.value) || 3000;
-    const claim = Math.min(miles, 10000) * 0.45 + Math.max(0, miles - 10000) * 0.25;
+  // Mileage — show for all PAYE users (removed the question, so show universally)
+  if (isPAYE) {
+    const miles = 3000; // default estimate
+    const claim = Math.min(miles, 10000) * 0.45;
     cards.push(makeNudge({_card:true, color:'var(--amber)', tag:'Mileage Relief',
-      headline:`Claim 45p/mile on your ${miles.toLocaleString()} work miles`,
-      impact:`~£${Math.round(claim).toLocaleString()}/yr you can claim`,
-      sub:`If your employer pays less than 45p/mile (or nothing), claim the difference. Commuting doesn't count — only work trips.`,
-      breakdown:[['Your work miles',`~${miles.toLocaleString()}/yr`,false],['HMRC rate','45p/mile (first 10,000)',true],['Potential claim',`£${Math.round(claim).toLocaleString()}`,true]],
+      headline:`Drive for work? You can claim 45p/mile back from HMRC`,
+      impact:`~£${Math.round(claim).toLocaleString()}/yr on typical mileage`,
+      sub:`If you use your own car for work trips (not commuting) and your employer pays less than 45p/mile, claim the difference. Backdatable 4 years.`,
+      breakdown:[['HMRC approved rate','45p/mile (first 10,000)',true],['On 3,000 work miles',`~£${Math.round(claim).toLocaleString()}/yr`,true],['Commuting','Does not qualify',false]],
       cta:{text:'Claim via P87 →',url:'https://www.gov.uk/guidance/claim-income-tax-relief-for-your-employment-expenses-p87',bg:'var(--amber)'}
     }));
   }
@@ -3070,6 +3163,13 @@ function buildMissingOut() {
     }));
   }
 
+  // Sort by colour group: blue → green → amber → coral → purple
+  const colourOrder = ['var(--blue)','var(--green)','var(--amber)','var(--coral)','var(--purple)','var(--text3)'];
+  cards.sort((a, b) => {
+    const getCol = s => { for(let i=0;i<colourOrder.length;i++) if(s.includes(colourOrder[i])) return i; return 99; };
+    return getCol(a) - getCol(b);
+  });
+
   document.getElementById('missing-container').innerHTML = cards.length > 0
     ? cards.join('')
     : '<div style="padding:16px 20px;font-size:13px;color:var(--text3);">No additional nudges for your situation right now.</div>';
@@ -3083,12 +3183,10 @@ function buildAllocate() {
   const taxRate = p.salary > 50270 ? 0.4 : 0.2;
   const gap = p.pensionMatch && p.employment!=='self' ? Math.max(0,p.empPct-p.myPct) : 0;
 
-  // Pension effective return label — show tax relief boost + note employer match separately
-  // Basic rate: pay £80 net → get £100 in pension = 25% instant return
-  // Higher rate: pay £60 net → get £100 in pension = 67% instant return
-  // If employer match exists, label it clearly in desc rather than mashing into %
-  const taxBoost = taxRate === 0.4 ? '~67%' : '~25%';
-  const pensionReturn = taxBoost;
+  // Pension return: show tax relief as "£X relief per £100" — clearer than % boost
+  // Basic: pay £80, get £100 — 20% relief. Higher: pay £60, get £100 — 40% relief.
+  const reliefPct = Math.round(taxRate * 100);
+  const pensionReturn = `+${reliefPct}%`;
 
   const rows = [];
   let rank = 1;
@@ -3098,7 +3196,7 @@ function buildAllocate() {
     rank++;
   }
   if (gap > 0) {
-    rows.push({ rank, rankClass:'best', name:'Increase pension', desc:`${Math.round(taxRate*100)}% tax relief — £${Math.round(taxRate*100)}p back per £1 contributed`, ret:pensionReturn, retColor:'var(--green)', note:'tax relief<br>boost' });
+    rows.push({ rank, rankClass:'best', name:'Increase pension', desc:`HMRC adds ${Math.round(taxRate*100)}% tax relief on every £1 you put in`, ret:pensionReturn, retColor:'var(--green)', note:'tax relief<br>added' });
     rank++;
   }
 
@@ -3139,20 +3237,20 @@ function buildAllocate() {
     const intSaved = Math.round(300 * (p.mortgageRate/100) * 20); // rough
     document.getElementById('sprive-section').innerHTML = `
       <svg viewBox="0 0 312 44" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;margin:4px 0;">
-        <rect width="312" height="44" fill="#0F0F12"/>
-        <line x1="0" y1="22" x2="230" y2="22" stroke="#252530" stroke-width="0.8"/>
-        <circle cx="244" cy="11" r="1.5" fill="#ffffff" opacity="0.35"/>
-        <circle cx="256" cy="11" r="1.5" fill="#ffffff" opacity="0.28"/>
-        <circle cx="268" cy="11" r="1.5" fill="#ffffff" opacity="0.18"/>
-        <circle cx="280" cy="11" r="1.5" fill="#ffffff" opacity="0.10"/>
-        <circle cx="244" cy="22" r="1.5" fill="#ffffff" opacity="0.45"/>
-        <circle cx="256" cy="22" r="1.5" fill="#ffffff" opacity="0.35"/>
-        <circle cx="268" cy="22" r="1.5" fill="#ffffff" opacity="0.22"/>
-        <circle cx="280" cy="22" r="1.5" fill="#ffffff" opacity="0.12"/>
-        <circle cx="244" cy="33" r="1.5" fill="#ffffff" opacity="0.35"/>
-        <circle cx="256" cy="33" r="1.5" fill="#ffffff" opacity="0.28"/>
-        <circle cx="268" cy="33" r="1.5" fill="#ffffff" opacity="0.18"/>
-        <circle cx="280" cy="33" r="1.5" fill="#ffffff" opacity="0.10"/>
+        <rect width="312" height="44" fill="#F5F3EF"/>
+        <line x1="0" y1="22" x2="230" y2="22" stroke="#C8C4BC" stroke-width="0.8"/>
+        <circle cx="244" cy="11" r="1.5" fill="#1A1A1A" opacity="0.20"/>
+        <circle cx="256" cy="11" r="1.5" fill="#1A1A1A" opacity="0.15"/>
+        <circle cx="268" cy="11" r="1.5" fill="#1A1A1A" opacity="0.10"/>
+        <circle cx="280" cy="11" r="1.5" fill="#1A1A1A" opacity="0.06"/>
+        <circle cx="244" cy="22" r="1.5" fill="#1A1A1A" opacity="0.28"/>
+        <circle cx="256" cy="22" r="1.5" fill="#1A1A1A" opacity="0.20"/>
+        <circle cx="268" cy="22" r="1.5" fill="#1A1A1A" opacity="0.13"/>
+        <circle cx="280" cy="22" r="1.5" fill="#1A1A1A" opacity="0.07"/>
+        <circle cx="244" cy="33" r="1.5" fill="#1A1A1A" opacity="0.20"/>
+        <circle cx="256" cy="33" r="1.5" fill="#1A1A1A" opacity="0.15"/>
+        <circle cx="268" cy="33" r="1.5" fill="#1A1A1A" opacity="0.10"/>
+        <circle cx="280" cy="33" r="1.5" fill="#1A1A1A" opacity="0.06"/>
       </svg>
       <div class="sec-hd" style="padding-top:6px;"><h2>Mortgage overpayment</h2></div>
       <div class="alloc-card">
@@ -3181,20 +3279,20 @@ function buildAllocate() {
     const lisaEligible = p.salary < 100000; // rough proxy, real check is age <40
     document.getElementById('sprive-section').innerHTML = `
       <svg viewBox="0 0 312 44" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;margin:4px 0;">
-        <rect width="312" height="44" fill="#0F0F12"/>
-        <line x1="0" y1="22" x2="230" y2="22" stroke="#252530" stroke-width="0.8"/>
-        <circle cx="244" cy="11" r="1.5" fill="#ffffff" opacity="0.35"/>
-        <circle cx="256" cy="11" r="1.5" fill="#ffffff" opacity="0.28"/>
-        <circle cx="268" cy="11" r="1.5" fill="#ffffff" opacity="0.18"/>
-        <circle cx="280" cy="11" r="1.5" fill="#ffffff" opacity="0.10"/>
-        <circle cx="244" cy="22" r="1.5" fill="#ffffff" opacity="0.45"/>
-        <circle cx="256" cy="22" r="1.5" fill="#ffffff" opacity="0.35"/>
-        <circle cx="268" cy="22" r="1.5" fill="#ffffff" opacity="0.22"/>
-        <circle cx="280" cy="22" r="1.5" fill="#ffffff" opacity="0.12"/>
-        <circle cx="244" cy="33" r="1.5" fill="#ffffff" opacity="0.35"/>
-        <circle cx="256" cy="33" r="1.5" fill="#ffffff" opacity="0.28"/>
-        <circle cx="268" cy="33" r="1.5" fill="#ffffff" opacity="0.18"/>
-        <circle cx="280" cy="33" r="1.5" fill="#ffffff" opacity="0.10"/>
+        <rect width="312" height="44" fill="#F5F3EF"/>
+        <line x1="0" y1="22" x2="230" y2="22" stroke="#C8C4BC" stroke-width="0.8"/>
+        <circle cx="244" cy="11" r="1.5" fill="#1A1A1A" opacity="0.20"/>
+        <circle cx="256" cy="11" r="1.5" fill="#1A1A1A" opacity="0.15"/>
+        <circle cx="268" cy="11" r="1.5" fill="#1A1A1A" opacity="0.10"/>
+        <circle cx="280" cy="11" r="1.5" fill="#1A1A1A" opacity="0.06"/>
+        <circle cx="244" cy="22" r="1.5" fill="#1A1A1A" opacity="0.28"/>
+        <circle cx="256" cy="22" r="1.5" fill="#1A1A1A" opacity="0.20"/>
+        <circle cx="268" cy="22" r="1.5" fill="#1A1A1A" opacity="0.13"/>
+        <circle cx="280" cy="22" r="1.5" fill="#1A1A1A" opacity="0.07"/>
+        <circle cx="244" cy="33" r="1.5" fill="#1A1A1A" opacity="0.20"/>
+        <circle cx="256" cy="33" r="1.5" fill="#1A1A1A" opacity="0.15"/>
+        <circle cx="268" cy="33" r="1.5" fill="#1A1A1A" opacity="0.10"/>
+        <circle cx="280" cy="33" r="1.5" fill="#1A1A1A" opacity="0.06"/>
       </svg>
       <div class="sec-hd" style="padding-top:6px;"><h2>Worth knowing</h2></div>
       <div class="alloc-card">
@@ -3248,7 +3346,8 @@ function buildPicture() {
   const effectiveRate = ((t.total / p.salary) * 100).toFixed(1);
   const band = getSalaryBand(p.salary);
 
-  document.getElementById('pic-salary').textContent = `£${p.salary.toLocaleString()}`;
+  const baseLabel = p.bonus > 0 ? `£${(p.baseSalary||p.salary).toLocaleString()} + £${p.bonus.toLocaleString()} bonus` : `£${p.salary.toLocaleString()}`;
+  document.getElementById('pic-salary').textContent = baseLabel;
   document.getElementById('pic-tax').textContent = `−£${t.tax.toLocaleString()}`;
   document.getElementById('pic-ni').textContent = `−£${t.ni.toLocaleString()}`;
   // Student loan row
@@ -3444,9 +3543,16 @@ function flash(el, cb) { el.classList.add('selected'); setTimeout(cb, 220); }
 
 // Keyboard
 window.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('inp-name').addEventListener('keydown', e => { if(e.key==='Enter') submitName(); });
-  document.getElementById('ai-input').addEventListener('keydown', e => { if(e.key==='Enter') sendMessage(); });
+  try {
+    document.getElementById('inp-name')?.addEventListener('keydown', e => { if(e.key==='Enter') submitName(); });
+    document.getElementById('ai-input')?.addEventListener('keydown', e => { if(e.key==='Enter') sendMessage(); });
+  } catch(e) { console.error('DOMContentLoaded error:', e); }
 });
+
+window.onerror = function(msg, src, line, col, err) {
+  console.error('BREEZE ERROR:', msg, '| line:', line, '| col:', col, '| stack:', err?.stack);
+  return false;
+};
 </script>
 </body>
 </html>
