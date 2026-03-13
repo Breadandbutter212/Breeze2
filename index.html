@@ -268,6 +268,13 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
 .sub-flag{font-size:11px;margin-top:2px;font-weight:700;}
 
 /* Picture */
+.pic-accordion{cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:10px 16px;margin:10px 14px 0;background:var(--card);border:1px solid var(--border);border-radius:var(--radius) var(--radius) 0 0;}
+.pic-accordion.closed{border-radius:var(--radius);margin-bottom:4px;}
+.pic-accordion-title{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;}
+.pic-accordion-arrow{font-size:14px;color:var(--text3);transition:transform 0.2s;}
+.pic-accordion.closed .pic-accordion-arrow{transform:rotate(-90deg);}
+.pic-accordion-body{margin:0 14px 10px;background:var(--card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);overflow:hidden;}
+.pic-accordion.closed + .pic-accordion-body{display:none;}.pic-mort-hidden{display:none!important;}
 .snap-section-label{font-size:12px;font-weight:700;color:var(--text3);letter-spacing:0.06em;text-transform:uppercase;padding:0 20px 8px;}
 .snap-card{margin:0 14px 10px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
 .snap-row{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid var(--border);font-size:14px;}
@@ -369,6 +376,8 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
 /* ═══════════════════
    DETECTED SUBS
    ═══════════════════ */
+.subs-open .subs-list{display:block!important;}
+.subs-open .subs-caret{transform:rotate(90deg);}
 .sub-row{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border);cursor:pointer;}
 .sub-row:last-child{border-bottom:none;}
 .sub-expand{display:none;background:var(--card2);border-top:1px solid var(--border);padding:12px 16px 14px;}
@@ -927,29 +936,29 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
         <div class="ob-field">
           <span class="ob-field-label">Where are your savings held?</span>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;" id="savings-bank-grid">
-            <button class="ob-opt savings-bank-btn" style="padding:10px 12px;" onclick="setSavingsBank('lloyds',1.5,this)">
-              <img src="https://www.google.com/s2/favicons?domain=lloydsbank.com&sz=32" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'">Lloyds <span style="color:var(--text3);font-size:11px;">1.50%</span>
+            <button class="ob-opt savings-bank-btn" style="padding:10px 12px;" onclick="setSavingsBank('lloyds',2.25,this)">
+              <img src="https://www.google.com/s2/favicons?domain=lloydsbank.com&sz=32" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'">Lloyds <span style="color:var(--text3);font-size:11px;">2.25%</span>
             </button>
-            <button class="ob-opt savings-bank-btn" style="padding:10px 12px;" onclick="setSavingsBank('barclays',1.16,this)">
-              <img src="https://www.google.com/s2/favicons?domain=barclays.co.uk&sz=32" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'">Barclays <span style="color:var(--text3);font-size:11px;">1.16%</span>
+            <button class="ob-opt savings-bank-btn" style="padding:10px 12px;" onclick="setSavingsBank('barclays',1.5,this)">
+              <img src="https://www.google.com/s2/favicons?domain=barclays.co.uk&sz=32" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'">Barclays <span style="color:var(--text3);font-size:11px;">1.50%</span>
             </button>
-            <button class="ob-opt savings-bank-btn" style="padding:10px 12px;" onclick="setSavingsBank('hsbc',1.0,this)">
-              <img src="https://www.google.com/s2/favicons?domain=hsbc.co.uk&sz=32" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'">HSBC <span style="color:var(--text3);font-size:11px;">1.00%</span>
+            <button class="ob-opt savings-bank-btn" style="padding:10px 12px;" onclick="setSavingsBank('hsbc',1.75,this)">
+              <img src="https://www.google.com/s2/favicons?domain=hsbc.co.uk&sz=32" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'">HSBC <span style="color:var(--text3);font-size:11px;">1.75%</span>
             </button>
-            <button class="ob-opt savings-bank-btn" style="padding:10px 12px;" onclick="setSavingsBank('natwest',1.75,this)">
-              <img src="https://www.google.com/s2/favicons?domain=natwest.com&sz=32" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'">NatWest <span style="color:var(--text3);font-size:11px;">1.75%</span>
+            <button class="ob-opt savings-bank-btn" style="padding:10px 12px;" onclick="setSavingsBank('natwest',2.0,this)">
+              <img src="https://www.google.com/s2/favicons?domain=natwest.com&sz=32" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'">NatWest <span style="color:var(--text3);font-size:11px;">2.00%</span>
             </button>
-            <button class="ob-opt savings-bank-btn" style="padding:10px 12px;" onclick="setSavingsBank('santander',1.8,this)">
-              <img src="https://www.google.com/s2/favicons?domain=santander.co.uk&sz=32" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'">Santander <span style="color:var(--text3);font-size:11px;">1.80%</span>
+            <button class="ob-opt savings-bank-btn" style="padding:10px 12px;" onclick="setSavingsBank('santander',2.1,this)">
+              <img src="https://www.google.com/s2/favicons?domain=santander.co.uk&sz=32" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'">Santander <span style="color:var(--text3);font-size:11px;">2.10%</span>
             </button>
-            <button class="ob-opt savings-bank-btn" style="padding:10px 12px;" onclick="setSavingsBank('monzo',3.5,this)">
-              <img src="https://www.google.com/s2/favicons?domain=monzo.com&sz=32" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'">Monzo <span style="color:var(--green);font-size:11px;">3.50%</span>
+            <button class="ob-opt savings-bank-btn" style="padding:10px 12px;" onclick="setSavingsBank('monzo',4.1,this)">
+              <img src="https://www.google.com/s2/favicons?domain=monzo.com&sz=32" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'">Monzo <span style="color:var(--green);font-size:11px;">4.10%</span>
             </button>
             <button class="ob-opt savings-bank-btn" style="padding:10px 12px;" onclick="setSavingsBank('starling',3.25,this)">
               <img src="https://www.google.com/s2/favicons?domain=starlingbank.com&sz=32" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'">Starling <span style="color:var(--green);font-size:11px;">3.25%</span>
             </button>
-            <button class="ob-opt savings-bank-btn" style="padding:10px 12px;" onclick="setSavingsBank('chase',4.1,this)">
-              <img src="https://www.google.com/s2/favicons?domain=chase.co.uk&sz=32" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'">Chase <span style="color:var(--green);font-size:11px;">4.10%</span>
+            <button class="ob-opt savings-bank-btn" style="padding:10px 12px;" onclick="setSavingsBank('chase',4.5,this)">
+              <img src="https://www.google.com/s2/favicons?domain=chase.co.uk&sz=32" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'">Chase <span style="color:var(--green);font-size:11px;">4.50%</span>
             </button>
           </div>
           <div id="savings-bank-insight" style="font-size:13px;line-height:1.5;margin-top:10px;min-height:18px;"></div>
@@ -994,6 +1003,32 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
               <input class="ob-input small" id="inp-child-age" type="number" placeholder="3" min="0" max="15"/>
               <span class="ob-suffix">yrs</span>
             </div>
+          </div>
+        </div>
+        <div class="ob-field">
+          <span class="ob-field-label">Occupation <span style="font-weight:400;color:var(--text3)">(optional — for job-specific tax relief)</span></span>
+          <div class="ob-select-wrap">
+            <select class="ob-select" id="occupation-select" onchange="setOccupation(this.value)">
+              <option value="">Select if applicable...</option>
+              <option value="teacher">Teacher</option>
+              <option value="nurse">Nurse / NHS worker</option>
+              <option value="police">Police officer</option>
+              <option value="firefighter">Firefighter</option>
+              <option value="military">Armed forces</option>
+              <option value="construction">Construction / trades</option>
+              <option value="engineer">Engineer</option>
+              <option value="retail">Retail worker</option>
+              <option value="other">Other — I claim expenses</option>
+            </select>
+            <span class="ob-select-arrow">▾</span>
+          </div>
+        </div>
+        <div class="ob-field">
+          <span class="ob-field-label">Investments outside an ISA?</span>
+          <div style="font-size:12px;color:var(--text3);margin-bottom:8px;">Shares, funds, crypto, property gains</div>
+          <div class="ob-opts" style="flex-direction:row;margin-bottom:0;">
+            <button class="ob-opt" style="flex:1;" id="invest-yes" onclick="setInvestments(true,this)">Yes</button>
+            <button class="ob-opt" style="flex:1;" id="invest-no" onclick="setInvestments(false,this)">No</button>
           </div>
         </div>
         <button class="ob-next" onclick="goOb(9)">Continue →</button>
@@ -1111,11 +1146,11 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
       <div class="sec-hd"><h2>For You</h2><span id="action-count">5 actions</span></div>
 
       <!-- Opportunity bar -->
-      <div style="margin:0 14px 12px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 16px 14px;">
-        <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">Your financial upside</div>
-        <div style="font-size:26px;font-weight:900;color:var(--text);letter-spacing:-0.05em;line-height:1;" id="opp-total">£—</div>
-        <div style="font-size:12px;color:var(--text3);margin-top:3px;margin-bottom:14px;" id="opp-sub">across your nudges this year</div>
-        <div style="height:10px;border-radius:6px;overflow:hidden;display:flex;gap:2px;background:var(--card3);" id="opp-bar"></div>
+      <div style="margin:0 14px 12px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:11px 14px 12px;">
+        <div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:5px;">Total identified so far</div>
+        <div style="font-size:20px;font-weight:900;color:var(--green);letter-spacing:-0.04em;line-height:1;" id="opp-total">£—</div>
+        <div style="display:none;" id="opp-sub"></div>
+        <div style="display:none;" id="opp-bar"></div>
         <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;" id="opp-legend"></div>
       </div>
 
@@ -1127,6 +1162,23 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
 
       <!-- Dynamic nudges populated by JS -->
       <div class="nudge-grid" id="nudge-container"></div>
+
+      <svg viewBox="0 0 312 44" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;margin:4px 0;">
+        <rect width="312" height="44" fill="#0F0F12"/>
+        <line x1="0" y1="22" x2="230" y2="22" stroke="#252530" stroke-width="0.8"/>
+        <circle cx="244" cy="11" r="1.5" fill="#ffffff" opacity="0.35"/>
+        <circle cx="256" cy="11" r="1.5" fill="#ffffff" opacity="0.28"/>
+        <circle cx="268" cy="11" r="1.5" fill="#ffffff" opacity="0.18"/>
+        <circle cx="280" cy="11" r="1.5" fill="#ffffff" opacity="0.10"/>
+        <circle cx="244" cy="22" r="1.5" fill="#ffffff" opacity="0.45"/>
+        <circle cx="256" cy="22" r="1.5" fill="#ffffff" opacity="0.35"/>
+        <circle cx="268" cy="22" r="1.5" fill="#ffffff" opacity="0.22"/>
+        <circle cx="280" cy="22" r="1.5" fill="#ffffff" opacity="0.12"/>
+        <circle cx="244" cy="33" r="1.5" fill="#ffffff" opacity="0.35"/>
+        <circle cx="256" cy="33" r="1.5" fill="#ffffff" opacity="0.28"/>
+        <circle cx="268" cy="33" r="1.5" fill="#ffffff" opacity="0.18"/>
+        <circle cx="280" cy="33" r="1.5" fill="#ffffff" opacity="0.10"/>
+      </svg>
 
       <div class="sec-hd" style="padding-top:6px;"><h2>You could be missing out on</h2></div>
       <!-- Missing out nudges — populated by JS -->
@@ -1191,9 +1243,18 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
           <div class="bill-right"><div class="bill-save">Save £200+/yr</div><div class="bill-link">via MoneySupermarket →</div></div>
         </div>
       </div>
-      <div class="sec-hd" style="padding-top:6px;"><h2>Detected subscriptions</h2><span id="sub-waste-label">£22.98 may be waste</span></div>
-      <div style="padding:0 14px 8px;"><span style="font-size:11px;color:var(--text3);font-weight:500;">Found from your transaction history · last 90 days</span></div>
-      <div class="subs-card" id="subs-detected">
+      <div class="sec-hd" style="padding-top:6px;"><h2>Detected subscriptions</h2></div>
+      <div class="subs-card" id="subs-detected" style="margin:0 14px 16px;">
+        <!-- Accordion header -->
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 14px;cursor:pointer;" onclick="this.parentElement.classList.toggle('subs-open')">
+          <div>
+            <div style="font-size:14px;font-weight:700;color:var(--text);letter-spacing:-0.02em;">5 subscriptions found</div>
+            <div style="font-size:12px;color:var(--amber);margin-top:2px;font-weight:600;">⚠ £22.98/mo may be duplicate waste</div>
+          </div>
+          <div style="font-size:18px;color:var(--text3);transition:transform 0.22s;" class="subs-caret">›</div>
+        </div>
+        <div class="subs-list" style="display:none;border-top:1px solid var(--border);">
+          <div style="padding:8px 14px;font-size:11px;color:var(--text3);font-weight:500;">Found from your transaction history · last 90 days</div>
         <!-- Spotify -->
         <div class="sub-row" onclick="toggleSub(this)">
           <div class="sub-icon" style="background:#1DB95418;color:#1DB954;font-weight:800;">S</div>
@@ -1248,7 +1309,8 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
         </div>
         <div class="sub-expand">
           <div style="font-size:13px;color:var(--text2);">You're paying for both Spotify (£11.99) and Apple Music (£10.99) — £22.98/mo in music streaming. Cancelling one saves <strong style="color:var(--green)">£131.88/yr</strong>.</div>
-        </div>
+          </div>
+        </div><!-- /subs-list -->
       </div>
     </div>
 
@@ -1296,53 +1358,60 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
         <div class="snap-row" id="pic-over40-row"><span class="snap-label">Income in 40% band</span><span class="snap-val snap-warn" id="pic-over40">£2,730</span></div>
       </div>
 
-      <div class="snap-section-label">Tax band</div>
-      <div class="snap-card">
+      <div class="pic-accordion closed" onclick="togglePicAccordion(this)">
+        <span class="pic-accordion-title">Tax band</span>
+        <span class="pic-accordion-arrow">›</span>
+      </div>
+      <div class="pic-accordion-body">
         <div class="snap-row"><span class="snap-label">Tax band</span><span class="snap-pill" id="pic-taxband" style="background:var(--amber-bg);color:var(--amber);">Higher rate · 40%</span></div>
         <div class="snap-row"><span class="snap-label">Employment type</span><span class="snap-val" id="pic-employ">PAYE</span></div>
       </div>
 
-      <div class="snap-section-label" id="pic-pension-label-sec">Pension</div>
-      <div class="snap-card" id="pic-pension-card">
+      <div class="pic-accordion closed" id="pic-pension-label-sec" onclick="togglePicAccordion(this)">
+        <span class="pic-accordion-title">Pension</span>
+        <span class="pic-accordion-arrow">›</span>
+      </div>
+      <div class="pic-accordion-body" id="pic-pension-card">
         <div class="snap-row"><span class="snap-label">Your contribution</span><span class="snap-val snap-warn" id="pic-my-pension">4%</span></div>
         <div class="snap-row"><span class="snap-label">Employer matches up to</span><span class="snap-val snap-good" id="pic-emp-pension">8%</span></div>
         <div class="snap-row"><span class="snap-label">Unclaimed match</span><span class="snap-val snap-warn" id="pic-unclaimed">£150/mo</span></div>
-        <div class="snap-row"><span class="snap-label">Est. pension pot (25 yrs)</span><span class="snap-val" id="pic-pot-proj">~£420,000</span></div>
+        <div class="snap-row" style="border-bottom:none;"><span class="snap-label">Est. pension pot (25 yrs)</span><span class="snap-val" id="pic-pot-proj">~£420,000</span></div>
+        <div style="padding:14px;border-top:1px solid var(--border);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;">
+            <div style="font-size:12px;color:var(--text3);font-weight:500;">Projected at 65 (est. 7% growth)</div>
+            <div style="font-size:15px;font-weight:800;color:var(--green)" id="pension-proj-total">£0</div>
+          </div>
+          <canvas id="pension-chart" style="width:100%;height:110px;display:block;"></canvas>
+          <div style="display:flex;justify-content:space-between;margin-top:6px;">
+            <span style="font-size:11px;color:var(--text3)" id="pension-chart-start">Now</span>
+            <span style="font-size:11px;color:var(--text3)" id="pension-chart-end">Age 65</span>
+          </div>
+          <div id="pension-chart-none" style="font-size:13px;color:var(--text3);text-align:center;padding:16px 0;display:none;">Add pension details to see your forecast.</div>
+        </div>
       </div>
 
-      <div class="snap-section-label">ISA &amp; Savings</div>
-      <div class="snap-card">
+      <div class="pic-accordion closed" onclick="togglePicAccordion(this)">
+        <span class="pic-accordion-title">ISA &amp; Savings</span>
+        <span class="pic-accordion-arrow">›</span>
+      </div>
+      <div class="pic-accordion-body">
         <div class="snap-row"><span class="snap-label">ISA used this tax year</span><span class="snap-val" id="pic-isa-used">£4,200 / £20,000</span></div>
         <div class="snap-row"><span class="snap-label">Savings outside ISA</span><span class="snap-val snap-warn" id="pic-savings-out">£18,000</span></div>
-        <div class="snap-row"><span class="snap-label">ISA allowance resets</span><span class="snap-val">5 April 2026</span></div>
+        <div class="snap-row" style="border-bottom:none;"><span class="snap-label">ISA allowance resets</span><span class="snap-val">5 April 2026</span></div>
       </div>
 
-      <div class="snap-section-label" id="pic-mortgage-label" style="display:none;">Mortgage</div>
-      <div class="snap-card" id="pic-mortgage-card" style="display:none;">
+      <div class="pic-accordion closed" id="pic-mortgage-label" style="display:none;" onclick="togglePicAccordion(this)">
+        <span class="pic-accordion-title">Mortgage</span>
+        <span class="pic-accordion-arrow">›</span>
+      </div>
+      <div class="pic-accordion-body pic-mortgage-body pic-mort-hidden" id="pic-mortgage-card">
         <div class="snap-row"><span class="snap-label">Balance (detected)</span><span class="snap-val" id="pic-mort-bal">£218,400</span></div>
         <div class="snap-row"><span class="snap-label">Monthly payment</span><span class="snap-val" id="pic-mort-pay">£1,240</span></div>
         <div class="snap-row"><span class="snap-label">Interest rate</span><span class="snap-val" id="pic-mort-rate">4.7%</span></div>
-        <div class="snap-row"><span class="snap-label">Interest paid this year (est.)</span><span class="snap-val neg" id="pic-mort-int">~£10,265</span></div>
+        <div class="snap-row" style="border-bottom:none;"><span class="snap-label">Interest paid this year (est.)</span><span class="snap-val neg" id="pic-mort-int">~£10,265</span></div>
       </div>
 
-      <div class="sec-hd" style="padding-top:6px;"><h2>Recent activity</h2></div>
-      <div class="act-card">
-        <div class="act-row">
-          <div class="act-dot" style="background:var(--coral)"></div>
-          <div class="act-info"><div class="act-name">Vanguard S&amp;S ISA</div><div class="act-date">12 Mar 2026</div></div>
-          <div class="act-right"><div class="act-amt" style="color:var(--coral)">£500</div><div class="act-type">ISA</div></div>
-        </div>
-        <div class="act-row">
-          <div class="act-dot" style="background:var(--green)"></div>
-          <div class="act-info"><div class="act-name" id="act-pension-label">Workplace pension (4%)</div><div class="act-date">28 Feb 2026</div></div>
-          <div class="act-right"><div class="act-amt" style="color:var(--green)" id="act-pension-amt">£176</div><div class="act-type">Pension</div></div>
-        </div>
-        <div class="act-row">
-          <div class="act-dot" style="background:var(--blue)"></div>
-          <div class="act-info"><div class="act-name">Marcus savings</div><div class="act-date">1 Feb 2026</div></div>
-          <div class="act-right"><div class="act-amt" style="color:var(--blue)">£1,200</div><div class="act-type">Savings</div></div>
-        </div>
-      </div>
+
     </div>
 
     <!-- ══ AI AGENT ══ -->
@@ -1556,6 +1625,9 @@ function setInvestments(val, el) {
   p.hasInvestments = val;
   ['invest-yes','invest-no'].forEach(id => document.getElementById(id)?.classList.remove('selected'));
   el.classList.add('selected');
+}
+function setOccupation(val) {
+  p.occupation = val || null;
 }
 function setCTW(val, el) {
   p.employerCTW = val;
@@ -1877,14 +1949,14 @@ function setSavingsBank(bank, rate, el) {
   el.classList.add('selected');
   const sav = parseInt(document.getElementById('inp-savings').value) || 0;
   const insight = document.getElementById('savings-bank-insight');
-  const bestRate = 0.052;
+  const bestRate = 0.048;
   if (rate >= 4.5) {
     insight.innerHTML = `<span style="color:var(--green)">✓ Already on a good rate. Make sure it's inside an ISA to keep the interest tax-free.</span>`;
   } else if (sav > 0) {
     const currentYr = Math.round(sav * rate / 100);
     const bestYr    = Math.round(sav * bestRate);
     const gain      = bestYr - currentYr;
-    if (gain > 0) insight.innerHTML = `<span style="color:var(--amber)">At ${rate}%, your £${sav.toLocaleString()} earns £${currentYr.toLocaleString()}/yr. Best accounts pay ~5.2% — that's £${gain.toLocaleString()} more.</span>`;
+    if (gain > 0) insight.innerHTML = `<span style="color:var(--amber)">At ${rate}%, your £${sav.toLocaleString()} earns £${currentYr.toLocaleString()}/yr. Best accounts pay ~4.8% — that's £${gain.toLocaleString()} more.</span>`;
   } else {
     insight.innerHTML = `<span style="color:var(--text3)">Enter your savings amount above to see the difference.</span>`;
   }
@@ -2128,7 +2200,7 @@ function buildOpportunityBar() {
   // Savings rate
   if ((p.savings||0) > 1000) {
     const currentRate = p.savingsRate || 1.5;
-    if (currentRate < 4.5) {
+    if (currentRate < 4.0) {
       const gain = Math.round((p.savings||0) * (0.052 - currentRate/100));
       if (gain > 50) segments.push({ label:'Savings rate', val: gain, color:'var(--blue)' });
     }
@@ -2153,23 +2225,25 @@ function buildOpportunityBar() {
   const total = segments.reduce((s, x) => s + x.val, 0);
   if (total === 0) return;
 
-  document.getElementById('opp-total').textContent = `£${total.toLocaleString()}`;
-  document.getElementById('opp-sub').textContent = `across ${segments.length} opportunities this year`;
+  document.getElementById('opp-total').textContent = `£${total.toLocaleString()}/yr`;
+  document.getElementById('opp-sub').textContent = `Across ${segments.length} actions above — plus more below`;
 
-  // Bar segments
+  // Bar
   const bar = document.getElementById('opp-bar');
   bar.innerHTML = segments.map(s =>
     `<div style="flex:${s.val};background:${s.color};height:100%;cursor:pointer;transition:opacity 0.15s;" title="${s.label}: £${s.val.toLocaleString()}"></div>`
   ).join('');
 
-  // Legend
-  document.getElementById('opp-legend').innerHTML = segments.map(s =>
-    `<div style="display:flex;align-items:center;gap:5px;cursor:pointer;">
-      <div style="width:8px;height:8px;border-radius:2px;background:${s.color};flex-shrink:0;"></div>
-      <span style="font-size:11px;color:var(--text3);">${s.label}</span>
-      <span style="font-size:11px;font-weight:700;color:var(--text);">£${s.val.toLocaleString()}</span>
-    </div>`
-  ).join('');
+  // Pills breakdown — replaces small legend
+  document.getElementById('opp-legend').innerHTML = `
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;">
+      ${segments.map(s => `
+        <div style="display:flex;align-items:center;gap:5px;padding:5px 10px;border-radius:20px;background:${s.color}18;">
+          <div style="width:6px;height:6px;border-radius:50%;background:${s.color};flex-shrink:0;"></div>
+          <span style="font-size:11px;font-weight:700;color:${s.color};">${s.label}</span>
+          <span style="font-size:11px;font-weight:800;color:${s.color};">· £${s.val.toLocaleString()}</span>
+        </div>`).join('')}
+    </div>`;
 }
 
 // ═══════════════════════════════
@@ -2370,22 +2444,24 @@ function buildNudges() {
     }));
   }
 
-  // 3. Tax band / 60% zone
+  // 3. Tax band — only show if within £8k of threshold (actionable ~£667/mo pension)
   if (band.band === 'higher' && p.salary < 100000) {
     const over = p.salary - 50270;
-    const saving = Math.round(over * 0.2);
-    nudges.push(makeNudge({
-      color:'var(--coral)', tag:'Tax Band',
-      headline: `Paying 40% tax on £${over.toLocaleString()} of your income`,
-      impact: `£${saving.toLocaleString()}/yr potentially avoidable`,
-      sub: `Salary sacrifice into your pension reduces taxable income — could save £${saving.toLocaleString()}/yr.`,
-      breakdown: [
-        ['Income in 40% band', `£${over.toLocaleString()}/yr`, false],
-        ['Tax you could avoid', `£${saving.toLocaleString()}/yr`, true],
-        ['Pension contribution needed', `£${Math.round(over/12).toLocaleString()}/mo`, false],
-      ],
-      cta: { text:'How salary sacrifice works →', url:'https://www.gov.uk/guidance/salary-sacrifice-and-the-effects-on-paye', bg:'var(--amber)' }
-    }));
+    if (over <= 8000) {
+      const saving = Math.round(over * 0.2);
+      nudges.push(makeNudge({
+        color:'var(--coral)', tag:'Tax Band',
+        headline: `£${Math.round(over/12).toLocaleString()}/mo pension could drop you to 20% tax`,
+        impact: `£${saving.toLocaleString()}/yr`,
+        sub: `You're £${over.toLocaleString()} into the 40% band. Increase your pension by this much to bring your taxable income back to basic rate.`,
+        breakdown: [
+          ['Income in 40% band', `£${over.toLocaleString()}/yr`, false],
+          ['Monthly pension increase needed', `~£${Math.round(over/12).toLocaleString()}/mo`, false],
+          ['Tax saving if you do', `£${saving.toLocaleString()}/yr`, true],
+        ],
+        cta: { text:'How salary sacrifice works →', url:'https://www.gov.uk/guidance/salary-sacrifice-and-the-effects-on-paye', bg:'var(--amber)' }
+      }));
+    }
   }
   if (band.band === 'sixty') {
     const saving = Math.round((p.salary - 100000) * 0.6);
@@ -2420,24 +2496,7 @@ function buildNudges() {
     }));
   }
 
-  // 5. ISA expiry
-  const isaRem = 20000 - (p.isaUsed||0);
-  nudges.push(makeNudge({
-    color:'var(--coral)', tag:'ISA · Deadline',
-    headline: `£${isaRem.toLocaleString()} ISA allowance expires 5 April`,
-    impact: `Use it or lose it — 23 days left`,
-    sub: `Savings outside a tax-free wrapper will generate taxable interest. Takes 10 minutes to open.`,
-    breakdown: [
-      ['ISA used this tax year', `£${(p.isaUsed||0).toLocaleString()}`, false],
-      ['Remaining allowance', `£${isaRem.toLocaleString()}`, true],
-      ['Allowance resets', '5 April 2026', false],
-    ],
-    ctaMulti: [
-      { text:'Vanguard S&S ISA — low cost index funds', url:'https://www.vanguardinvestor.co.uk/investing-explained/stocks-shares-isa', bg:'var(--coral)' },
-      { text:'Moneybox Cash ISA — 5.16% AER', url:'https://www.moneyboxapp.com/cash-isa/', bg:'var(--card3)', color:'var(--text)' },
-      { text:'Trading 212 — 0% commission', url:'https://www.trading212.com/isa', bg:'var(--card3)', color:'var(--text)' },
-    ]
-  }));
+
 
   // 6. Savings tax
   const outsideIsa = (p.savings||0) - (p.isaUsed||0);
@@ -2447,18 +2506,46 @@ function buildNudges() {
     if (interest > psa) {
       const taxable = interest - psa;
       const taxAmt  = Math.round(taxable * taxRate);
-      nudges.push(makeNudge({
-        color:'var(--amber)', tag:'Savings Tax',
-        headline: `~£${taxAmt}/yr quietly taken by HMRC from your savings`,
-        impact: `~£${taxAmt}/yr tax bill arriving`,
-        sub: `£${outsideIsa.toLocaleString()} outside an ISA earns ~£${interest.toLocaleString()}/yr interest. Only £${psa.toLocaleString()} is tax-free at your rate.`,
-        breakdown: [
-          ['Savings outside ISA', `£${outsideIsa.toLocaleString()}`, false],
-          ['Interest at 4.5%', `~£${interest.toLocaleString()}/yr`, false],
-          ['Taxable above allowance', `~£${taxAmt}/yr`, false, true],
-        ],
-        cta: { text:'Move to ISA →', url:'https://www.gov.uk/individual-savings-accounts', bg:'var(--purple)' }
-      }));
+      const isaFull = (p.isaUsed||0) >= 20000;
+      const isaRem2 = Math.max(0, 20000 - (p.isaUsed||0));
+
+      if (isaFull) {
+        // ISA maxed — show what to do NEXT with taxable savings
+        nudges.push(makeNudge({
+          color:'var(--amber)', tag:'Savings Tax',
+          headline: `ISA full — still paying ~£${taxAmt}/yr tax on savings interest`,
+          impact: `£${taxAmt}/yr`,
+          sub: `You've maxed your ISA but £${outsideIsa.toLocaleString()} sitting in taxable accounts is still generating a tax bill. Here are your best shelters now.`,
+          breakdown: [
+            ['Savings outside ISA', `£${outsideIsa.toLocaleString()}`, false],
+            ['Interest earned (est.)', `~£${interest.toLocaleString()}/yr`, false],
+            ['Tax owed above allowance', `~£${taxAmt}/yr`, false, true],
+          ],
+          ctaMulti: [
+            { text:'Premium Bonds — tax-free up to £50k (NS&I)', url:'https://www.nsandi.com/products/premium-bonds', bg:'var(--amber)' },
+            { text:'Top up your pension — tax relief on every £1', url:'https://www.gov.uk/workplace-pensions/what-you-your-employer-and-the-government-pay', bg:'var(--card3)', color:'var(--text)' },
+            { text:'Compare all options — MoneySavingExpert', url:'https://www.moneysavingexpert.com/savings/savings-accounts-best-interest/', bg:'var(--card3)', color:'var(--text)' },
+          ]
+        }));
+      } else {
+        // ISA has headroom — straightforward move
+        nudges.push(makeNudge({
+          color:'var(--amber)', tag:'Savings Tax',
+          headline: `~£${taxAmt}/yr quietly taken by HMRC from your savings`,
+          impact: `~£${taxAmt}/yr tax bill arriving`,
+          sub: `£${outsideIsa.toLocaleString()} outside an ISA earns ~£${interest.toLocaleString()}/yr interest. Moving it inside your ISA eliminates this tax — you have £${isaRem2.toLocaleString()} of allowance left this year.`,
+          breakdown: [
+            ['Savings outside ISA', `£${outsideIsa.toLocaleString()}`, false],
+            ['Interest at 4.5%', `~£${interest.toLocaleString()}/yr`, false],
+            ['Tax owed above allowance', `~£${taxAmt}/yr`, false, true],
+            ['ISA headroom remaining', `£${isaRem2.toLocaleString()}`, true],
+          ],
+          ctaMulti: [
+            { text:'Moneybox Cash ISA — 4.6% AER', url:'https://www.moneyboxapp.com/cash-isa/', bg:'var(--purple)' },
+            { text:'Vanguard S&S ISA — long-term growth', url:'https://www.vanguardinvestor.co.uk/investing-explained/stocks-shares-isa', bg:'var(--card3)', color:'var(--text)' },
+          ]
+        }));
+      }
     }
   }
 
@@ -2466,24 +2553,24 @@ function buildNudges() {
   if ((p.savings||0) > 1000) {
     const currentRate = p.savingsRate || 1.5;
     const bankName = p.savingsBank ? ({lloyds:'Lloyds',barclays:'Barclays',hsbc:'HSBC',natwest:'NatWest',santander:'Santander',monzo:'Monzo',starling:'Starling',chase:'Chase'}[p.savingsBank]||'your bank') : 'your bank';
-    const bestRate = 0.052;
+    const bestRate = 0.048;
     const currentYr = Math.round((p.savings||0) * currentRate / 100);
     const bestYr = Math.round((p.savings||0) * bestRate);
     const gain = bestYr - currentYr;
-    if (gain > 50 && currentRate < 4.5) {
+    if (gain > 50 && currentRate < 4.0) {
       nudges.push(makeNudge({
         color:'var(--green)', tag:'Savings Rate',
         headline: `${bankName} is costing you £${gain.toLocaleString()}/yr`,
         impact: `£${gain.toLocaleString()}/yr lost to low rate`,
-        sub: `At ${currentRate}%, your £${(p.savings||0).toLocaleString()} earns £${currentYr.toLocaleString()}/yr. Easy-access accounts now pay up to 5.2%.`,
+        sub: `At ${currentRate}%, your £${(p.savings||0).toLocaleString()} earns £${currentYr.toLocaleString()}/yr. Easy-access accounts now pay up to 4.8%.`,
         breakdown: [
           [`${bankName} (${currentRate}%)`, `£${currentYr.toLocaleString()}/yr`, false],
-          ['Best easy-access (~5.2%)', `£${bestYr.toLocaleString()}/yr`, true],
+          ['Best easy-access (~4.8%)', `£${bestYr.toLocaleString()}/yr`, true],
           ['Extra for 10 mins', `£${gain.toLocaleString()}/yr`, true],
         ],
         ctaMulti: [
-          { text:'Chase Saver — 5.1% AER', url:'https://www.chase.co.uk/gb/en/product/savings/', bg:'var(--green)' },
-          { text:'Chip — up to 5.2% AER', url:'https://getchip.uk/savings', bg:'var(--card3)', color:'var(--text)' },
+          { text:'Chase Saver — 4.5% AER', url:'https://www.chase.co.uk/gb/en/product/savings/', bg:'var(--green)' },
+          { text:'Chip — up to 4.8% AER', url:'https://getchip.uk/savings', bg:'var(--card3)', color:'var(--text)' },
           { text:'Compare all rates — MoneySavingExpert', url:'https://www.moneysavingexpert.com/savings/savings-accounts-best-interest/', bg:'var(--card3)', color:'var(--text)' },
         ]
       }));
@@ -2541,6 +2628,31 @@ function buildNudges() {
         ['Avg overpayment if wrong', '£200–£500+/yr', false, true],
       ],
       cta: { text:'Check via Personal Tax Account →', url:'https://www.gov.uk/check-income-tax-current-year', bg:'var(--coral)' }
+    }));
+  }
+
+  // ISA deadline — always last, only within 50 days of 5 April
+  const isaRem = 20000 - (p.isaUsed||0);
+  const today = new Date();
+  const aprilFifth = new Date(today.getFullYear(), 3, 5); // April = month 3
+  if (aprilFifth < today) aprilFifth.setFullYear(today.getFullYear() + 1);
+  const daysLeft = Math.ceil((aprilFifth - today) / (1000*60*60*24));
+  if (daysLeft <= 50 && isaRem > 1000) {
+    nudges.push(makeNudge({
+      color:'var(--coral)', tag:'ISA · Deadline',
+      headline: `£${isaRem.toLocaleString()} ISA allowance expires 5 April`,
+      impact: `${daysLeft} days left`,
+      sub: `Savings outside a tax-free wrapper generate taxable interest. Once 5 April passes, this year's allowance is gone for good.`,
+      breakdown: [
+        ['ISA used this tax year', `£${(p.isaUsed||0).toLocaleString()}`, false],
+        ['Remaining allowance', `£${isaRem.toLocaleString()}`, true],
+        ['Days until deadline', `${daysLeft} days`, daysLeft <= 14],
+      ],
+      ctaMulti: [
+        { text:'Vanguard S&S ISA — low cost index funds', url:'https://www.vanguardinvestor.co.uk/investing-explained/stocks-shares-isa', bg:'var(--coral)' },
+        { text:'Moneybox Cash ISA — 4.6% AER', url:'https://www.moneyboxapp.com/cash-isa/', bg:'var(--card3)', color:'var(--text)' },
+        { text:'Trading 212 — 0% commission', url:'https://www.trading212.com/isa', bg:'var(--card3)', color:'var(--text)' },
+      ]
     }));
   }
 
@@ -2718,8 +2830,8 @@ function buildMissingOut() {
   {
     const giftAidRelief = p.salary > 50270 ? '40%' : '20%';
     cards.push(makeNudge({_card:true, color:'var(--green)', tag:'Gift Aid',
-      headline:`You're likely owed tax back on your donations`,
-      impact:`${giftAidRelief} of donations reclaimed`,
+      headline:`If you donate to charity, you could be owed tax back`,
+      impact:`Could reclaim ${giftAidRelief} of what you give`,
       sub:`Charities claim 20% automatically. As a ${taxRate*100}% taxpayer, HMRC owes you the rest — claim via Self Assessment. Backdatable 4 years.`,
       breakdown:[['Charity claims automatically','20%',false],[`Extra you must claim`,p.salary>50270?'20% more':'Nothing extra (basic rate)',p.salary>50270],['Method','Self Assessment',false]],
       cta:{text:'Claim on Self Assessment →',url:'https://www.gov.uk/self-assessment-tax-returns',bg:'var(--green)'}
@@ -2749,13 +2861,41 @@ function buildMissingOut() {
   }
 
   // Uniform relief — universal (can't know industry without asking)
-  cards.push(makeNudge({_card:true, color:'var(--purple)', tag:'Uniform Relief',
-    headline:`Wear a uniform or protective clothing? Claim tax back`,
-    impact:`£60–£140/yr depending on job`,
-    sub:`HMRC has flat rates by industry — nurses, retail, construction, police and many more. Backdatable 4 years. Takes 5 minutes.`,
-    breakdown:[['Nurses','£125/yr',true],['Construction','£140/yr',true],['Retail','£60/yr',true]],
-    cta:{text:'Claim via HMRC →',url:'https://www.gov.uk/tax-relief-for-employees/uniforms-work-clothing-and-tools',bg:'var(--purple)'}
-  }));
+  // Uniform / occupation relief
+  const OCCUPATION_DATA = {
+    teacher:     { label:'Teacher',          flatRate:120, detail:'Teaching materials, stationery, books', url:'https://taxfix.com/en-uk/expenses/what-is-a-teacher-tax-rebate/' },
+    nurse:       { label:'Nurse / NHS',      flatRate:125, detail:'Uniform cleaning, RCN fees, registration costs', url:'https://www.gov.uk/tax-relief-for-employees/uniforms-work-clothing-and-tools' },
+    police:      { label:'Police officer',   flatRate:140, detail:'Uniform maintenance, equipment', url:'https://www.gov.uk/tax-relief-for-employees/uniforms-work-clothing-and-tools' },
+    firefighter: { label:'Firefighter',      flatRate:140, detail:'Protective clothing maintenance', url:'https://www.gov.uk/tax-relief-for-employees/uniforms-work-clothing-and-tools' },
+    military:    { label:'Armed forces',     flatRate:100, detail:'Uniform, travel and equipment relief', url:'https://www.gov.uk/tax-relief-for-employees/uniforms-work-clothing-and-tools' },
+    construction:{ label:'Construction',     flatRate:140, detail:'Tools, protective clothing, travel to sites', url:'https://www.gov.uk/tax-relief-for-employees/uniforms-work-clothing-and-tools' },
+    engineer:    { label:'Engineer',         flatRate:120, detail:'Tools, professional subscriptions, PPE', url:'https://www.gov.uk/tax-relief-for-employees/uniforms-work-clothing-and-tools' },
+    retail:      { label:'Retail worker',    flatRate:60,  detail:'Uniform cleaning allowance', url:'https://www.gov.uk/tax-relief-for-employees/uniforms-work-clothing-and-tools' },
+    other:       { label:'Your occupation',  flatRate:60,  detail:'Check HMRC approved industry list', url:'https://www.gov.uk/tax-relief-for-employees/uniforms-work-clothing-and-tools' },
+  };
+  if (p.occupation && OCCUPATION_DATA[p.occupation]) {
+    const occ = OCCUPATION_DATA[p.occupation];
+    const relief = Math.round(occ.flatRate * taxRate);
+    cards.push(makeNudge({_card:true, color:'var(--purple)', tag:`${occ.label} · Tax Relief`,
+      headline:`HMRC flat-rate allowance for ${occ.label.toLowerCase()}s — £${occ.flatRate}/yr`,
+      impact:`£${relief}/yr tax back`,
+      sub:`${occ.detail}. Backdatable 4 years — most people in your role never claim this.`,
+      breakdown:[
+        ['HMRC flat-rate allowance',`£${occ.flatRate}/yr`,true],
+        ['Tax relief at your rate',`£${relief}/yr`,true],
+        ['Backdatable','Up to 4 tax years',true],
+      ],
+      cta:{text:`Claim ${occ.label} relief →`,url:occ.url,bg:'var(--purple)'}
+    }));
+  } else {
+    cards.push(makeNudge({_card:true, color:'var(--purple)', tag:'Uniform Relief',
+      headline:`Wear a uniform or protective clothing? Claim tax back`,
+      impact:`£60–£140/yr depending on job`,
+      sub:`HMRC has flat rates by industry — nurses, retail, construction, police and many more. Backdatable 4 years. Takes 5 minutes.`,
+      breakdown:[['Nurses','£125/yr',true],['Construction','£140/yr',true],['Retail','£60/yr',true]],
+      cta:{text:'Claim via HMRC →',url:'https://www.gov.uk/tax-relief-for-employees/uniforms-work-clothing-and-tools',bg:'var(--purple)'}
+    }));
+  }
 
   // CGT — only if they have investments outside ISA
   if (p.hasInvestments) {
@@ -2771,12 +2911,35 @@ function buildMissingOut() {
   // ISA for partner
   if (p.married) {
     cards.push(makeNudge({_card:true, color:'var(--coral)', tag:'Partner ISA',
-      headline:`You each have a £20,000 ISA allowance — not shared`,
+      headline:`Your partner could have their own £20,000 ISA allowance`,
       impact:`£40,000/yr combined, tax-free`,
-      sub:`If only one of you is maxing it, you're leaving £20,000 of tax-free capacity unused every year.`,
+      sub:`Each person gets their own £20,000/yr ISA allowance — they're not shared. If your partner doesn't have one, you could be leaving £20,000 of tax-free capacity on the table.`,
       breakdown:[['Your allowance','£20,000/yr',true],['Partner\'s allowance','£20,000/yr',true],['Combined','£40,000/yr',true]],
       cta:{text:'Open a cash ISA for your partner →',url:'https://www.moneyboxapp.com/cash-isa/',bg:'var(--coral)'}
     }));
+  }
+
+  // Premium Bonds — show if ISA is full or savings interest is being taxed
+  {
+    const pbInterest = Math.round((p.savings||0) * 0.044);
+    const psa = p.salary > 50270 ? 500 : 1000;
+    const isaFullMO = (p.isaUsed||0) >= 20000;
+    const interestTaxed = pbInterest > psa;
+    if (isaFullMO || interestTaxed) {
+      cards.push(makeNudge({_card:true, color:'var(--green)', tag:'Premium Bonds',
+        headline:`ISA full? Premium Bonds are the next tax-free home for cash`,
+        impact:`Up to £50k — 100% tax-free prizes`,
+        sub:`Backed by NS&I (HM Treasury) — 100% safe up to £50,000. The prize rate is equivalent to ~4.4% but tax-free, so a higher-rate taxpayer needs 7.3% gross to beat it. No lock-in.`,
+        breakdown:[
+          ['Prize rate equivalent','~4.4% (tax-free)',true],
+          ['Gross equivalent (higher rate)','~7.3%',true],
+          ['Gross equivalent (basic rate)','~5.5%',true],
+          ['Max holding','£50,000',false],
+          ['Backed by','HM Treasury',false],
+        ],
+        cta:{text:'Buy Premium Bonds →',url:'https://www.nsandi.com/products/premium-bonds',bg:'var(--green)'}
+      }));
+    }
   }
 
   // LISA — basic rate earners (approximate age proxy)
@@ -2784,7 +2947,7 @@ function buildMissingOut() {
     cards.push(makeNudge({_card:true, color:'var(--green)', tag:'Lifetime ISA',
       headline:`Government adds 25% to your savings — free`,
       impact:`Up to £1,000/yr from HMRC`,
-      sub:`Save up to £4,000/yr, get £1,000 bonus. Open aged 18–39. Use for first home or retirement from 60.`,
+      sub:`Save up to £4,000/yr and HMRC adds 25% — up to £1,000 free. The £4,000 counts towards your £20,000 ISA allowance. Open aged 18–39, access penalty-free from 60 for retirement.`,
       breakdown:[['Max contribution/yr','£4,000',false],['Government bonus','£1,000/yr',true],['For first home or retirement','Yes',true]],
       cta:{text:'Open via Moneybox →',url:'https://www.moneyboxapp.com/lifetime-isa/',bg:'var(--green)'}
     }));
@@ -2874,10 +3037,12 @@ function buildAllocate() {
   const taxRate = p.salary > 50270 ? 0.4 : 0.2;
   const gap = p.pensionMatch && p.employment!=='self' ? Math.max(0,p.empPct-p.myPct) : 0;
 
-  // Pension effective return: employer match doubles gross, then tax relief
-  const pensionReturn = gap > 0
-    ? '~' + (8 + taxRate * 100 * 0.4).toFixed(1) + '%'
-    : '~' + (5 + taxRate * 100 * 0.3).toFixed(1) + '%';
+  // Pension effective return label — show tax relief boost + note employer match separately
+  // Basic rate: pay £80 net → get £100 in pension = 25% instant return
+  // Higher rate: pay £60 net → get £100 in pension = 67% instant return
+  // If employer match exists, label it clearly in desc rather than mashing into %
+  const taxBoost = taxRate === 0.4 ? '~67%' : '~25%';
+  const pensionReturn = taxBoost;
 
   const rows = [];
   let rank = 1;
@@ -2887,19 +3052,29 @@ function buildAllocate() {
     rank++;
   }
   if (gap > 0) {
-    rows.push({ rank, rankClass:'best', name:'Increase pension', desc:`Employer match + ${Math.round(taxRate*100)}% tax relief`, ret:pensionReturn, retColor:'var(--green)', note:'effective<br>return' });
+    rows.push({ rank, rankClass:'best', name:'Increase pension', desc:`${Math.round(taxRate*100)}% tax relief — £${Math.round(taxRate*100)}p back per £1 contributed`, ret:pensionReturn, retColor:'var(--green)', note:'tax relief<br>boost' });
     rank++;
   }
-  rows.push({ rank, rankClass: gap===0?'best':'', name:'Stocks & Shares ISA', desc:'Tax-free growth, flexible', ret:'~7.2%', retColor:'var(--blue)', note:'hist. avg<br>return' });
-  rank++;
+
+  const isaFull = (p.isaUsed||0) >= 20000;
+  if (!isaFull) {
+    rows.push({ rank, rankClass: gap===0?'best':'', name:'Stocks & Shares ISA', desc:'Tax-free growth, flexible', ret:'~7.2%', retColor:'var(--blue)', note:'hist. avg<br>return' });
+    rank++;
+  }
   if (hasMortgage) {
     rows.push({ rank, rankClass:'', name:'Overpay mortgage', desc:'Guaranteed, tax-free', ret:p.mortgageRate+'%', retColor:'var(--amber)', note:'your<br>rate' });
     rank++;
   }
-  rows.push({ rank, rankClass:'', name:'High-rate fixed savings', desc:'1-year fix, FSCS protected', ret:'~5.0%', retColor:'var(--text2)', note:'best rate<br>now' });
+  rows.push({ rank, rankClass:'', name:'High-rate fixed savings', desc:'1-year fix, FSCS protected', ret:'~4.8%', retColor:'var(--text2)', note:'best rate<br>now' });
   rank++;
-  rows.push({ rank, rankClass:'', name:'Cash ISA', desc:'Safe, tax-free interest', ret:'4.5%', retColor:'var(--text3)', note:'best rate<br>now' });
-  rank++;
+  if (!isaFull) {
+    rows.push({ rank, rankClass:'', name:'Cash ISA', desc:'Safe, tax-free interest', ret:'4.3%', retColor:'var(--text3)', note:'best rate<br>now' });
+    rank++;
+  } else {
+    // ISA is full — Premium Bonds is the next tax-free home for cash
+    rows.push({ rank, rankClass:'', name:'Premium Bonds', desc:'Tax-free, NS&I backed — ISA full so this is next', ret:'~4.4%', retColor:'var(--green)', note:'prize rate<br>(tax-free)' });
+    rank++;
+  }
   rows.push({ rank, rankClass:'', name:'Current account', desc:'Taxable, low interest', ret:'1.2%', retColor:'var(--text3)', note:'taxable' });
 
   const rowsHtml = rows.map(r =>
@@ -2917,6 +3092,22 @@ function buildAllocate() {
   if (hasMortgage) {
     const intSaved = Math.round(300 * (p.mortgageRate/100) * 20); // rough
     document.getElementById('sprive-section').innerHTML = `
+      <svg viewBox="0 0 312 44" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;margin:4px 0;">
+        <rect width="312" height="44" fill="#0F0F12"/>
+        <line x1="0" y1="22" x2="230" y2="22" stroke="#252530" stroke-width="0.8"/>
+        <circle cx="244" cy="11" r="1.5" fill="#ffffff" opacity="0.35"/>
+        <circle cx="256" cy="11" r="1.5" fill="#ffffff" opacity="0.28"/>
+        <circle cx="268" cy="11" r="1.5" fill="#ffffff" opacity="0.18"/>
+        <circle cx="280" cy="11" r="1.5" fill="#ffffff" opacity="0.10"/>
+        <circle cx="244" cy="22" r="1.5" fill="#ffffff" opacity="0.45"/>
+        <circle cx="256" cy="22" r="1.5" fill="#ffffff" opacity="0.35"/>
+        <circle cx="268" cy="22" r="1.5" fill="#ffffff" opacity="0.22"/>
+        <circle cx="280" cy="22" r="1.5" fill="#ffffff" opacity="0.12"/>
+        <circle cx="244" cy="33" r="1.5" fill="#ffffff" opacity="0.35"/>
+        <circle cx="256" cy="33" r="1.5" fill="#ffffff" opacity="0.28"/>
+        <circle cx="268" cy="33" r="1.5" fill="#ffffff" opacity="0.18"/>
+        <circle cx="280" cy="33" r="1.5" fill="#ffffff" opacity="0.10"/>
+      </svg>
       <div class="sec-hd" style="padding-top:6px;"><h2>Mortgage overpayment</h2></div>
       <div class="alloc-card">
         <div class="alloc-card-hd">
@@ -2943,6 +3134,22 @@ function buildAllocate() {
     // No mortgage — show Lifetime ISA + emergency fund tips
     const lisaEligible = p.salary < 100000; // rough proxy, real check is age <40
     document.getElementById('sprive-section').innerHTML = `
+      <svg viewBox="0 0 312 44" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;margin:4px 0;">
+        <rect width="312" height="44" fill="#0F0F12"/>
+        <line x1="0" y1="22" x2="230" y2="22" stroke="#252530" stroke-width="0.8"/>
+        <circle cx="244" cy="11" r="1.5" fill="#ffffff" opacity="0.35"/>
+        <circle cx="256" cy="11" r="1.5" fill="#ffffff" opacity="0.28"/>
+        <circle cx="268" cy="11" r="1.5" fill="#ffffff" opacity="0.18"/>
+        <circle cx="280" cy="11" r="1.5" fill="#ffffff" opacity="0.10"/>
+        <circle cx="244" cy="22" r="1.5" fill="#ffffff" opacity="0.45"/>
+        <circle cx="256" cy="22" r="1.5" fill="#ffffff" opacity="0.35"/>
+        <circle cx="268" cy="22" r="1.5" fill="#ffffff" opacity="0.22"/>
+        <circle cx="280" cy="22" r="1.5" fill="#ffffff" opacity="0.12"/>
+        <circle cx="244" cy="33" r="1.5" fill="#ffffff" opacity="0.35"/>
+        <circle cx="256" cy="33" r="1.5" fill="#ffffff" opacity="0.28"/>
+        <circle cx="268" cy="33" r="1.5" fill="#ffffff" opacity="0.18"/>
+        <circle cx="280" cy="33" r="1.5" fill="#ffffff" opacity="0.10"/>
+      </svg>
       <div class="sec-hd" style="padding-top:6px;"><h2>Worth knowing</h2></div>
       <div class="alloc-card">
         <div class="alloc-card-hd">
@@ -3055,8 +3262,8 @@ function buildPicture() {
 
   // Mortgage
   if (p.housing === 'mortgage') {
-    document.getElementById('pic-mortgage-label').style.display = 'block';
-    document.getElementById('pic-mortgage-card').style.display = 'block';
+    document.getElementById('pic-mortgage-label').style.display = 'flex';
+    document.getElementById('pic-mortgage-card').classList.remove('pic-mort-hidden');
     document.getElementById('pic-mort-bal').textContent = `£${p.mortgageBal.toLocaleString()}`;
     document.getElementById('pic-mort-pay').textContent = `£${p.mortgagePay.toLocaleString()}`;
     document.getElementById('pic-mort-rate').textContent = p.mortgageRate + '%';
@@ -3064,12 +3271,75 @@ function buildPicture() {
     document.getElementById('pic-mort-int').textContent = `~£${annualInt.toLocaleString()}`;
   }
 
-  // Activity row
-  if (p.myPct > 0) {
-    const pensionMo = Math.round((p.salary * p.myPct / 100) / 12);
-    document.getElementById('act-pension-label').textContent = `Workplace pension (${p.myPct}%)`;
-    document.getElementById('act-pension-amt').textContent = `£${pensionMo}`;
+  // Pension forecast chart
+  buildPensionChart();
+}
+
+function buildPensionChart() {
+  const canvas = document.getElementById('pension-chart');
+  const noneMsg = document.getElementById('pension-chart-none');
+  if (!canvas || !p.salary) { if(noneMsg) noneMsg.style.display='block'; return; }
+  if(noneMsg) noneMsg.style.display='none';
+
+  const annualContrib = Math.round(p.salary * ((p.myPct||0) + (p.empPct||0)) / 100);
+  if (annualContrib === 0) { if(noneMsg) noneMsg.style.display='block'; return; }
+
+  const currentAge = 35; // default assumption
+  const retireAge = 65;
+  const years = retireAge - currentAge;
+  const growthRate = 0.07;
+  const currentPot = 0; // unknown — could ask later
+
+  // Build year-by-year projection
+  const dataPoints = [];
+  let pot = currentPot;
+  for (let y = 0; y <= years; y++) {
+    dataPoints.push(Math.round(pot));
+    pot = (pot + annualContrib) * (1 + growthRate);
   }
+  const finalPot = dataPoints[dataPoints.length - 1];
+
+  document.getElementById('pension-proj-total').textContent = '£' + Math.round(finalPot/1000) + 'k';
+  document.getElementById('pension-chart-start').textContent = 'Now (est. age ' + currentAge + ')';
+  document.getElementById('pension-chart-end').textContent = 'Age ' + retireAge;
+
+  // Draw chart on canvas — use fixed width as fallback (page may be hidden when built)
+  const w = Math.max(canvas.parentElement.offsetWidth - 28, 280);
+  const h = 120;
+  canvas.width = w; canvas.height = h;
+  const ctx = canvas.getContext('2d');
+  const max = finalPot * 1.05;
+  const pts = dataPoints.length;
+
+  // Gradient fill
+  const grad = ctx.createLinearGradient(0, 0, 0, h);
+  grad.addColorStop(0, 'rgba(0,201,122,0.3)');
+  grad.addColorStop(1, 'rgba(0,201,122,0.0)');
+
+  ctx.beginPath();
+  dataPoints.forEach((v, i) => {
+    const x = (i / (pts - 1)) * w;
+    const y = h - (v / max) * (h - 10) - 2;
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  // Close fill path
+  const lastX = w, lastY = h - (dataPoints[pts-1] / max) * (h - 10) - 2;
+  ctx.lineTo(lastX, h);
+  ctx.lineTo(0, h);
+  ctx.closePath();
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // Line
+  ctx.beginPath();
+  dataPoints.forEach((v, i) => {
+    const x = (i / (pts - 1)) * w;
+    const y = h - (v / max) * (h - 10) - 2;
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.strokeStyle = '#00C97A';
+  ctx.lineWidth = 2;
+  ctx.stroke();
 }
 
 // ═══════════════════════════════
@@ -3081,6 +3351,15 @@ function go(name, btn) {
   document.getElementById('page-' + name).classList.add('active');
   btn.classList.add('active');
   document.getElementById('main-screen').scrollTo({top:0,behavior:'smooth'});
+  if (name === 'picture') setTimeout(buildPensionChart, 60);
+}
+
+function togglePicAccordion(el) {
+  el.classList.toggle('closed');
+  // If opening the pension accordion, rebuild chart (was hidden, canvas had 0 width)
+  if (!el.classList.contains('closed') && el.id === 'pic-pension-label-sec') {
+    setTimeout(buildPensionChart, 60);
+  }
 }
 
 function toggleNudge(el) {
