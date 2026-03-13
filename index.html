@@ -2238,9 +2238,10 @@ function buildOpportunityBar() {
   document.getElementById('opp-legend').innerHTML = `
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:2px;">
       ${segments.map(s => `
-        <div style="display:flex;align-items:center;gap:5px;padding:5px 8px;border-radius:20px;background:${s.color}18;min-width:0;overflow:hidden;">
-          <div style="width:6px;height:6px;border-radius:50%;background:${s.color};flex-shrink:0;"></div>
-          <span style="font-size:11px;font-weight:700;color:${s.color};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${s.label} · £${s.val.toLocaleString()}</span>
+        <div style="display:flex;align-items:center;gap:5px;padding:5px 9px;border-radius:20px;background:${s.color}15;border:1px solid ${s.color}40;min-width:0;">
+          <div style="width:5px;height:5px;border-radius:50%;background:${s.color};flex-shrink:0;"></div>
+          <span style="font-size:10px;font-weight:700;color:${s.color};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${s.label}</span>
+          <span style="font-size:10px;font-weight:800;color:${s.color};flex-shrink:0;">£${s.val.toLocaleString()}</span>
         </div>`).join('')}
     </div>`;
 }
