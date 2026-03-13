@@ -101,6 +101,21 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
 .ob-next:active{opacity:0.85;}
 .ob-skip{display:block;text-align:center;font-size:13px;color:var(--text3);cursor:pointer;margin-top:12px;font-weight:500;}
 .ob-skip:hover{color:var(--text2);}
+.ob-select-wrap{position:relative;margin-top:8px;}
+.ob-select{width:100%;padding:13px 40px 13px 14px;background:var(--card2);border:1.5px solid var(--border);border-radius:12px;color:var(--text);font-size:15px;font-weight:600;font-family:var(--font);appearance:none;-webkit-appearance:none;cursor:pointer;transition:border-color 0.2s;}
+.ob-select:focus{outline:none;border-color:var(--coral);}
+.ob-select option{background:var(--card2);color:var(--text);}
+.ob-select-arrow{position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none;font-size:14px;color:var(--text3);}
+.ob-accordion{margin-top:10px;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--card);}
+.ob-accordion summary{padding:11px 14px;font-size:13px;font-weight:600;color:var(--text2);cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;user-select:none;gap:8px;}
+.ob-accordion summary::-webkit-details-marker{display:none;}
+.ob-accordion summary .acc-caret{font-size:16px;color:var(--text3);transition:transform 0.2s;flex-shrink:0;}
+.ob-accordion[open] summary .acc-caret{transform:rotate(90deg);}
+.ob-accordion-body{padding:10px 14px 14px;border-top:1px solid var(--border);background:var(--card2);}
+.ob-acc-row{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px;gap:8px;}
+.ob-acc-row:last-child{border-bottom:none;}
+.ob-acc-row .al{color:var(--text2);flex:1;}
+.ob-acc-row .ar{font-weight:600;color:var(--text);text-align:right;}
 
 /* Open Banking */
 .ob-bank-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
@@ -162,20 +177,35 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
 .sec-hd h2{font-size:19px;font-weight:800;color:var(--text);letter-spacing:-0.04em;}
 .sec-hd span{font-size:13px;color:var(--coral);font-weight:600;cursor:pointer;}
 
-/* Nudge cards */
-.nudge{margin:0 14px 8px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:transform 0.15s;}
-.nudge:active{transform:scale(0.985);}
-.nudge-main{display:flex;align-items:flex-start;gap:12px;padding:14px;}
-.nudge-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px;}
-.nudge-body{flex:1;}
-.nudge-tag{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}
-.nudge-headline{font-size:15px;font-weight:700;color:var(--text);letter-spacing:-0.03em;line-height:1.3;margin-top:2px;}
-.nudge-sub{font-size:13px;color:var(--text2);margin-top:3px;line-height:1.45;font-weight:400;display:none;}
-.nudge.open .nudge-sub{display:block;}
-.nudge-caret{font-size:18px;color:var(--text3);flex-shrink:0;transition:transform 0.22s;line-height:1.2;}
-.nudge.open .nudge-caret{transform:rotate(90deg);}
-.breakdown{display:none;border-top:1px solid var(--border);background:var(--card2);padding:10px 14px 12px;}
+/* Nudge tiles — For You grid */
+.nudge-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 14px;margin-bottom:8px;}
+.nudge{background:var(--card);border:1px solid var(--border);border-radius:16px;cursor:pointer;transition:transform 0.15s;}
+.nudge:active{transform:scale(0.97);}
+.nudge.open{grid-column:span 2;}
+.nudge-face{padding:14px 13px;border-radius:16px 16px 0 0;overflow:hidden;}
+.nudge-tag{font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px;color:var(--text2);}
+.nudge-amt{font-size:22px;font-weight:900;color:var(--green);letter-spacing:-0.05em;line-height:1;}
+.nudge-unit{font-size:11px;color:var(--text3);margin-top:3px;font-weight:500;}
+.nudge-headline{font-size:12px;font-weight:600;color:var(--text2);margin-top:6px;line-height:1.35;display:none;}
+.nudge.open .nudge-headline{display:block;}
+.nudge-dot{width:6px;height:6px;border-radius:50%;margin-bottom:8px;}
+.breakdown{display:none;border-top:1px solid var(--border);background:var(--card2);padding:10px 13px 12px;}
 .nudge.open .breakdown{display:block;}
+.bd-row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px;gap:8px;}
+.bd-row:last-of-type{border-bottom:none;}
+.bd-label{color:var(--text2);font-weight:400;flex-shrink:0;}
+.bd-val{font-weight:700;color:var(--text);letter-spacing:-0.02em;text-align:right;}
+.bd-val.pos{color:var(--green);}
+.bd-val.neg{color:var(--coral);}
+.nudge-sub{font-size:12px;color:var(--text2);line-height:1.45;padding:10px 13px 0;}
+.nudge.open .nudge-sub-wrap{display:block;}
+.nudge-sub-wrap{display:none;}
+.nudge-impact{font-size:13px;font-weight:800;letter-spacing:-0.02em;margin-top:4px;display:none;}
+.nudge.open .nudge-impact{display:block;}
+.nudge-caret{font-size:18px;color:var(--text3);flex-shrink:0;transition:transform 0.22s;line-height:1;}
+.nudge.open .nudge-caret{transform:rotate(90deg);}
+.card-nudge-sub{font-size:13px;color:var(--text2);margin-top:6px;line-height:1.45;display:none;}
+.nudge.open .card-nudge-sub{display:block;}
 .bd-row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--border);font-size:13px;gap:8px;}
 .bd-row:last-of-type{border-bottom:none;}
 .bd-label{color:var(--text2);font-weight:400;flex-shrink:0;}
@@ -197,7 +227,8 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
 .alloc-card{margin:0 14px 10px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
 .alloc-card-hd{padding:14px 16px 12px;border-bottom:1px solid var(--border);}
 .alloc-card-title{font-size:16px;font-weight:800;color:var(--text);letter-spacing:-0.03em;}
-.alloc-card-sub{font-size:13px;color:var(--text2);margin-top:3px;line-height:1.45;}
+.alloc-card-sub{font-size:13px;color:var(--text2);margin-top:3px;line-height:1.45;display:none;}
+.alloc-card.open .alloc-card-sub{display:block;}
 .alloc-row{display:grid;grid-template-columns:28px 1fr 58px 52px;align-items:center;column-gap:10px;padding:11px 16px;border-bottom:1px solid var(--border);}
 .alloc-row:last-child{border-bottom:none;}
 .alloc-rank{width:24px;height:24px;border-radius:50%;background:var(--card3);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text2);}
@@ -487,8 +518,34 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
         <div class="ob-opts">
           <button class="ob-opt" onclick="setEmployment('paye',this)">PAYE — employed<span class="sub">Payslip, P60, workplace pension</span></button>
           <button class="ob-opt" onclick="setEmployment('self',this)">Self-employed / sole trader<span class="sub">Self-assessment, no employer pension</span></button>
+          <button class="ob-opt" onclick="setEmployment('director',this)">Director of own company<span class="sub">Ltd company, salary + dividends</span></button>
           <button class="ob-opt" onclick="setEmployment('both',this)">Both — employed and self-employed</button>
           <button class="ob-opt" onclick="setEmployment('other',this)">Not currently working<span class="sub">Retired, career break, or other</span></button>
+        </div>
+        <!-- WFH question — shown for PAYE / both -->
+        <div id="wfh-q" style="display:none;margin-top:18px;border-top:1px solid var(--border);padding-top:18px;">
+          <div class="ob-field-label" style="margin-bottom:10px;">Does your employer require you to work from home?</div>
+          <div class="ob-opts" style="flex-direction:row;">
+            <button class="ob-opt" style="flex:1;" id="wfh-yes" onclick="setWfh(true,this)">Yes</button>
+            <button class="ob-opt" style="flex:1;" id="wfh-no" onclick="setWfh(false,this)">No</button>
+          </div>
+          <div style="font-size:12px;color:var(--text3);margin-top:6px;">HMRC allows £6/week flat-rate relief if required by employer</div>
+        </div>
+
+        <!-- Work mileage — shown for PAYE / both -->
+        <div id="work-extras-q" style="display:none;margin-top:18px;border-top:1px solid var(--border);padding-top:18px;">
+          <div class="ob-field-label" style="margin-bottom:10px;">Do you use your own car for work trips? <span style="font-weight:400;color:var(--text3)">(not commuting)</span></div>
+          <div class="ob-opts" style="flex-direction:row;margin-bottom:0;">
+            <button class="ob-opt" style="flex:1;" id="miles-yes" onclick="setMileage(true,this)">Yes</button>
+            <button class="ob-opt" style="flex:1;" id="miles-no" onclick="setMileage(false,this)">No</button>
+          </div>
+          <div id="mileage-detail" style="display:none;margin-top:10px;">
+            <div class="ob-input-wrap">
+              <input class="ob-input" id="inp-miles" type="number" placeholder="3000" min="0"/>
+              <span class="ob-suffix">miles/yr</span>
+            </div>
+          </div>
+          <button class="ob-next" onclick="goOb(3)" style="margin-top:18px;">Continue →</button>
         </div>
       </div>
     </div>
@@ -528,134 +585,226 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
       </div>
     </div>
 
-    <!-- 3b. Student Loan (inserted after salary) -->
+    <!-- 3b. Student Loan -->
     <div class="ob-page" id="ob-3b">
       <div class="ob-prog-wrap" id="prog-3b"></div>
       <button class="ob-back" onclick="goOb(3)">‹</button>
       <div class="ob-body">
-        <div class="ob-q">Do you have a student loan?</div>
-        <div class="ob-hint">Repayments come straight off your pay — we need this to show your accurate take-home.</div>
-        <div class="ob-opts">
-          <button class="ob-opt" id="sl-none" onclick="setStudentLoan('none',this)">No student loan</button>
-          <button class="ob-opt" id="sl-plan1" onclick="setStudentLoan('plan1',this)">Plan 1 <span class="sub">Started before Sep 2012 (England/Wales) · threshold £24,990</span></button>
-          <button class="ob-opt" id="sl-plan2" onclick="setStudentLoan('plan2',this)">Plan 2 <span class="sub">Started Sep 2012 or later · threshold £27,295</span></button>
-          <button class="ob-opt" id="sl-plan4" onclick="setStudentLoan('plan4',this)">Plan 4 <span class="sub">Scotland · threshold £27,660</span></button>
-          <button class="ob-opt" id="sl-plan5" onclick="setStudentLoan('plan5',this)">Plan 5 <span class="sub">Started Aug 2023 or later · threshold £25,000</span></button>
-          <button class="ob-opt" id="sl-postgrad" onclick="setStudentLoan('postgrad',this)">Postgraduate loan <span class="sub">Master's or PhD · threshold £21,000 · 6%</span></button>
+        <div class="ob-q">Student loan?</div>
+        <div class="ob-hint">Repayments come off your pay before you see it — affects your real take-home.</div>
+
+        <details class="ob-accordion">
+          <summary>Not sure which plan you're on? <span class="acc-caret">›</span></summary>
+          <div class="ob-accordion-body">
+            <div class="ob-acc-row"><span class="al">England/Wales, started before Sep 2012</span><span class="ar">Plan 1</span></div>
+            <div class="ob-acc-row"><span class="al">England/Wales, Sep 2012 – Jul 2023</span><span class="ar">Plan 2</span></div>
+            <div class="ob-acc-row"><span class="al">England, started Aug 2023 or later</span><span class="ar">Plan 5</span></div>
+            <div class="ob-acc-row"><span class="al">Scotland, any year</span><span class="ar">Plan 4</span></div>
+            <div class="ob-acc-row"><span class="al">Master's or PhD loan</span><span class="ar">Postgraduate</span></div>
+            <div style="font-size:11px;color:var(--text3);margin-top:8px;">Check your Student Loans Company account if still unsure.</div>
+          </div>
+        </details>
+
+        <div class="ob-select-wrap" style="margin-top:16px;">
+          <select class="ob-select" id="sl-select" onchange="setStudentLoanSelect(this.value)">
+            <option value="">Select your plan...</option>
+            <option value="none">No student loan</option>
+            <option value="plan1">Plan 1 · repay above £24,990/yr</option>
+            <option value="plan2">Plan 2 · repay above £27,295/yr</option>
+            <option value="plan4">Plan 4 · Scotland · above £27,660/yr</option>
+            <option value="plan5">Plan 5 · repay above £25,000/yr</option>
+            <option value="postgrad">Postgraduate · above £21,000/yr · 6%</option>
+          </select>
+          <span class="ob-select-arrow">▾</span>
         </div>
+
         <div id="sl-insight" style="font-size:13px;color:var(--text2);line-height:1.5;margin-top:12px;padding:10px 12px;background:var(--card);border-radius:10px;display:none;"></div>
-        <button class="ob-next" onclick="goOb(4)" style="margin-top:18px;">Continue →</button>
+        <button class="ob-next" onclick="goObSLNext()" style="margin-top:18px;">Continue →</button>
+      </div>
+    </div>
+
+    <!-- 3c. Director questions (shown only for directors) -->
+    <div class="ob-page" id="ob-3c">
+      <div class="ob-prog-wrap" id="prog-3c"></div>
+      <button class="ob-back" onclick="goOb(3)">‹</button>
+      <div class="ob-body">
+        <div class="ob-q">A bit about your company</div>
+        <div class="ob-hint">Helps us find director-specific tax savings most accountants don't mention.</div>
+
+        <div class="ob-field">
+          <span class="ob-field-label">Approximate annual company profit (before your salary)</span>
+          <div class="ob-input-wrap">
+            <span class="ob-prefix">£</span>
+            <input class="ob-input" id="inp-corp-profit" type="number" placeholder="80000" min="0" oninput="updateCorpTax()"/>
+          </div>
+          <div id="corp-tax-hint" style="font-size:13px;color:var(--text3);margin-top:8px;min-height:18px;"></div>
+        </div>
+
+        <div class="ob-field">
+          <span class="ob-field-label">How do you mainly pay yourself?</span>
+          <div class="ob-opts" style="margin-top:6px;">
+            <button class="ob-opt" id="pay-split" onclick="setDirPay('split',this)">Low salary + dividends <span class="sub">Tax-efficient split (most common)</span></button>
+            <button class="ob-opt" id="pay-salary" onclick="setDirPay('salary',this)">Mainly salary <span class="sub">May be leaving tax savings on the table</span></button>
+            <button class="ob-opt" id="pay-unsure" onclick="setDirPay('unsure',this)">Not sure</button>
+          </div>
+        </div>
+
+        <div class="ob-field">
+          <span class="ob-field-label">Do you claim the Employment Allowance?</span>
+          <div style="font-size:12px;color:var(--text3);margin-bottom:8px;">Reduces employer NI by up to £5,000/yr. Eligible if you're not the sole employee-director.</div>
+          <div class="ob-opts" style="flex-direction:row;">
+            <button class="ob-opt" style="flex:1;" id="ea-yes" onclick="setEA(true,this)">Yes</button>
+            <button class="ob-opt" style="flex:1;" id="ea-no" onclick="setEA(false,this)">No</button>
+            <button class="ob-opt" style="flex:1;" id="ea-unsure" onclick="setEA(null,this)">Not sure</button>
+          </div>
+        </div>
+
+        <button class="ob-next" onclick="goOb(4)">Continue →</button>
+        <span class="ob-skip" onclick="goOb(4)">Skip for now</span>
       </div>
     </div>
 
     <!-- 4. Pension -->
     <div class="ob-page" id="ob-4">
       <div class="ob-prog-wrap" id="prog-4"></div>
-      <button class="ob-back" onclick="goOb(3)">‹</button>
+      <button class="ob-back" id="ob4-back" onclick="goOb4Back()">‹</button>
       <div class="ob-body">
-        <div class="ob-q">Tell us about your pension</div>
-        <div class="ob-hint">Employer contributions are often the biggest quick win we find. Check your payslip, HR portal, or contract if unsure.</div>
 
-        <div class="ob-field">
-          <span class="ob-field-label">How does your employer contribute?</span>
+        <!-- PAYE / Both version -->
+        <div id="pension-paye-section">
+          <div class="ob-q">Your pension</div>
+          <div class="ob-hint">Employer contributions are often the biggest quick win. Check your payslip or HR portal.</div>
+
+          <details class="ob-accordion" style="margin-bottom:14px;">
+            <summary>Not sure how your pension works? <span class="acc-caret">›</span></summary>
+            <div class="ob-accordion-body">
+              <div class="ob-acc-row"><span class="al">"We'll match up to X%"</span><span class="ar">Fixed match</span></div>
+              <div class="ob-acc-row"><span class="al">"3% gets you 3%, 5% gets you 6%..."</span><span class="ar">Sliding scale</span></div>
+              <div class="ob-acc-row"><span class="al">"We pay X% regardless of what you do"</span><span class="ar">Fixed employer</span></div>
+              <div style="font-size:11px;color:var(--text3);margin-top:8px;">Sliding scale schemes often have a sweet spot — worth thousands/yr if you're under-contributing.</div>
+            </div>
+          </details>
+
           <div class="ob-opts">
-            <button class="ob-opt" id="pmatch-fixed" onclick="setPensionType('fixed',this)">
-              Fixed match — they match what I put in
-              <span class="sub">e.g. you put in 5%, they put in 5%</span>
-            </button>
-            <button class="ob-opt" id="pmatch-sliding" onclick="setPensionType('sliding',this)">
-              Sliding scale — higher my contribution, more they add
-              <span class="sub">e.g. 3%→3%, 5%→5%, 7%→8%</span>
-            </button>
-            <button class="ob-opt" id="pmatch-fixed-employer" onclick="setPensionType('fixed-employer',this)">
-              Fixed employer contribution — they pay regardless
-              <span class="sub">e.g. they always pay 5% whatever I contribute</span>
-            </button>
-            <button class="ob-opt" id="pmatch-none" onclick="setPensionType('none',this)">
-              No employer pension / not sure
-            </button>
+            <button class="ob-opt" id="pmatch-fixed" onclick="setPensionType('fixed',this)">They match my contributions</button>
+            <button class="ob-opt" id="pmatch-sliding" onclick="setPensionType('sliding',this)">Sliding scale</button>
+            <button class="ob-opt" id="pmatch-fixed-employer" onclick="setPensionType('fixed-employer',this)">Fixed employer contribution</button>
+            <button class="ob-opt" id="pmatch-none" onclick="setPensionType('none',this)">No employer pension / not sure</button>
           </div>
-        </div>
 
-        <!-- Fixed match details -->
-        <div id="pension-fixed-details" style="display:none;margin-top:4px;">
-          <div class="ob-two-col">
-            <div class="ob-field">
-              <span class="ob-field-label">Your contribution</span>
-              <div class="ob-input-wrap">
-                <input class="ob-input small" id="inp-my-pension" type="number" placeholder="4" min="0" max="100" oninput="updatePensionInsight()"/>
-                <span class="ob-suffix">%</span>
+          <!-- Fixed match -->
+          <div id="pension-fixed-details" style="display:none;margin-top:12px;">
+            <div class="ob-two-col">
+              <div class="ob-field">
+                <span class="ob-field-label">You put in</span>
+                <div class="ob-input-wrap">
+                  <input class="ob-input small" id="inp-my-pension" type="number" placeholder="4" min="0" max="100" oninput="updatePensionInsight()"/>
+                  <span class="ob-suffix">%</span>
+                </div>
+              </div>
+              <div class="ob-field">
+                <span class="ob-field-label">Employer max</span>
+                <div class="ob-input-wrap">
+                  <input class="ob-input small" id="inp-emp-pension" type="number" placeholder="8" min="0" max="100" oninput="updatePensionInsight()"/>
+                  <span class="ob-suffix">%</span>
+                </div>
               </div>
             </div>
-            <div class="ob-field">
-              <span class="ob-field-label">Max employer match</span>
-              <div class="ob-input-wrap">
-                <input class="ob-input small" id="inp-emp-pension" type="number" placeholder="8" min="0" max="100" oninput="updatePensionInsight()"/>
-                <span class="ob-suffix">%</span>
-              </div>
-            </div>
+            <div id="pension-insight" style="font-size:13px;color:var(--text3);line-height:1.5;margin-top:4px;min-height:18px;"></div>
           </div>
-          <div id="pension-insight" style="font-size:13px;color:var(--text3);line-height:1.5;margin-top:4px;min-height:18px;"></div>
-        </div>
 
-        <!-- Sliding scale tiers -->
-        <div id="pension-sliding-details" style="display:none;margin-top:4px;">
-          <div class="ob-hint" style="margin-bottom:12px;">Enter the tiers your employer offers — add as many as apply.</div>
-          <div id="pension-tiers">
-            <div class="ob-two-col" style="margin-bottom:8px;">
-              <div class="ob-field" style="margin-bottom:0">
-                <span class="ob-field-label">You contribute</span>
-                <div class="ob-input-wrap"><input class="ob-input small" type="number" placeholder="3" min="0" max="100" oninput="calcBestTier()"/><span class="ob-suffix">%</span></div>
+          <!-- Sliding scale — simplified: just best tier + current -->
+          <div id="pension-sliding-details" style="display:none;margin-top:12px;">
+            <div style="font-size:12px;color:var(--text3);margin-bottom:10px;">Enter the best tier your employer offers:</div>
+            <div class="ob-two-col">
+              <div class="ob-field">
+                <span class="ob-field-label">Max you contribute</span>
+                <div class="ob-input-wrap"><input class="ob-input small" id="sliding-max-mine" type="number" placeholder="7" min="0" max="100" oninput="calcBestTier()"/><span class="ob-suffix">%</span></div>
               </div>
-              <div class="ob-field" style="margin-bottom:0">
+              <div class="ob-field">
                 <span class="ob-field-label">Employer adds</span>
-                <div class="ob-input-wrap"><input class="ob-input small" type="number" placeholder="3" min="0" max="100" oninput="calcBestTier()"/><span class="ob-suffix">%</span></div>
+                <div class="ob-input-wrap"><input class="ob-input small" id="sliding-max-emp" type="number" placeholder="9" min="0" max="100" oninput="calcBestTier()"/><span class="ob-suffix">%</span></div>
               </div>
             </div>
-            <div class="ob-two-col" style="margin-bottom:8px;">
-              <div class="ob-field" style="margin-bottom:0">
-                <div class="ob-input-wrap"><input class="ob-input small" type="number" placeholder="5" min="0" max="100" oninput="calcBestTier()"/><span class="ob-suffix">%</span></div>
-              </div>
-              <div class="ob-field" style="margin-bottom:0">
-                <div class="ob-input-wrap"><input class="ob-input small" type="number" placeholder="5" min="0" max="100" oninput="calcBestTier()"/><span class="ob-suffix">%</span></div>
+            <div class="ob-field" style="margin-top:4px;">
+              <span class="ob-field-label">What you currently put in</span>
+              <div class="ob-input-wrap">
+                <input class="ob-input small" id="inp-my-pension-sliding" type="number" placeholder="3" min="0" max="100" oninput="calcBestTier()"/>
+                <span class="ob-suffix">%</span>
               </div>
             </div>
-            <div class="ob-two-col" style="margin-bottom:8px;">
-              <div class="ob-field" style="margin-bottom:0">
-                <div class="ob-input-wrap"><input class="ob-input small" type="number" placeholder="7" min="0" max="100" oninput="calcBestTier()"/><span class="ob-suffix">%</span></div>
+            <div id="sliding-insight" style="font-size:13px;line-height:1.5;margin-top:6px;min-height:18px;"></div>
+          </div>
+
+          <!-- Fixed employer -->
+          <div id="pension-employer-details" style="display:none;margin-top:12px;">
+            <div class="ob-two-col">
+              <div class="ob-field">
+                <span class="ob-field-label">Employer pays</span>
+                <div class="ob-input-wrap">
+                  <input class="ob-input small" id="inp-emp-fixed" type="number" placeholder="5" min="0" max="100" oninput="updateFixedEmployerInsight()"/>
+                  <span class="ob-suffix">%</span>
+                </div>
               </div>
-              <div class="ob-field" style="margin-bottom:0">
-                <div class="ob-input-wrap"><input class="ob-input small" type="number" placeholder="8" min="0" max="100" oninput="calcBestTier()"/><span class="ob-suffix">%</span></div>
+              <div class="ob-field">
+                <span class="ob-field-label">You put in</span>
+                <div class="ob-input-wrap">
+                  <input class="ob-input small" id="inp-my-fixed" type="number" placeholder="3" min="0" max="100"/>
+                  <span class="ob-suffix">%</span>
+                </div>
               </div>
+            </div>
+            <div id="fixed-employer-insight" style="font-size:13px;color:var(--text3);line-height:1.5;margin-top:4px;"></div>
+          </div>
+
+          <!-- Salary sacrifice question — shown once a pension type is selected -->
+          <div id="sal-sac-q" style="display:none;margin-top:18px;border-top:1px solid var(--border);padding-top:18px;">
+            <div class="ob-field-label" style="margin-bottom:6px;">How are your contributions deducted?</div>
+            <div style="font-size:12px;color:var(--text3);margin-bottom:10px;">Salary sacrifice comes off before tax. Relief at source comes off your take-home pay.</div>
+            <div class="ob-opts" style="flex-direction:row;">
+              <button class="ob-opt" style="flex:1;" id="salsac-yes" onclick="setSalSac(true,this)">Salary sacrifice</button>
+              <button class="ob-opt" style="flex:1;" id="salsac-no" onclick="setSalSac(false,this)">Relief at source</button>
+              <button class="ob-opt" style="flex:1;" id="salsac-unsure" onclick="setSalSac(null,this)">Not sure</button>
             </div>
           </div>
-          <div class="ob-field" style="margin-top:4px;">
-            <span class="ob-field-label">Your current contribution</span>
-            <div class="ob-input-wrap">
-              <input class="ob-input small" id="inp-my-pension-sliding" type="number" placeholder="3" min="0" max="100" oninput="calcBestTier()"/>
-              <span class="ob-suffix">%</span>
-            </div>
-          </div>
-          <div id="sliding-insight" style="font-size:13px;line-height:1.5;margin-top:6px;min-height:18px;"></div>
         </div>
 
-        <!-- Fixed employer details -->
-        <div id="pension-employer-details" style="display:none;margin-top:4px;">
-          <div class="ob-field">
-            <span class="ob-field-label">Employer contribution (regardless of yours)</span>
-            <div class="ob-input-wrap">
-              <input class="ob-input small" id="inp-emp-fixed" type="number" placeholder="5" min="0" max="100" oninput="updateFixedEmployerInsight()"/>
-              <span class="ob-suffix">%</span>
+        <!-- Self-employed version -->
+        <div id="pension-self-section" style="display:none;">
+          <div class="ob-q">Do you pay into a pension?</div>
+          <div class="ob-hint">Self-employed pensions get 20% tax relief automatically added by HMRC.</div>
+          <div class="ob-opts">
+            <button class="ob-opt" id="self-pen-yes" onclick="setSelfPension(true,this)">Yes</button>
+            <button class="ob-opt" id="self-pen-no" onclick="setSelfPension(false,this)">Not currently</button>
+          </div>
+          <div id="self-pension-details" style="display:none;margin-top:12px;">
+            <div class="ob-field">
+              <span class="ob-field-label">Monthly contribution</span>
+              <div class="ob-input-wrap">
+                <span class="ob-prefix">£</span>
+                <input class="ob-input small" id="inp-self-pension" type="number" placeholder="250" min="0"/>
+              </div>
             </div>
           </div>
-          <div class="ob-field">
-            <span class="ob-field-label">Your contribution</span>
-            <div class="ob-input-wrap">
-              <input class="ob-input small" id="inp-my-fixed" type="number" placeholder="3" min="0" max="100"/>
-              <span class="ob-suffix">%</span>
+        </div>
+
+        <!-- Director version -->
+        <div id="pension-director-section" style="display:none;">
+          <div class="ob-q">Company pension contributions?</div>
+          <div class="ob-hint">Paying in via the company is far more efficient — it's a corp tax deduction with no NI.</div>
+          <div class="ob-opts">
+            <button class="ob-opt" id="dir-pen-yes" onclick="setDirPension(true,this)">Yes — company pays in</button>
+            <button class="ob-opt" id="dir-pen-no" onclick="setDirPension(false,this)">No / not yet</button>
+          </div>
+          <div id="dir-pension-details" style="display:none;margin-top:12px;">
+            <div class="ob-field">
+              <span class="ob-field-label">Monthly employer contribution</span>
+              <div class="ob-input-wrap">
+                <span class="ob-prefix">£</span>
+                <input class="ob-input small" id="inp-dir-pension" type="number" placeholder="500" min="0"/>
+              </div>
             </div>
           </div>
-          <div id="fixed-employer-insight" style="font-size:13px;color:var(--text3);line-height:1.5;margin-top:4px;"></div>
         </div>
 
         <button class="ob-next" onclick="submitPension()" style="margin-top:18px;">Continue →</button>
@@ -669,38 +818,43 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
       <button class="ob-back" onclick="goOb(4)">‹</button>
       <div class="ob-body">
         <div class="ob-q">Debt &amp; credit cards</div>
-        <div class="ob-hint">This shapes your entire priority order. Be honest — it's just for your calculations.</div>
-        <div class="ob-opts" id="debt-opts" style="margin-bottom:16px;">
-          <button class="ob-opt" onclick="setDebt(false,this)">No high-interest debt<span class="sub">Mortgage only, or completely debt free</span></button>
-          <button class="ob-opt" onclick="setDebt(true,this)">Yes — credit card or loan balance I carry<span class="sub">Unpaid balance month to month</span></button>
-        </div>
-        <div id="debt-details" style="display:none;margin-bottom:16px;">
-          <div class="ob-field">
-            <span class="ob-field-label">Roughly how much in total?</span>
+
+        <div class="ob-field">
+          <span class="ob-field-label">Do you carry any unpaid debt month to month?</span>
+          <div style="font-size:12px;color:var(--text3);margin-bottom:10px;">A balance you don't fully clear — personal loans, store cards, overdrafts. Not your mortgage.</div>
+          <div class="ob-opts" style="flex-direction:row;">
+            <button class="ob-opt" style="flex:1;" onclick="setDebt(false,this)">No</button>
+            <button class="ob-opt" style="flex:1;" onclick="setDebt(true,this)">Yes</button>
+          </div>
+          <div id="debt-details" style="display:none;margin-top:12px;">
             <div class="ob-input-wrap">
               <span class="ob-prefix">£</span>
               <input class="ob-input" id="inp-debt" type="number" placeholder="3000" min="0"/>
+              <span class="ob-suffix">total</span>
             </div>
-          </div>
-          <div style="font-size:13px;color:var(--amber);line-height:1.5;margin-top:8px;padding:10px 12px;background:var(--amber-bg);border-radius:10px;">
-            ⚠ We'll rank clearing this above everything else. At ~20%+ rates, it beats every ISA or investment return.
+            <div style="font-size:13px;color:var(--amber);margin-top:8px;padding:10px 12px;background:var(--amber-bg);border-radius:10px;">
+              ⚠ We'll prioritise clearing this — at 20%+ rates it beats any ISA or investment.
+            </div>
           </div>
         </div>
 
-        <!-- Credit card type — separate question -->
         <div class="ob-field">
-          <span class="ob-field-label">Do you use a credit card for day-to-day spending?</span>
-          <div class="ob-opts">
-            <button class="ob-opt" id="cc-rewards" onclick="setCreditCard('rewards',this)">Yes — rewards / cashback card (cleared monthly)<span class="sub">Amex, Chase, Barclaycard Avios etc.</span></button>
-            <button class="ob-opt" id="cc-basic" onclick="setCreditCard('basic',this)">Yes — standard card, cleared monthly</button>
-            <button class="ob-opt" id="cc-none" onclick="setCreditCard('none',this)">No — I use debit card / don't use credit cards</button>
+          <span class="ob-field-label">Do you use a credit card for everyday spending?</span>
+          <div class="ob-select-wrap">
+            <select class="ob-select" id="cc-select" onchange="setCreditCardSelect(this.value)">
+              <option value="">Select...</option>
+              <option value="rewards">Yes — rewards or cashback card, cleared monthly (Amex, Chase, Avios...)</option>
+              <option value="basic">Yes — standard card, cleared monthly</option>
+              <option value="none">No — I use my debit card</option>
+            </select>
+            <span class="ob-select-arrow">▾</span>
           </div>
-        </div>
-        <div id="cc-rewards-hint" style="display:none;font-size:13px;color:var(--green);line-height:1.5;margin-top:8px;padding:10px 12px;background:var(--green-bg);border-radius:10px;">
-          ✓ Great — rewards cards cleared monthly are free money. We'll check you're on the best one for your spending.
-        </div>
-        <div id="cc-basic-hint" style="display:none;font-size:13px;color:var(--text3);line-height:1.5;margin-top:8px;padding:10px 12px;background:var(--card);border-radius:10px;">
-          You could be earning cashback or Avios on the same spending at no extra cost. We'll show you what you're missing.
+          <div id="cc-rewards-hint" style="display:none;font-size:13px;color:var(--green);margin-top:8px;padding:10px 12px;background:var(--green-bg);border-radius:10px;">
+            ✓ We'll check you're on the best card for your spending.
+          </div>
+          <div id="cc-basic-hint" style="display:none;font-size:13px;color:var(--text3);margin-top:8px;padding:10px 12px;background:var(--card2);border-radius:10px;">
+            You could be earning cashback on the same spending at no extra cost.
+          </div>
         </div>
 
         <button class="ob-next" onclick="submitDebt()">Continue →</button>
@@ -814,16 +968,23 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
         <div class="ob-hint">Unlocks specific nudges around tax breaks most people miss.</div>
         <div class="ob-field">
           <span class="ob-field-label">Married or in a civil partnership?</span>
-          <div class="ob-opts" style="margin-bottom:20px;">
-            <button class="ob-opt" id="married-yes" onclick="selectMarried(true,this)">Yes</button>
-            <button class="ob-opt" id="married-no" onclick="selectMarried(false,this)">No</button>
+          <div class="ob-opts" style="flex-direction:row;margin-bottom:0;">
+            <button class="ob-opt" style="flex:1;" id="married-yes" onclick="selectMarried(true,this)">Yes</button>
+            <button class="ob-opt" style="flex:1;" id="married-no" onclick="selectMarried(false,this)">No</button>
+          </div>
+        </div>
+        <div class="ob-field">
+          <span class="ob-field-label">Do you live alone?</span>
+          <div class="ob-opts" style="flex-direction:row;margin-bottom:0;">
+            <button class="ob-opt" style="flex:1;" id="solo-yes" onclick="setSingle(true,this)">Yes</button>
+            <button class="ob-opt" style="flex:1;" id="solo-no" onclick="setSingle(false,this)">No</button>
           </div>
         </div>
         <div class="ob-field">
           <span class="ob-field-label">Children under 16?</span>
-          <div class="ob-opts">
-            <button class="ob-opt" id="children-yes" onclick="selectChildren(true,this)">Yes</button>
-            <button class="ob-opt" id="children-no" onclick="selectChildren(false,this)">No</button>
+          <div class="ob-opts" style="flex-direction:row;margin-bottom:0;">
+            <button class="ob-opt" style="flex:1;" id="children-yes" onclick="selectChildren(true,this)">Yes</button>
+            <button class="ob-opt" style="flex:1;" id="children-no" onclick="selectChildren(false,this)">No</button>
           </div>
         </div>
         <div id="children-ages" style="display:none;margin-top:14px;">
@@ -838,6 +999,7 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
         <button class="ob-next" onclick="goOb(9)">Continue →</button>
       </div>
     </div>
+
 
     <!-- 9. Open Banking -->
     <div class="ob-page" id="ob-9">
@@ -964,10 +1126,9 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
       </div>
 
       <!-- Dynamic nudges populated by JS -->
-      <div id="nudge-container"></div>
+      <div class="nudge-grid" id="nudge-container"></div>
 
       <div class="sec-hd" style="padding-top:6px;"><h2>You could be missing out on</h2></div>
-      <div class="missing-label" id="missing-band-label">Based on your income band</div>
       <!-- Missing out nudges — populated by JS -->
       <div id="missing-container"></div>
 
@@ -976,10 +1137,13 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
     <!-- ══ ALLOCATE ══ -->
     <div id="page-allocate" class="page">
       <div class="sec-hd"><h2>Allocate</h2></div>
-      <div class="alloc-card">
-        <div class="alloc-card-hd">
-          <div class="alloc-card-title">Best use of spare cash</div>
-          <div class="alloc-card-sub" id="alloc-sub">Ranked by effective return, based on your salary, tax band, pension and mortgage.</div>
+      <div class="alloc-card" onclick="this.classList.toggle('open')" style="cursor:pointer;">
+        <div class="alloc-card-hd" style="display:flex;align-items:center;justify-content:space-between;">
+          <div>
+            <div class="alloc-card-title">Best use of spare cash</div>
+            <div class="alloc-card-sub" id="alloc-sub">Ranked by effective return, based on your salary, tax band, pension and mortgage.</div>
+          </div>
+          <div style="font-size:18px;color:var(--text3);flex-shrink:0;padding-left:8px;">›</div>
         </div>
         <!-- Populated by JS -->
         <div id="alloc-rows"></div>
@@ -995,29 +1159,36 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
       <div class="bill-card" onclick="window.open('https://www.uswitch.com/gas-electricity/journey/postcode/','_blank')">
         <div class="bill-row">
           <div class="bill-icon" style="background:var(--amber-bg)">⚡</div>
-          <div class="bill-info"><div class="bill-name">Energy</div><div class="bill-sub">British Gas · £187/mo · tariff ended Feb</div></div>
+          <div class="bill-info"><div class="bill-name">Energy</div><div class="bill-sub">British Gas · £187/mo</div></div>
           <div class="bill-right"><div class="bill-save">Save £348/yr</div><div class="bill-link">via Uswitch →</div></div>
         </div>
       </div>
       <div class="bill-card" onclick="window.open('https://www.uswitch.com/broadband/postcode/','_blank')">
         <div class="bill-row">
           <div class="bill-icon" style="background:var(--blue-bg)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5" stroke-linecap="round"><path d="M1.5 8.5C5.5 4.5 10.5 2.5 12 2.5s6.5 2 10.5 6"/><path d="M5 12.5c1.9-1.9 4.3-3 7-3s5.1 1.1 7 3"/><path d="M8.5 16c1-1 2.2-1.5 3.5-1.5s2.5.5 3.5 1.5"/><circle cx="12" cy="20" r="1.5" fill="var(--blue)"/></svg></div>
-          <div class="bill-info"><div class="bill-name">Broadband</div><div class="bill-sub">Virgin Media · £54/mo · renews in 6 weeks</div></div>
+          <div class="bill-info"><div class="bill-name">Broadband</div><div class="bill-sub">Virgin Media · £54/mo</div></div>
           <div class="bill-right"><div class="bill-save">Save £216/yr</div><div class="bill-link">via Uswitch →</div></div>
         </div>
       </div>
       <div class="bill-card" onclick="window.open('https://www.moneysupermarket.com/car-insurance/','_blank')">
         <div class="bill-row">
           <div class="bill-icon" style="background:var(--coral-bg)">🚗</div>
-          <div class="bill-info"><div class="bill-name">Car Insurance</div><div class="bill-sub">Admiral · renews 14 Apr · don't auto-renew</div></div>
+          <div class="bill-info"><div class="bill-name">Car Insurance</div><div class="bill-sub">Admiral · £960/yr</div></div>
           <div class="bill-right"><div class="bill-save">Save £178/yr</div><div class="bill-link">via MoneySupermarket →</div></div>
         </div>
       </div>
       <div class="bill-card" onclick="window.open('https://www.uswitch.com/mobiles/sim-only-deals/','_blank')">
         <div class="bill-row">
           <div class="bill-icon" style="background:var(--green-bg)">📱</div>
-          <div class="bill-info"><div class="bill-name">Mobile</div><div class="bill-sub">O2 · £48/mo · handset paid off 3 months ago</div></div>
-          <div class="bill-right"><div class="bill-save">Save £150/yr</div><div class="bill-link">SIM-only deals →</div></div>
+          <div class="bill-info"><div class="bill-name">Mobile</div><div class="bill-sub">O2 · £48/mo</div></div>
+          <div class="bill-right"><div class="bill-save">Save £150/yr</div><div class="bill-link">via Uswitch →</div></div>
+        </div>
+      </div>
+      <div class="bill-card" onclick="window.open('https://www.moneysupermarket.com/home-insurance/','_blank')">
+        <div class="bill-row">
+          <div class="bill-icon" style="background:var(--amber-bg)">🏠</div>
+          <div class="bill-info"><div class="bill-name">Home Insurance</div><div class="bill-sub">Auto-renewing · £420/yr</div></div>
+          <div class="bill-right"><div class="bill-save">Save £200+/yr</div><div class="bill-link">via MoneySupermarket →</div></div>
         </div>
       </div>
       <div class="sec-hd" style="padding-top:6px;"><h2>Detected subscriptions</h2><span id="sub-waste-label">£22.98 may be waste</span></div>
@@ -1296,6 +1467,8 @@ function goOb(n) {
   pg.style.display = 'flex';
   pg.classList.add('active');
   pg.scrollTop = 0;
+  // Post-nav hooks
+  if (n === 4) initPensionScreen();
 }
 
 function goObSL() {
@@ -1317,7 +1490,99 @@ function submitName() {
 
 // Screen 2
 function setEmployment(type, el) {
-  p.employment = type; flash(el, () => goOb(3));
+  p.employment = type;
+  document.querySelectorAll('#ob-2 .ob-opt').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  const showWfh = (type === 'paye' || type === 'both');
+  document.getElementById('wfh-q').style.display = showWfh ? 'block' : 'none';
+  document.getElementById('work-extras-q').style.display = showWfh ? 'block' : 'none';
+  if (!showWfh) flash(el, () => goOb(3));
+}
+function setWfh(val, el) {
+  p.wfh = val;
+  document.getElementById('wfh-yes').classList.toggle('selected', val === true);
+  document.getElementById('wfh-no').classList.toggle('selected', val === false);
+}
+
+// ── OB-4 BACK ROUTING (employment-aware) ──
+function goOb4Back() {
+  if (p.employment === 'director') goOb('3c');
+  else if (p.employment === 'self') goOb(3);
+  else goOb('3b');
+}
+
+// ── OB-3B NEXT ROUTING ──
+function goObSLNext() { goOb(4); }
+
+// ── PENSION SCREEN INIT (called when ob-4 is shown) ──
+function initPensionScreen() {
+  const isSelf = p.employment === 'self';
+  const isDir  = p.employment === 'director';
+  const isPaye = !isSelf && !isDir;
+  document.getElementById('pension-paye-section').style.display    = isPaye ? '' : 'none';
+  document.getElementById('pension-self-section').style.display    = isSelf ? '' : 'none';
+  document.getElementById('pension-director-section').style.display= isDir  ? '' : 'none';
+}
+
+// ── SELF-EMPLOYED PENSION ──
+function setSelfPension(val, el) {
+  p.hasSelfPension = val;
+  ['self-pen-yes','self-pen-no'].forEach(id => document.getElementById(id)?.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('self-pension-details').style.display = val ? '' : 'none';
+}
+
+// ── DIRECTOR PENSION ──
+function setDirPension(val, el) {
+  p.hasDirPension = val;
+  ['dir-pen-yes','dir-pen-no'].forEach(id => document.getElementById(id)?.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('dir-pension-details').style.display = val ? '' : 'none';
+}
+
+// ── SCREENING QUESTIONS ──
+function setSingle(val, el) {
+  p.livesAlone = val;
+  ['solo-yes','solo-no'].forEach(id => document.getElementById(id)?.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function setMileage(val, el) {
+  p.hasMileage = val;
+  ['miles-yes','miles-no'].forEach(id => document.getElementById(id)?.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('mileage-detail').style.display = val ? '' : 'none';
+}
+function setInvestments(val, el) {
+  p.hasInvestments = val;
+  ['invest-yes','invest-no'].forEach(id => document.getElementById(id)?.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function setCTW(val, el) {
+  p.employerCTW = val;
+  ['ctw-yes','ctw-no'].forEach(id => document.getElementById(id)?.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+// Director functions
+function updateCorpTax() {
+  const profit = parseInt(document.getElementById('inp-corp-profit').value) || 0;
+  const hint = document.getElementById('corp-tax-hint');
+  if (!profit) { hint.textContent = ''; return; }
+  const rate = profit <= 50000 ? 0.19 : profit <= 250000 ? 0.19 + (profit-50000)/(250000-50000)*(0.25-0.19) : 0.25;
+  const tax = Math.round(profit * rate);
+  const rateLabel = profit <= 50000 ? '19% (small profits rate)' : profit <= 250000 ? `${(rate*100).toFixed(1)}% (marginal relief)` : '25% (main rate)';
+  hint.innerHTML = `<span style="color:var(--amber)">Corporation tax: ~£${tax.toLocaleString()}/yr at ${rateLabel}</span>`;
+  p.corpProfit = profit;
+}
+function setDirPay(type, el) {
+  p.dirPayType = type;
+  ['pay-split','pay-salary','pay-unsure'].forEach(id => document.getElementById(id)?.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function setEA(val, el) {
+  p.employmentAllowance = val;
+  ['ea-yes','ea-no','ea-unsure'].forEach(id => document.getElementById(id)?.classList.remove('selected'));
+  el.classList.add('selected');
 }
 
 // Screen 3
@@ -1334,11 +1599,12 @@ function updateTaxBand() {
 function submitSalary() {
   const v = parseInt(document.getElementById('inp-salary').value);
   if (v > 0) p.salary = v;
-  // Go to student loan screen before pension
+  if (p.employment === 'director') { goOb('3c'); return; }
   if (p.employment === 'self') { goOb(5); return; }
   goObSL();
 }
 function skipSalary() {
+  if (p.employment === 'director') { goOb('3c'); return; }
   if (p.employment === 'self') { goOb(5); return; }
   goObSL();
 }
@@ -1351,12 +1617,26 @@ const SL_PLANS = {
   plan5:   { threshold:25000,  rate:0.09, label:'Plan 5 · 9% above £25,000' },
   postgrad:{ threshold:21000,  rate:0.06, label:'Postgrad · 6% above £21,000' },
 };
+function setStudentLoanSelect(val) {
+  if (!val) return;
+  p.studentLoan = val;
+  const insight = document.getElementById('sl-insight');
+  if (val === 'none') { insight.style.display='none'; return; }
+  const cfg = SL_PLANS[val];
+  if (p.salary > 0 && cfg.threshold > 0) {
+    const annual = Math.max(0, Math.round((p.salary - cfg.threshold) * cfg.rate));
+    insight.style.display = 'block';
+    insight.innerHTML = annual > 0
+      ? `Repayment: <strong style="color:var(--text)">£${annual.toLocaleString()}/yr · £${Math.round(annual/12).toLocaleString()}/mo</strong>`
+      : `Below the repayment threshold — no deductions at your current salary.`;
+  }
+}
 function setStudentLoan(plan, el) {
   p.studentLoan = plan;
   ['sl-none','sl-plan1','sl-plan2','sl-plan4','sl-plan5','sl-postgrad'].forEach(id => {
     const b = document.getElementById(id); if(b) b.classList.remove('selected');
   });
-  el.classList.add('selected');
+  if (el) el.classList.add('selected');
   const insight = document.getElementById('sl-insight');
   if (plan === 'none') { insight.style.display='none'; return; }
   const cfg = SL_PLANS[plan];
@@ -1364,10 +1644,10 @@ function setStudentLoan(plan, el) {
     const annual = Math.max(0, Math.round((p.salary - cfg.threshold) * cfg.rate));
     if (annual > 0) {
       insight.style.display = 'block';
-      insight.innerHTML = `Repayment: <strong style="color:var(--text)">£${annual.toLocaleString()}/yr (£${Math.round(annual/12).toLocaleString()}/mo)</strong> deducted from pay · ${cfg.label}`;
+      insight.innerHTML = `Repayment: <strong style="color:var(--text)">£${annual.toLocaleString()}/yr · £${Math.round(annual/12).toLocaleString()}/mo</strong>`;
     } else {
       insight.style.display = 'block';
-      insight.textContent = `You earn below the ${cfg.label.split('·')[0].trim()} threshold — no repayments until salary increases.`;
+      insight.textContent = `Below the repayment threshold — no deductions at your current salary.`;
     }
   } else {
     insight.style.display = 'none';
@@ -1472,6 +1752,14 @@ function setPensionType(type, el) {
   document.getElementById('pension-fixed-details').style.display = type==='fixed' ? 'block' : 'none';
   document.getElementById('pension-sliding-details').style.display = type==='sliding' ? 'block' : 'none';
   document.getElementById('pension-employer-details').style.display = type==='fixed-employer' ? 'block' : 'none';
+  // Show salary sacrifice question for any active pension type
+  const salSacQ = document.getElementById('sal-sac-q');
+  if (salSacQ) salSacQ.style.display = type === 'none' ? 'none' : 'block';
+}
+function setSalSac(val, el) {
+  p.salSac = val;
+  ['salsac-yes','salsac-no','salsac-unsure'].forEach(id => document.getElementById(id)?.classList.remove('selected'));
+  el.classList.add('selected');
 }
 function updatePensionInsight() {
   const mine = parseFloat(document.getElementById('inp-my-pension').value)||0;
@@ -1538,12 +1826,14 @@ function submitPension() {
 }
 
 // Screen 5 — credit card
+function setCreditCardSelect(type) {
+  if (!type) return;
+  p.creditCard = type;
+  document.getElementById('cc-rewards-hint').style.display = type==='rewards' ? 'block' : 'none';
+  document.getElementById('cc-basic-hint').style.display = type==='basic' ? 'block' : 'none';
+}
 function setCreditCard(type, el) {
   p.creditCard = type;
-  ['cc-rewards','cc-basic','cc-none'].forEach(id => {
-    const b = document.getElementById(id); if(b) b.classList.remove('selected');
-  });
-  el.classList.add('selected');
   document.getElementById('cc-rewards-hint').style.display = type==='rewards' ? 'block' : 'none';
   document.getElementById('cc-basic-hint').style.display = type==='basic' ? 'block' : 'none';
 }
@@ -1551,7 +1841,7 @@ function setCreditCard(type, el) {
 // Screen 5
 function setDebt(val, el) {
   p.hasDebt = val;
-  document.querySelectorAll('#debt-opts .ob-opt').forEach(b => b.classList.remove('selected'));
+  document.querySelectorAll('#ob-5 .ob-opt').forEach(b => b.classList.remove('selected'));
   el.classList.add('selected');
   document.getElementById('debt-details').style.display = val ? 'block' : 'none';
 }
@@ -1729,6 +2019,13 @@ function computeScore() {
   let s = 50; // base
   // Debt (-15 if has debt)
   if (p.hasDebt) s -= 15;
+  // Director expenses / corp tax saving
+  if (p.employment === 'director') {
+    const corpRate = (p.corpProfit||50000) <= 50000 ? 0.19 : 0.25;
+    const expSaving = Math.round(2000 * corpRate); // conservative £2k underclaimed expenses
+    segments.push({ label:'Director savings', val: expSaving + 500, color:'var(--purple)' });
+  }
+
   // Pension match gap (max ±8, not ±17)
   const gap = p.pensionMatch && p.employment!=='self' ? Math.max(0, p.empPct-p.myPct) : 0;
   if (gap === 0 && p.pensionMatch) s += 8;
@@ -1825,7 +2122,7 @@ function buildOpportunityBar() {
   if (p.pensionMatch && p.employment !== 'self' && p.myPct < p.empPct) {
     const gap = p.empPct - p.myPct;
     const gain = Math.round(p.salary * gap / 100);
-    segments.push({ label:'Pension match', val: gain, color:'var(--green)' });
+    segments.push({ label:'Pension match', val: gain, color:'var(--coral)' });
   }
 
   // Savings rate
@@ -1837,22 +2134,20 @@ function buildOpportunityBar() {
     }
   }
 
-  // ISA — assume full allowance remaining is the opportunity
+  // ISA
   const isaRem = 20000 - (p.isaUsed||0);
   if (isaRem > 5000) {
-    // Rough: if they invested it at 7% vs 0%, tax saving matters more
-    // Just show as a softer £ if in higher rate
     const taxSaving = band.band === 'higher' || band.band === 'sixty' ? Math.round(isaRem * 0.072 * 0.4) : Math.round(isaRem * 0.072 * 0.2);
-    if (taxSaving > 0) segments.push({ label:'ISA tax saving', val: taxSaving, color:'var(--coral)' });
+    if (taxSaving > 0) segments.push({ label:'ISA tax saving', val: taxSaving, color:'var(--amber)' });
   }
 
-  // Bills — static estimate
-  segments.push({ label:'Bills switching', val: 892, color:'var(--amber)' });
+  // Bills
+  segments.push({ label:'Bills switching', val: 892, color:'var(--purple)' });
 
   // Credit card rewards
   if (p.creditCard === 'basic' || p.creditCard === 'none') {
     const spend = Math.round((p.salary||36000) * 0.25);
-    segments.push({ label:'Card rewards', val: Math.round(spend * 0.01), color:'var(--purple)' });
+    segments.push({ label:'Card rewards', val: Math.round(spend * 0.01), color:'#4DA8FF' });
   }
 
   const total = segments.reduce((s, x) => s + x.val, 0);
@@ -1932,37 +2227,158 @@ function buildNudges() {
   const nudges = [];
   const t = calcTax(p.salary);
   const band = getSalaryBand(p.salary);
+  const taxRate = p.salary > 50270 ? 0.4 : 0.2;
+  const isPAYE = p.employment === 'paye' || p.employment === 'both';
 
-  // Pension nudge
-  if (p.pensionMatch && p.employment !== 'self' && p.myPct < p.empPct) {
+  const isDirector = p.employment === 'director';
+
+  // ── DIRECTOR NUDGES ──────────────────────────────────
+  if (isDirector) {
+    // 1. Salary/dividend split optimisation
+    if (p.dirPayType === 'salary' || p.dirPayType === 'unsure') {
+      const salary = p.salary || 50000;
+      const optimal = 12570;
+      const divs = Math.max(0, salary - optimal);
+      const divTax = Math.round(divs * 0.0875); // basic rate dividend tax
+      const incomeTax = Math.round(divs * 0.20); // basic rate income tax
+      const saving = incomeTax - divTax;
+      if (saving > 0) nudges.push(makeNudge({
+        color:'var(--purple)', tag:'Director · Pay Structure',
+        headline:`Taking salary above £12,570 may cost you £${saving.toLocaleString()}/yr`,
+        sub:`Dividends are taxed at 8.75% (basic rate) vs 20% income tax. The optimal structure: £12,570 salary + dividends for the rest.`,
+        breakdown:[
+          ['Optimal salary','£12,570/yr (uses personal allowance)',false],
+          ['Dividend tax (8.75%)','vs 20% income tax',true],
+          ['Potential annual saving',`£${saving.toLocaleString()}/yr`,true],
+        ],
+        cta:{text:'HMRC dividend guidance →',url:'https://www.gov.uk/tax-on-dividends',bg:'var(--green)'}
+      }));
+    }
+
+    // 2. Dividend allowance — everyone gets £500 tax-free
+    nudges.push(makeNudge({
+      color:'var(--purple)', tag:'Director · Dividends',
+      headline:`First £500 of dividends each year are completely tax-free`,
+      sub:`The dividend allowance is £500/yr (2025/26). Make sure you're using it — it doesn't carry forward.`,
+      breakdown:[
+        ['Dividend allowance 2025/26','£500',true],
+        ['Tax on dividends above this','8.75% (basic rate)',false],
+        ['Resets','5 April each year',false],
+      ],
+      cta:{text:'HMRC dividend tax →',url:'https://www.gov.uk/tax-on-dividends',bg:'var(--amber)'}
+    }));
+
+    // 3. Company pension contributions — most tax-efficient way to save
+    const corpProfit = p.corpProfit || (p.salary || 50000);
+    const corpRate = corpProfit <= 50000 ? 0.19 : 0.25;
+    const pensionSaving = Math.round(10000 * corpRate); // example: £10k contribution
+    nudges.push(makeNudge({
+      color:'var(--purple)', tag:'Director · Pension',
+      headline:`Pay into pension via your company — saves corp tax and NI`,
+      sub:`Employer pension contributions are a deductible business expense. No NI on them either. Far more efficient than taking salary then contributing personally.`,
+      breakdown:[
+        ['Corporation tax rate',`${Math.round(corpRate*100)}%`,false],
+        ['Corp tax saved on £10k contribution',`£${pensionSaving.toLocaleString()}`,true],
+        ['NI saving','£0 (vs salary)',true],
+      ],
+      cta:{text:'Pension via limited company →',url:'https://www.gov.uk/government/publications/pension-contributions-for-company-directors',bg:'var(--green)'}
+    }));
+
+    // 4. Claimable expenses — most directors underclaim
+    nudges.push(makeNudge({
+      color:'var(--purple)', tag:'Director · Expenses',
+      headline:`Most directors underclaim expenses — reducing corp tax`,
+      sub:`Each £1 of legitimate expenses reduces corporation tax by 19–25p. Home office, phone, mileage, equipment, accountant fees all qualify.`,
+      breakdown:[
+        ['Home office (£6/wk HMRC flat rate)','£312/yr',true],
+        ['Business mileage (45p/mile)','Varies',true],
+        ['Phone (100% if business use)','Full cost',true],
+      ],
+      cta:{text:'HMRC expenses for directors →',url:'https://www.gov.uk/expenses-and-benefits-directors',bg:'var(--blue)'}
+    }));
+
+    // 5. Employment Allowance — if not claimed or unsure
+    if (p.employmentAllowance === false || p.employmentAllowance === null) {
+      nudges.push(makeNudge({
+        color:'var(--purple)', tag:'Director · Employment Allowance',
+        headline:`Employment Allowance could wipe out £5,000/yr of employer NI`,
+        sub:`If you have employees (other than yourself as a sole director), you likely qualify. Claimed via your payroll software or accountant.`,
+        breakdown:[
+          ['Maximum allowance','£5,000/yr',true],
+          ['Eligible if','You have other employees',false],
+          ['Sole director-employee','Not eligible',false,true],
+        ],
+        cta:{text:'Check eligibility →',url:'https://www.gov.uk/claim-employment-allowance',bg:'var(--purple)'}
+      }));
+    }
+
+    // 6. Corporation tax rate — awareness
+    if (p.corpProfit > 50000) {
+      const rate = p.corpProfit <= 250000
+        ? ((0.19 + (p.corpProfit-50000)/(200000)*(0.06))*100).toFixed(1)
+        : '25';
+      nudges.push(makeNudge({
+        color:'var(--purple)', tag:'Director · Corp Tax',
+        headline:`Your corp tax rate is ~${rate}% — pension and expenses reduce it`,
+        sub:`At profits above £50,000 you're in marginal relief territory. Every £1 of deductible expenses or pension saves ${rate}p in corp tax.`,
+        breakdown:[
+          ['Small profits rate (≤£50k)','19%',false],
+          ['Main rate (>£250k)','25%',false],
+          ['Your effective rate',`~${rate}%`,false],
+        ],
+        cta:{text:'HMRC corp tax guidance →',url:'https://www.gov.uk/corporation-tax-rates',bg:'var(--coral)'}
+      }));
+    }
+  }
+
+  // 1. Pension match gap
+  if (p.pensionMatch && isPAYE && p.myPct < p.empPct) {
     const gap = p.empPct - p.myPct;
     const gainGross = Math.round((p.salary * gap / 100) / 12);
-    const taxRate   = p.salary > 50270 ? 0.4 : 0.2;
-    const niRate    = p.salary > 50270 ? 0.02 : 0.08;
-    const netCost   = Math.round(gainGross * (1 - taxRate - niRate));
-    const relief    = gainGross - netCost;
+    const niRate = p.salary > 50270 ? 0.02 : 0.08;
+    const netCost = Math.round(gainGross * (1 - taxRate - niRate));
+    const relief = gainGross - netCost;
     nudges.push(makeNudge({
-      color:'var(--green)', tag:'Pension',
-      headline: `Your employer will match up to £${gainGross}/mo you're not claiming`,
-      sub: `They match up to ${p.empPct}% — you're only contributing ${p.myPct}%. That's free money.`,
+      color:'var(--green)', tag:'Pension · Free Money',
+      headline: `Unclaimed employer match — ${p.empPct - p.myPct}% you're not taking`,
+      impact: `+£${gainGross}/mo into your pension`,
+      sub: `Your employer matches up to ${p.empPct}% but you only contribute ${p.myPct}%. The gap is pure free money.`,
       breakdown: [
-        ['Net cost to you', `£${netCost}/mo take-home`, false],
+        ['Net cost to you', `£${netCost}/mo`, false],
         ['Tax + NI relief', `£${relief}/mo`, true],
         ['Employer match gained', `£${gainGross}/mo`, true],
-        ['Total extra into pension', `£${gainGross*2}/mo`, true],
       ],
       cta: { text:'How to increase contributions →', url:'https://www.gov.uk/workplace-pensions/what-you-your-employer-and-the-government-pay', bg:'var(--green)' }
     }));
   }
 
-  // Tax band / 60% zone
+  // 2. Higher rate pension relief — only if NOT salary sacrifice
+  if (isPAYE && p.salary > 50270 && p.myPct > 0 && p.salSac !== true) {
+    const personalContrib = Math.round(p.salary * (p.myPct/100));
+    const extraRelief = Math.round(personalContrib * 0.2);
+    nudges.push(makeNudge({
+      color:'var(--green)', tag:'Pension · Tax Relief',
+      headline: `You're owed £${extraRelief.toLocaleString()} pension tax relief you haven't claimed`,
+      impact: `£${extraRelief.toLocaleString()}/yr via Self Assessment`,
+      sub: `As a 40% taxpayer, HMRC only gives you 20% relief automatically. The other 20% must be claimed.`,
+      breakdown: [
+        ['Pension contributions/yr', `£${personalContrib.toLocaleString()}`, false],
+        ['Auto 20% relief (already got)', `£${Math.round(personalContrib*0.2).toLocaleString()}`, false],
+        ['Extra 20% to claim', `£${extraRelief.toLocaleString()}`, true],
+      ],
+      cta: { text:'Claim via Self Assessment →', url:'https://www.gov.uk/self-assessment-tax-returns', bg:'var(--green)' }
+    }));
+  }
+
+  // 3. Tax band / 60% zone
   if (band.band === 'higher' && p.salary < 100000) {
     const over = p.salary - 50270;
     const saving = Math.round(over * 0.2);
     nudges.push(makeNudge({
-      color:'var(--amber)', tag:'Tax Band',
+      color:'var(--coral)', tag:'Tax Band',
       headline: `Paying 40% tax on £${over.toLocaleString()} of your income`,
-      sub: `Salary sacrifice into your pension could drop you to basic rate — saving £${saving.toLocaleString()}/yr.`,
+      impact: `£${saving.toLocaleString()}/yr potentially avoidable`,
+      sub: `Salary sacrifice into your pension reduces taxable income — could save £${saving.toLocaleString()}/yr.`,
       breakdown: [
         ['Income in 40% band', `£${over.toLocaleString()}/yr`, false],
         ['Tax you could avoid', `£${saving.toLocaleString()}/yr`, true],
@@ -1972,10 +2388,12 @@ function buildNudges() {
     }));
   }
   if (band.band === 'sixty') {
+    const saving = Math.round((p.salary - 100000) * 0.6);
     nudges.push(makeNudge({
       color:'var(--coral)', tag:'60% Tax Zone',
       headline: `You're in the 60% effective tax zone`,
-      sub: `Your personal allowance is being withdrawn. Pension contributions are one of the few ways out.`,
+      impact: `Up to £${saving.toLocaleString()}/yr at stake`,
+      sub: `Your personal allowance is being withdrawn between £100k–£125,140. Pension contributions are one of the few exits.`,
       breakdown: [
         ['Income range affected', '£100,000 – £125,140', false],
         ['Effective rate in this band', '60%', false],
@@ -1985,12 +2403,30 @@ function buildNudges() {
     }));
   }
 
-  // ISA
+  // 4. WFH tax relief — PAYE employees
+  if (isPAYE && p.wfh) {
+    const relief = p.salary > 50270 ? 124.80 : 62.40;
+    nudges.push(makeNudge({
+      color:'var(--coral)', tag:'WFH Relief',
+      headline: `Claim £${relief}/yr tax relief for working from home`,
+      impact: `£${relief}/yr — takes 5 mins`,
+      sub: `HMRC allows £6/week flat rate if your employer requires you to WFH. Backdatable 4 years.`,
+      breakdown: [
+        ['Flat rate', '£6/week (HMRC approved)', false],
+        ['Annual relief at your rate', `£${relief}/yr`, true],
+        ['Backdatable', 'Up to 4 tax years', true],
+      ],
+      cta: { text:'Claim via Personal Tax Account →', url:'https://www.gov.uk/tax-relief-for-employees/working-at-home', bg:'var(--blue)' }
+    }));
+  }
+
+  // 5. ISA expiry
   const isaRem = 20000 - (p.isaUsed||0);
   nudges.push(makeNudge({
-    color:'var(--coral)', tag:'ISA',
-    headline: `£${isaRem.toLocaleString()} ISA allowance expires in 24 days`,
-    sub: `Savings sitting outside a tax-free wrapper — move them before 5 April.`,
+    color:'var(--coral)', tag:'ISA · Deadline',
+    headline: `£${isaRem.toLocaleString()} ISA allowance expires 5 April`,
+    impact: `Use it or lose it — 23 days left`,
+    sub: `Savings outside a tax-free wrapper will generate taxable interest. Takes 10 minutes to open.`,
     breakdown: [
       ['ISA used this tax year', `£${(p.isaUsed||0).toLocaleString()}`, false],
       ['Remaining allowance', `£${isaRem.toLocaleString()}`, true],
@@ -2003,78 +2439,50 @@ function buildNudges() {
     ]
   }));
 
-  // Savings tax
+  // 6. Savings tax
   const outsideIsa = (p.savings||0) - (p.isaUsed||0);
   if (outsideIsa > 0) {
     const interest = Math.round(outsideIsa * 0.045);
     const psa = p.salary > 50270 ? 500 : 1000;
     if (interest > psa) {
       const taxable = interest - psa;
-      const taxAmt  = Math.round(taxable * (p.salary>50270?0.4:0.2));
+      const taxAmt  = Math.round(taxable * taxRate);
       nudges.push(makeNudge({
-        color:'var(--purple)', tag:'Savings Tax',
-        headline: `You're paying tax on savings interest without realising`,
-        sub: `£${outsideIsa.toLocaleString()} outside an ISA is generating taxable interest of ~£${interest.toLocaleString()}/yr.`,
+        color:'var(--amber)', tag:'Savings Tax',
+        headline: `~£${taxAmt}/yr quietly taken by HMRC from your savings`,
+        impact: `~£${taxAmt}/yr tax bill arriving`,
+        sub: `£${outsideIsa.toLocaleString()} outside an ISA earns ~£${interest.toLocaleString()}/yr interest. Only £${psa.toLocaleString()} is tax-free at your rate.`,
         breakdown: [
           ['Savings outside ISA', `£${outsideIsa.toLocaleString()}`, false],
           ['Interest at 4.5%', `~£${interest.toLocaleString()}/yr`, false],
-          ['Your tax-free allowance', `£${psa.toLocaleString()}`, false],
-          ['HMRC collects via tax code', `~£${taxAmt}/yr`, false, true],
+          ['Taxable above allowance', `~£${taxAmt}/yr`, false, true],
         ],
         cta: { text:'Move to ISA →', url:'https://www.gov.uk/individual-savings-accounts', bg:'var(--purple)' }
       }));
     }
   }
 
-  // Energy (always)
-  nudges.push(makeNudge({
-    color:'var(--blue)', tag:'Energy',
-    headline: `Your energy bill jumped £38 last month`,
-    sub: `Could save ~£348/yr by switching. Takes 3 minutes.`,
-    breakdown: [
-      ['Current monthly bill', '£187/mo', false],
-      ['Best available tariff', '£158/mo', true],
-      ['Annual saving', '~£348/yr', true],
-    ],
-    cta: { text:'Compare on Uswitch →', url:'https://www.uswitch.com/gas-electricity/journey/postcode/', bg:'var(--blue)' }
-  }));
-
-  // Rent reporting (renters only)
-  if (p.housing === 'rent') {
-    nudges.push(makeNudge({
-      color:'var(--purple)', tag:'Credit Score',
-      headline: `Your rent payments aren't building your credit score`,
-      sub: `Report them to Experian, Equifax and TransUnion. Could add 20–40 points — free to do.`,
-      breakdown: [
-        ['Rent reported to bureaus', 'Not yet', false],
-        ['Potential score boost', '+20–40 points', true],
-        ['Mortgage eligibility impact', 'Significant', true],
-        ['Cost', 'Free', true],
-      ],
-      cta: { text:'Start with CreditLadder — free →', url:'https://www.creditladder.co.uk', bg:'var(--purple)' }
-    }));
-  }
-
-  // Savings rate nudge — if savings exist
+  // 7. Savings rate
   if ((p.savings||0) > 1000) {
     const currentRate = p.savingsRate || 1.5;
-    const bankName    = p.savingsBank ? ({lloyds:'Lloyds',barclays:'Barclays',hsbc:'HSBC',natwest:'NatWest',santander:'Santander',monzo:'Monzo',starling:'Starling',chase:'Chase'}[p.savingsBank] || 'your bank') : 'your bank';
-    const bestRate    = 0.052;
-    const currentYr   = Math.round((p.savings||0) * currentRate / 100);
-    const bestYr      = Math.round((p.savings||0) * bestRate);
-    const gain        = bestYr - currentYr;
+    const bankName = p.savingsBank ? ({lloyds:'Lloyds',barclays:'Barclays',hsbc:'HSBC',natwest:'NatWest',santander:'Santander',monzo:'Monzo',starling:'Starling',chase:'Chase'}[p.savingsBank]||'your bank') : 'your bank';
+    const bestRate = 0.052;
+    const currentYr = Math.round((p.savings||0) * currentRate / 100);
+    const bestYr = Math.round((p.savings||0) * bestRate);
+    const gain = bestYr - currentYr;
     if (gain > 50 && currentRate < 4.5) {
       nudges.push(makeNudge({
         color:'var(--green)', tag:'Savings Rate',
-        headline: `${bankName} is costing you £${gain.toLocaleString()}/yr in lost interest`,
+        headline: `${bankName} is costing you £${gain.toLocaleString()}/yr`,
+        impact: `£${gain.toLocaleString()}/yr lost to low rate`,
         sub: `At ${currentRate}%, your £${(p.savings||0).toLocaleString()} earns £${currentYr.toLocaleString()}/yr. Easy-access accounts now pay up to 5.2%.`,
         breakdown: [
           [`${bankName} (${currentRate}%)`, `£${currentYr.toLocaleString()}/yr`, false],
           ['Best easy-access (~5.2%)', `£${bestYr.toLocaleString()}/yr`, true],
-          ['Extra for 10 mins work', `£${gain.toLocaleString()}/yr`, true],
+          ['Extra for 10 mins', `£${gain.toLocaleString()}/yr`, true],
         ],
         ctaMulti: [
-          { text:'Chase Saver — 5.1% AER, instant access', url:'https://www.chase.co.uk/gb/en/product/savings/', bg:'var(--green)' },
+          { text:'Chase Saver — 5.1% AER', url:'https://www.chase.co.uk/gb/en/product/savings/', bg:'var(--green)' },
           { text:'Chip — up to 5.2% AER', url:'https://getchip.uk/savings', bg:'var(--card3)', color:'var(--text)' },
           { text:'Compare all rates — MoneySavingExpert', url:'https://www.moneysavingexpert.com/savings/savings-accounts-best-interest/', bg:'var(--card3)', color:'var(--text)' },
         ]
@@ -2082,26 +2490,57 @@ function buildNudges() {
     }
   }
 
-  // Credit card rewards nudge — if using basic card or debit only
+  // 8. Credit card rewards
   if (p.creditCard === 'basic' || p.creditCard === 'none') {
-    // Estimate £800/mo typical spending → ~£9,600/yr
-    const spend = Math.round((p.salary||36000) * 0.25); // rough 25% of salary as discretionary spend
-    const cashbackEst = Math.round(spend * 0.01); // 1% avg cashback on Amex
+    const spend = Math.round((p.salary||36000) * 0.25);
+    const cashbackEst = Math.round(spend * 0.01);
     nudges.push(makeNudge({
       color:'var(--amber)', tag:'Rewards Card',
-      headline: `You could earn ~£${cashbackEst.toLocaleString()}/yr on your existing spending`,
+      headline: `Same spending, ~£${cashbackEst}/yr cashback — for free`,
+      impact: `~£${cashbackEst}/yr on existing spend`,
       sub: `A rewards card cleared monthly costs nothing extra. You're leaving cashback or Avios on the table.`,
       breakdown: [
         ['Est. annual card spend', `~£${spend.toLocaleString()}`, false],
-        ['Amex Cashback (1% avg)', `~£${cashbackEst.toLocaleString()}/yr`, true],
-        ['Amex Avios (BA/hotel points)', 'Worth £100–£300+ in flights', true],
-        ['Annual fee (basic cards)', '£0 – £25/yr', false],
+        ['Amex Cashback (~1%)', `~£${cashbackEst.toLocaleString()}/yr`, true],
+        ['Annual fee (basic)', '£0', false],
       ],
       ctaMulti: [
         { text:'Amex Platinum Cashback (1.25%)', url:'https://www.americanexpress.com/en-gb/credit-cards/cashback-credit-cards/', bg:'var(--amber)' },
-        { text:'Amex BA Avios — 5,000 bonus Avios', url:'https://www.americanexpress.com/en-gb/credit-cards/british-airways/', bg:'var(--card3)', color:'var(--text)' },
-        { text:'Chase Cashback — 1% on all spending', url:'https://www.chase.co.uk/gb/en/product/debit-card/', bg:'var(--card3)', color:'var(--text)' },
+        { text:'Amex BA Avios — 5,000 bonus', url:'https://www.americanexpress.com/en-gb/credit-cards/british-airways/', bg:'var(--card3)', color:'var(--text)' },
+        { text:'Chase Cashback — 1% all spending', url:'https://www.chase.co.uk/gb/en/product/debit-card/', bg:'var(--card3)', color:'var(--text)' },
       ]
+    }));
+  }
+
+  // 12. Rent reporting (renters)
+  if (p.housing === 'rent') {
+    nudges.push(makeNudge({
+      color:'var(--purple)', tag:'Credit Score',
+      headline: `Your rent isn't building your credit score — it should be`,
+      impact: `+20–40 credit pts · free`,
+      sub: `Report to Experian, Equifax and TransUnion via CreditLadder. Helps mortgage eligibility.`,
+      breakdown: [
+        ['Rent reported to bureaus', 'Not yet', false],
+        ['Potential score boost', '+20–40 points', true],
+        ['Cost', 'Free', true],
+      ],
+      cta: { text:'Start with CreditLadder — free →', url:'https://www.creditladder.co.uk', bg:'var(--purple)' }
+    }));
+  }
+
+  // 13. Check tax code — if payslip scanned and code is non-standard
+  if (p.taxCode && p.taxCode !== '1257L' && p.taxCode !== '1257L W1' && p.taxCode !== '1257L M1') {
+    nudges.push(makeNudge({
+      color:'var(--coral)', tag:'Tax Code',
+      headline: `Your tax code (${p.taxCode}) may be wrong — check it`,
+      impact: `Could mean £200–£500 overpaid`,
+      sub: `The standard code is 1257L. Non-standard codes often mean you're over or underpaying tax without realising.`,
+      breakdown: [
+        ['Your tax code', p.taxCode, false],
+        ['Standard code', '1257L', false],
+        ['Avg overpayment if wrong', '£200–£500+/yr', false, true],
+      ],
+      cta: { text:'Check via Personal Tax Account →', url:'https://www.gov.uk/check-income-tax-current-year', bg:'var(--coral)' }
     }));
   }
 
@@ -2109,29 +2548,58 @@ function buildNudges() {
   document.getElementById('action-count').textContent = nudges.length + ' actions';
 }
 
-function makeNudge({color, tag, headline, sub, breakdown, cta, ctaMulti}) {
-  const rows = breakdown.slice(0,3).map(([label, val, pos, neg]) =>
+function makeNudge({color, tag, headline, sub, breakdown, cta, ctaMulti, impact, wide, _card}) {
+  const rows = (breakdown||[]).slice(0,3).map(([label, val, pos, neg]) =>
     `<div class="bd-row"><span class="bd-label">${label}</span><span class="bd-val${pos?' pos':neg?' neg':''}">${val}</span></div>`
   ).join('');
   let ctaHtml = '';
   if (ctaMulti) {
     ctaHtml = `<a class="cta" style="background:${ctaMulti[0].bg}" href="${ctaMulti[0].url}" target="_blank">${ctaMulti[0].text}</a>`;
-    ctaMulti.slice(1).forEach(c =>
-      ctaHtml += `<a class="cta cta-secondary" href="${c.url}" target="_blank">${c.text}</a>`
-    );
+    ctaMulti.slice(1).forEach(c => ctaHtml += `<a class="cta cta-secondary" href="${c.url}" target="_blank">${c.text}</a>`);
   } else if (cta) {
     ctaHtml = `<a class="cta" style="background:${cta.bg}" href="${cta.url}" target="_blank">${cta.text}</a>`;
   }
-  return `<div class="nudge" onclick="toggleNudge(this)">
-    <div class="nudge-main">
-      <div class="nudge-dot" style="background:${color}"></div>
-      <div class="nudge-body">
-        <div class="nudge-tag" style="color:${color}">${tag}</div>
-        <div class="nudge-headline">${headline}</div>
-        <div class="nudge-sub">${sub}</div>
+
+  // Full card mode — used by Missing Out section (pure CSS toggle, no inline display)
+  if (_card) {
+    return `<div class="nudge" style="margin:0 14px 7px;border-radius:var(--radius);overflow:hidden;cursor:pointer;" onclick="toggleNudge(this)">
+      <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;">
+        <div style="width:8px;height:8px;border-radius:50%;flex-shrink:0;background:${color}"></div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:${color}">${tag}</div>
+          <div style="font-size:14px;font-weight:700;color:var(--text);letter-spacing:-0.02em;line-height:1.25;margin-top:1px;">${headline}</div>
+          ${impact ? `<div class="nudge-impact" style="color:${color}">${impact}</div>` : ''}
+          <div class="card-nudge-sub">${sub}</div>
+        </div>
+        <div class="nudge-caret">›</div>
       </div>
-      <div class="nudge-caret">›</div>
+      <div class="breakdown">${rows}${ctaHtml}</div>
+    </div>`;
+  }
+
+  // Tile mode — For You grid
+  // Parse impact: extract £ amount, normalise unit label, always green
+  let amtHtml = '';
+  if (impact) {
+    // Match patterns like £184/mo, £1,240/yr, ~£348/yr, +£184/mo
+    const m = impact.match(/([+~]?£[\d,]+)\s*\/?(\w+)?/);
+    if (m) {
+      const amt = m[1];
+      const rawUnit = (m[2] || 'yr').toLowerCase();
+      const unit = rawUnit === 'mo' || rawUnit === 'month' ? 'per month' : 'per year';
+      amtHtml = `<div class="nudge-amt">${amt}</div><div class="nudge-unit">${unit}</div>`;
+    } else {
+      amtHtml = `<div class="nudge-amt" style="font-size:14px;">${impact}</div>`;
+    }
+  }
+  return `<div class="nudge" onclick="toggleNudge(this)">
+    <div class="nudge-face">
+      <div class="nudge-dot" style="background:${color}"></div>
+      <div class="nudge-tag">${tag}</div>
+      ${amtHtml}
+      <div class="nudge-headline">${headline}</div>
     </div>
+    <div class="nudge-sub-wrap"><div class="nudge-sub">${sub}</div></div>
     <div class="breakdown">${rows}${ctaHtml}</div>
   </div>`;
 }
@@ -2213,97 +2681,189 @@ function showLoginScreen() {
 }
 
 // ═══════════════════════════════
-// BUILD MISSING OUT — relevant band only
+// BUILD MISSING OUT — universal
 // ═══════════════════════════════
 function buildMissingOut() {
   const band = getSalaryBand(p.salary).band;
+  const taxRate = p.salary > 50270 ? 0.4 : 0.2;
+  const isPAYE = p.employment === 'paye' || p.employment === 'both';
   const cards = [];
 
-  if (band === 'none' || band === 'basic') {
-    // Lower earners
-    document.getElementById('missing-band-label').textContent = 'Lower earner entitlements';
-    cards.push(makeNudge({ color:'var(--green)', tag:'Help to Save',
-      headline:'Government tops up your savings by 50%',
-      sub:'Up to £1,200 free over 4 years if you\'re on Universal Credit.',
-      breakdown:[['Government bonus','50p per £1 saved',true],['Max over 4 years','£1,200',true]],
-      cta:{text:'Check eligibility on Gov.uk →',url:'https://www.gov.uk/get-help-savings-low-income',bg:'var(--green)'}
+  // Energy — always shown first
+  cards.push(makeNudge({_card:true, color:'var(--blue)', tag:'Energy',
+    headline:`Could save ~£348/yr on your energy bill by switching`,
+    impact:`~£348/yr · 3 mins to compare`,
+    sub:`Your estimated bill is £187/mo. Best available tariff is £158/mo.`,
+    breakdown:[
+      ['Current monthly bill','~£187/mo',false],
+      ['Best available tariff','~£158/mo',true],
+      ['Annual saving','~£348/yr',true],
+    ],
+    cta:{text:'Compare on Uswitch →',url:'https://www.uswitch.com/gas-electricity/journey/postcode/',bg:'var(--blue)'}
+  }));
+
+  // Cycle to Work — PAYE only, and only if employer offers it (or unknown)
+  if (isPAYE && p.employerCTW !== false) {
+    const saving = p.salary > 50270 ? 500 : 320;
+    cards.push(makeNudge({_card:true, color:'var(--green)', tag:'Cycle to Work',
+      headline:`Save ~£${saving} on a bike through salary sacrifice`,
+      impact:`~£${saving} off a £1,000 bike`,
+      sub:`Payments come off before tax and NI. Ask HR if your employer runs a scheme — most large employers do.`,
+      breakdown:[['Tax + NI saving',`~£${saving}`,true],['Net cost after saving',`~£${1000-saving}`,false],['Eligible bikes','Any value',false]],
+      cta:{text:'Check via Cyclescheme →',url:'https://www.cyclescheme.co.uk',bg:'var(--green)'}
     }));
-    cards.push(makeNudge({ color:'var(--blue)', tag:'Council Tax',
-      headline:'You might be entitled to a council tax reduction',
-      sub:'Single occupant discount alone is worth ~£525/yr.',
-      breakdown:[['Single person discount','25%',true],['Potential saving','~£525/yr',true]],
-      cta:{text:'Check your entitlement →',url:'https://www.gov.uk/apply-for-council-tax-discount',bg:'var(--blue)'}
+  }
+
+  // Gift Aid — show for everyone (no longer gated on charity question)
+  {
+    const giftAidRelief = p.salary > 50270 ? '40%' : '20%';
+    cards.push(makeNudge({_card:true, color:'var(--green)', tag:'Gift Aid',
+      headline:`You're likely owed tax back on your donations`,
+      impact:`${giftAidRelief} of donations reclaimed`,
+      sub:`Charities claim 20% automatically. As a ${taxRate*100}% taxpayer, HMRC owes you the rest — claim via Self Assessment. Backdatable 4 years.`,
+      breakdown:[['Charity claims automatically','20%',false],[`Extra you must claim`,p.salary>50270?'20% more':'Nothing extra (basic rate)',p.salary>50270],['Method','Self Assessment',false]],
+      cta:{text:'Claim on Self Assessment →',url:'https://www.gov.uk/self-assessment-tax-returns',bg:'var(--green)'}
     }));
-    if (p.children) {
-      const age = p.childAge || 3;
-      if (age < 5) {
-        cards.push(makeNudge({ color:'var(--amber)', tag:'Free Childcare',
-          headline:'Working parents can get up to 30 hours free childcare',
-          sub:'Worth £8k–£18k/yr depending on area — apply each term.',
-          breakdown:[['Free hours per week','Up to 30 hrs',true],['Eligible age','9 months – 4 years',false],['Typical annual value','£8,000–£18,000',true]],
-          cta:{text:'Check on Childcare Choices →',url:'https://www.childcarechoices.gov.uk/',bg:'var(--amber)'}
-        }));
-      }
-    }
-    cards.push(makeNudge({ color:'var(--text3)', tag:'Benefits Check',
-      headline:'Many working families qualify for Universal Credit and don\'t know it',
-      sub:'Income, rent, and children all affect eligibility.',
-      breakdown:[['Average award','£500–£1,200/mo',true]],
-      cta:{text:'Check eligibility →',url:'https://www.gov.uk/universal-credit/eligibility',bg:'var(--text2)',extra:'color:#111'}
+  }
+
+  // Professional subscriptions — universal
+  cards.push(makeNudge({_card:true, color:'var(--blue)', tag:'Professional Subs',
+    headline:`HMRC-approved subscriptions get ${taxRate*100}% tax relief`,
+    impact:`Up to £78/yr on a £195 membership`,
+    sub:`CIPD, CFA, Law Society, BMA, RICS and hundreds more. Claim via Self Assessment if you pay yourself.`,
+    breakdown:[['Examples','CIPD, CFA, BMA, RICS',false],['Relief rate',`${taxRate*100}% of cost`,true],['Backdatable','Up to 4 years',true]],
+    cta:{text:'HMRC approved list →',url:'https://www.gov.uk/tax-relief-for-employees/professional-fees-and-subscriptions',bg:'var(--blue)'}
+  }));
+
+  // Mileage — only if they confirmed they drive for work
+  if (p.hasMileage) {
+    const miles = parseInt(document.getElementById('inp-miles')?.value) || 3000;
+    const claim = Math.min(miles, 10000) * 0.45 + Math.max(0, miles - 10000) * 0.25;
+    cards.push(makeNudge({_card:true, color:'var(--amber)', tag:'Mileage Relief',
+      headline:`Claim 45p/mile on your ${miles.toLocaleString()} work miles`,
+      impact:`~£${Math.round(claim).toLocaleString()}/yr you can claim`,
+      sub:`If your employer pays less than 45p/mile (or nothing), claim the difference. Commuting doesn't count — only work trips.`,
+      breakdown:[['Your work miles',`~${miles.toLocaleString()}/yr`,false],['HMRC rate','45p/mile (first 10,000)',true],['Potential claim',`£${Math.round(claim).toLocaleString()}`,true]],
+      cta:{text:'Claim via P87 →',url:'https://www.gov.uk/guidance/claim-income-tax-relief-for-your-employment-expenses-p87',bg:'var(--amber)'}
     }));
-  } else if (band === 'higher') {
-    // Mid earners
-    document.getElementById('missing-band-label').textContent = 'Mid to higher earner opportunities';
-    if (p.married) {
-      cards.push(makeNudge({ color:'var(--text3)', tag:'Marriage Allowance',
-        headline:'You and your partner might save £252 a year on tax',
-        sub:'Most couples who qualify never claim this.',
-        breakdown:[['Annual saving','£252/yr',true],['Backdatable','Up to 4 years',true],['Eligible','Married / civil partners',false]],
-        cta:{text:'Check on HMRC →',url:'https://www.gov.uk/marriage-allowance',bg:'var(--text2)',extra:'color:#111'}
-      }));
-    }
-    if (p.children) {
-      cards.push(makeNudge({ color:'var(--text3)', tag:'Child Benefit',
-        headline:'You may be able to keep more of your Child Benefit',
-        sub:'Worth up to £1,331 per child. Pension contributions can reduce the clawback.',
-        breakdown:[['Clawback starts at','£60,000',false],['Fully withdrawn at','£80,000',false],['Worth per child/yr','Up to £1,331',true]],
-        cta:{text:'Learn more →',url:'https://www.gov.uk/child-benefit-tax-charge',bg:'var(--text2)',extra:'color:#111'}
-      }));
-    }
-    cards.push(makeNudge({ color:'var(--text3)', tag:'60% Tax Zone',
-      headline:'Earning over £100,000 triggers a 60% effective tax rate',
-      sub:'Personal allowance is withdrawn. Pension contributions are one of the few ways to avoid it.',
-      breakdown:[['Range affected','£100k – £125,140',false],['Effective rate','60%',false]],
-      cta:{text:'Calculate your saving →',url:'https://www.gov.uk/income-tax-rates',bg:'var(--text2)',extra:'color:#111'}
+  }
+
+  // Uniform relief — universal (can't know industry without asking)
+  cards.push(makeNudge({_card:true, color:'var(--purple)', tag:'Uniform Relief',
+    headline:`Wear a uniform or protective clothing? Claim tax back`,
+    impact:`£60–£140/yr depending on job`,
+    sub:`HMRC has flat rates by industry — nurses, retail, construction, police and many more. Backdatable 4 years. Takes 5 minutes.`,
+    breakdown:[['Nurses','£125/yr',true],['Construction','£140/yr',true],['Retail','£60/yr',true]],
+    cta:{text:'Claim via HMRC →',url:'https://www.gov.uk/tax-relief-for-employees/uniforms-work-clothing-and-tools',bg:'var(--purple)'}
+  }));
+
+  // CGT — only if they have investments outside ISA
+  if (p.hasInvestments) {
+    cards.push(makeNudge({_card:true, color:'var(--blue)', tag:'CGT Allowance',
+      headline:`£3,000 of investment gains are tax-free every year`,
+      impact:`Worth £540–£720 in tax saved`,
+      sub:`Sell assets before 5 April to use this year's allowance. Resets annually — any unused amount is lost.`,
+      breakdown:[['Annual exempt amount','£3,000',true],['CGT rate (basic rate)','18%',false],['CGT rate (higher rate)','24%',false]],
+      cta:{text:'HMRC guidance →',url:'https://www.gov.uk/capital-gains-tax/allowances',bg:'var(--blue)'}
     }));
-  } else if (band === 'sixty' || band === 'add') {
-    // Higher earners
-    document.getElementById('missing-band-label').textContent = 'Higher earner strategies';
-    cards.push(makeNudge({ color:'var(--amber)', tag:'Salary Sacrifice',
-      headline:'Reduce your tax bill beyond just pension',
-      sub:'Electric car, cycle to work, childcare — all come off before tax.',
-      breakdown:[['Electric car (typical)','£3,000–£6,000/yr',true],['Cycle to work','Up to £500/yr',true]],
-      cta:{text:'Explore schemes →',url:'https://www.gov.uk/guidance/salary-sacrifice-and-the-effects-on-paye',bg:'var(--amber)'}
+  }
+
+  // ISA for partner
+  if (p.married) {
+    cards.push(makeNudge({_card:true, color:'var(--coral)', tag:'Partner ISA',
+      headline:`You each have a £20,000 ISA allowance — not shared`,
+      impact:`£40,000/yr combined, tax-free`,
+      sub:`If only one of you is maxing it, you're leaving £20,000 of tax-free capacity unused every year.`,
+      breakdown:[['Your allowance','£20,000/yr',true],['Partner\'s allowance','£20,000/yr',true],['Combined','£40,000/yr',true]],
+      cta:{text:'Open a cash ISA for your partner →',url:'https://www.moneyboxapp.com/cash-isa/',bg:'var(--coral)'}
     }));
-    cards.push(makeNudge({ color:'var(--purple)', tag:'Pension Carry Forward',
-      headline:'Carry forward unused pension allowance from the last 3 years',
-      sub:'Potentially up to £180,000 in a single year at 45% relief.',
+  }
+
+  // LISA — basic rate earners (approximate age proxy)
+  if ((band === 'basic' || band === 'none') && !p.hasLisa) {
+    cards.push(makeNudge({_card:true, color:'var(--green)', tag:'Lifetime ISA',
+      headline:`Government adds 25% to your savings — free`,
+      impact:`Up to £1,000/yr from HMRC`,
+      sub:`Save up to £4,000/yr, get £1,000 bonus. Open aged 18–39. Use for first home or retirement from 60.`,
+      breakdown:[['Max contribution/yr','£4,000',false],['Government bonus','£1,000/yr',true],['For first home or retirement','Yes',true]],
+      cta:{text:'Open via Moneybox →',url:'https://www.moneyboxapp.com/lifetime-isa/',bg:'var(--green)'}
+    }));
+  }
+
+  // Council Tax single person discount — only if they live alone
+  if (p.livesAlone) {
+    cards.push(makeNudge({_card:true, color:'var(--amber)', tag:'Council Tax',
+      headline:`You're owed a 25% council tax discount — must be claimed`,
+      impact:`~£525/yr`,
+      sub:`Single occupant discount doesn't apply automatically. Apply directly to your local council — 5 minutes.`,
+      breakdown:[['Discount','25% off your bill',true],['Typical saving','~£525/yr',true],['How to claim','Local council website',false]],
+      cta:{text:'Apply to your council →',url:'https://www.gov.uk/apply-for-council-tax-discount',bg:'var(--amber)'}
+    }));
+  } else if (p.livesAlone === undefined) {
+    // Haven't answered — show as a question nudge
+    cards.push(makeNudge({_card:true, color:'var(--amber)', tag:'Council Tax',
+      headline:`If you live alone, you're owed a 25% council tax discount`,
+      impact:`~£525/yr — must be claimed`,
+      sub:`Single occupant discount doesn't apply automatically. Apply to your local council — 5 minutes.`,
+      breakdown:[['Discount','25% off your bill',true],['Typical saving','~£525/yr',true]],
+      cta:{text:'Apply to your council →',url:'https://www.gov.uk/apply-for-council-tax-discount',bg:'var(--amber)'}
+    }));
+  }
+
+  // Marriage allowance
+  if (p.married && (band === 'basic' || band === 'none')) {
+    cards.push(makeNudge({_card:true, color:'var(--text3)', tag:'Marriage Allowance',
+      headline:`Married? You could save £252/yr on tax`,
+      impact:`£252/yr — backdatable 4 years`,
+      sub:`Transfer £1,260 of personal allowance from the lower earner to the higher earner. Most couples who qualify never claim.`,
+      breakdown:[['Annual saving','£252/yr',true],['Backdatable','Up to 4 years (£1,008)',true],['Time to apply','5 minutes',false]],
+      cta:{text:'Apply at Gov.uk →',url:'https://www.gov.uk/marriage-allowance',bg:'var(--text2)'}
+    }));
+  }
+
+  // Child Benefit / High Income Charge
+  if (p.children && p.salary >= 60000 && p.salary <= 80000) {
+    cards.push(makeNudge({_card:true, color:'var(--amber)', tag:'Child Benefit',
+      headline:`Your Child Benefit is being clawed back — pension can stop it`,
+      impact:`Up to £1,354/yr first child`,
+      sub:`The High Income Child Benefit charge starts at £60,000. Salary sacrifice into pension reduces your adjusted income and can stop the claw-back.`,
+      breakdown:[['Claw-back starts','£60,000',false],['Fully withdrawn at','£80,000',false],['Worth per child/yr','Up to £1,354',true]],
+      cta:{text:'HMRC guidance →',url:'https://www.gov.uk/child-benefit-tax-charge',bg:'var(--amber)'}
+    }));
+  }
+
+  // Higher earner strategies
+  if (band === 'sixty' || band === 'add') {
+    cards.push(makeNudge({_card:true, color:'var(--purple)', tag:'Pension Carry Forward',
+      headline:`Carry unused pension allowance from the last 3 years`,
+      impact:`Up to £180,000 in one year`,
+      sub:`If you haven't maxed the £60,000 annual allowance in prior years, you can carry it forward — potentially at 45% relief.`,
       breakdown:[['Annual allowance','£60,000/yr',false],['Max carry forward','Up to £180,000',true],['Tax relief at 45%','Up to £81,000',true]],
       cta:{text:'HMRC guidance →',url:'https://www.gov.uk/guidance/pension-input-amounts-and-annual-allowance',bg:'var(--purple)'}
     }));
-    cards.push(makeNudge({ color:'var(--green)', tag:'VCT / EIS',
-      headline:'30% income tax relief on investments via VCT or EIS',
-      sub:'High risk — but one of the most tax-efficient vehicles available.',
-      breakdown:[['Income tax relief','30% upfront',true],['Max VCT/yr','£200,000',false],['Risk level','High — illiquid',false,true]],
+    cards.push(makeNudge({_card:true, color:'var(--green)', tag:'VCT / EIS',
+      headline:`30% income tax relief on early-stage company investments`,
+      impact:`£3,000 back on a £10,000 investment`,
+      sub:`High risk and illiquid — but one of the most tax-efficient vehicles available. EIS 30%, SEIS 50%.`,
+      breakdown:[['EIS relief','30% upfront',true],['SEIS relief','50% upfront',true],['Risk level','High — illiquid',false,true]],
       cta:{text:'Learn more →',url:'https://www.gov.uk/guidance/venture-capital-schemes-apply-for-the-enterprise-investment-scheme',bg:'var(--green)'}
     }));
   }
 
-  if (cards.length === 0) {
-    document.getElementById('missing-container').innerHTML = '<div style="padding:16px 20px;font-size:13px;color:var(--text3);">No additional nudges for your situation right now.</div>';
-  } else {
-    document.getElementById('missing-container').innerHTML = cards.join('');
+  // Help to Save — low income
+  if (band === 'none' || band === 'basic') {
+    cards.push(makeNudge({_card:true, color:'var(--green)', tag:'Help to Save',
+      headline:`Government tops up your savings by 50%`,
+      impact:`Up to £1,200 free over 4 years`,
+      sub:`Available on Universal Credit or Working Tax Credit. Save up to £50/month.`,
+      breakdown:[['Government bonus','50p per £1 saved',true],['Max bonus over 4 years','£1,200',true]],
+      cta:{text:'Check eligibility →',url:'https://www.gov.uk/get-help-savings-low-income',bg:'var(--green)'}
+    }));
   }
+
+  document.getElementById('missing-container').innerHTML = cards.length > 0
+    ? cards.join('')
+    : '<div style="padding:16px 20px;font-size:13px;color:var(--text3);">No additional nudges for your situation right now.</div>';
 }
 
 // ═══════════════════════════════
@@ -2472,7 +3032,7 @@ function buildPicture() {
   const tb = document.getElementById('pic-taxband');
   tb.textContent = bandInfo.txt;
   tb.setAttribute('style',`font-size:12px;font-weight:700;padding:3px 10px;border-radius:50px;background:${bandInfo.bg};color:${bandInfo.col};`);
-  document.getElementById('pic-employ').textContent = {paye:'PAYE',self:'Self-employed',both:'PAYE + self-employed',other:'Not working'}[p.employment];
+  document.getElementById('pic-employ').textContent = {paye:'PAYE',self:'Self-employed',both:'PAYE + self-employed',director:'Director (Ltd company)',other:'Not working'}[p.employment] || p.employment;
 
   // Pension
   if (p.pensionMatch && p.employment !== 'self') {
@@ -2524,9 +3084,12 @@ function go(name, btn) {
 }
 
 function toggleNudge(el) {
-  const open = el.classList.contains('open');
-  document.querySelectorAll('.nudge').forEach(n => n.classList.remove('open'));
-  if (!open) { el.classList.add('open'); setTimeout(() => el.scrollIntoView({behavior:'smooth',block:'nearest'}), 60); }
+  const wasOpen = el.classList.contains('open');
+  document.querySelectorAll('.nudge.open').forEach(n => n.classList.remove('open'));
+  if (!wasOpen) {
+    el.classList.add('open');
+    setTimeout(() => el.scrollIntoView({behavior:'smooth',block:'nearest'}), 60);
+  }
 }
 
 // ═══════════════════════════════
