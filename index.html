@@ -2064,7 +2064,7 @@ function startLoading() {
   const psa = p.salary > 50270 ? 500 : 1000;
   const interest = Math.round(outsideIsa * 0.045);
   if (interest > psa) items.push({ text:`Savings tax exposure found`, detail:`~£${Math.round((interest-psa)*(p.salary>50270?0.4:0.2))} tax via tax code` });
-  if (p.housing === 'mortgage') items.push({ text:`Mortgage: £${p.mortgageBal.toLocaleString()}`, detail:`£${p.mortgagePay.toLocaleString()}/mo · ${p.mortgageRate}% rate` });
+  if (p.housing === 'mortgage' && p.mortgageBal) items.push({ text:`Mortgage: £${(p.mortgageBal||0).toLocaleString()}`, detail:`£${(p.mortgagePay||0).toLocaleString()}/mo · ${p.mortgageRate||'?'}% rate` });
   items.push({ text:'Bills scanned · £892/yr savings found', detail:'Energy, broadband, car insurance, mobile' });
 
   const container = document.getElementById('load-items');
@@ -2077,10 +2077,11 @@ function startLoading() {
     setTimeout(() => div.classList.add('show'), 300 + i * 480);
   });
 
-  const score = computeScore();
+  let score = 50;
+  try { score = computeScore(); } catch(e) { console.error('computeScore error:', e); }
   document.getElementById('ob-score-big').textContent = score;
   document.getElementById('ob-score-big').style.color = score>=70?'var(--green)':score>=50?'var(--amber)':'var(--coral)';
-  document.getElementById('ob-score-main').textContent = getScoreDrag();
+  try { document.getElementById('ob-score-main').textContent = getScoreDrag(); } catch(e) {}
 
   const delay = 300 + items.length * 480;
   setTimeout(() => document.getElementById('ob-score-reveal').classList.add('show'), delay + 300);
@@ -2093,9 +2094,7 @@ function computeScore() {
   if (p.hasDebt) s -= 15;
   // Director expenses / corp tax saving
   if (p.employment === 'director') {
-    const corpRate = (p.corpProfit||50000) <= 50000 ? 0.19 : 0.25;
-    const expSaving = Math.round(2000 * corpRate); // conservative £2k underclaimed expenses
-    segments.push({ label:'Director savings', val: expSaving + 500, color:'#A855F7' });
+    s += 5; // bump score slightly — director tax planning opportunities exist
   }
 
   // Pension match gap (max ±8, not ±17)
@@ -2142,11 +2141,13 @@ function launchApp() {
 }
 
 function buildApp() {
+  try {
   // Greeting
   const h = new Date().getHours();
   const greet = h<12?'Morning':h<18?'Good afternoon':'Evening';
-  document.getElementById('greeting').textContent = `${greet}, ${p.name}.`;
-  document.getElementById('avatar-el').textContent = p.name[0].toUpperCase();
+  const displayName = p.name || 'there';
+  document.getElementById('greeting').textContent = `${greet}, ${displayName}.`;
+  document.getElementById('avatar-el').textContent = (displayName[0]||'B').toUpperCase();
 
   // Score
   const score = computeScore();
@@ -2163,22 +2164,23 @@ function buildApp() {
   if (p.hasDebt) document.getElementById('debt-priority-card').style.display = 'block';
 
   // Build nudges
-  buildNudges();
+  try { buildNudges(); } catch(e) { console.error('buildNudges:', e); }
 
   // Build opportunity bar
-  buildOpportunityBar();
+  try { buildOpportunityBar(); } catch(e) { console.error('buildOpportunityBar:', e); }
 
   // Build donut (Picture page)
-  buildDonut();
+  try { buildDonut(); } catch(e) { console.error('buildDonut:', e); }
 
   // Build missing out
-  buildMissingOut();
+  try { buildMissingOut(); } catch(e) { console.error('buildMissingOut:', e); }
 
   // Build allocate
-  buildAllocate();
+  try { buildAllocate(); } catch(e) { console.error('buildAllocate:', e); }
 
   // Build picture
-  buildPicture();
+  try { buildPicture(); } catch(e) { console.error('buildPicture:', e); }
+  } catch(e) { console.error('buildApp error:', e); }
 }
 
 // ═══════════════════════════════
@@ -2189,6 +2191,13 @@ function buildOpportunityBar() {
   const t = calcTax(p.salary);
   const band = getSalaryBand(p.salary);
   const segments = [];
+
+  // Director — corp tax / expenses saving
+  if (p.employment === 'director') {
+    const corpRate = (p.corpProfit||50000) <= 50000 ? 0.19 : 0.25;
+    const expSaving = Math.round(2000 * corpRate);
+    segments.push({ label:'Director', val: expSaving + 500, color:'#A855F7' });
+  }
 
   // Pension gap
   if (p.pensionMatch && p.employment !== 'self' && p.myPct < p.empPct) {
@@ -2318,6 +2327,7 @@ function buildNudges() {
       if (saving > 0) nudges.push(makeNudge({
         color:'var(--purple)', tag:'Director · Pay Structure',
         headline:`Taking salary above £12,570 may cost you £${saving.toLocaleString()}/yr`,
+        impact:`£${saving.toLocaleString()}/yr`,
         sub:`Dividends are taxed at 8.75% (basic rate) vs 20% income tax. The optimal structure: £12,570 salary + dividends for the rest.`,
         breakdown:[
           ['Optimal salary','£12,570/yr (uses personal allowance)',false],
@@ -2328,10 +2338,11 @@ function buildNudges() {
       }));
     }
 
-    // 2. Dividend allowance — everyone gets £500 tax-free
-    nudges.push(makeNudge({
+    // 2. Dividend allowance — only show if they're NOT already on the optimal split
+    if (p.dirPayType !== 'split') nudges.push(makeNudge({
       color:'var(--purple)', tag:'Director · Dividends',
       headline:`First £500 of dividends each year are completely tax-free`,
+      impact:`£500/yr — tax-free`,
       sub:`The dividend allowance is £500/yr (2025/26). Make sure you're using it — it doesn't carry forward.`,
       breakdown:[
         ['Dividend allowance 2025/26','£500',true],
@@ -2348,6 +2359,7 @@ function buildNudges() {
     nudges.push(makeNudge({
       color:'var(--purple)', tag:'Director · Pension',
       headline:`Pay into pension via your company — saves corp tax and NI`,
+      impact:`£${pensionSaving.toLocaleString()}/yr corp tax saved`,
       sub:`Employer pension contributions are a deductible business expense. No NI on them either. Far more efficient than taking salary then contributing personally.`,
       breakdown:[
         ['Corporation tax rate',`${Math.round(corpRate*100)}%`,false],
@@ -2358,9 +2370,11 @@ function buildNudges() {
     }));
 
     // 4. Claimable expenses — most directors underclaim
+    const expSavingNudge = Math.round(2000 * corpRate);
     nudges.push(makeNudge({
       color:'var(--purple)', tag:'Director · Expenses',
       headline:`Most directors underclaim expenses — reducing corp tax`,
+      impact:`~£${expSavingNudge.toLocaleString()}/yr corp tax saved`,
       sub:`Each £1 of legitimate expenses reduces corporation tax by 19–25p. Home office, phone, mileage, equipment, accountant fees all qualify.`,
       breakdown:[
         ['Home office (£6/wk HMRC flat rate)','£312/yr',true],
@@ -2375,6 +2389,7 @@ function buildNudges() {
       nudges.push(makeNudge({
         color:'var(--purple)', tag:'Director · Employment Allowance',
         headline:`Employment Allowance could wipe out £5,000/yr of employer NI`,
+        impact:`Up to £5,000/yr`,
         sub:`If you have employees (other than yourself as a sole director), you likely qualify. Claimed via your payroll software or accountant.`,
         breakdown:[
           ['Maximum allowance','£5,000/yr',true],
@@ -2385,23 +2400,6 @@ function buildNudges() {
       }));
     }
 
-    // 6. Corporation tax rate — awareness
-    if (p.corpProfit > 50000) {
-      const rate = p.corpProfit <= 250000
-        ? ((0.19 + (p.corpProfit-50000)/(200000)*(0.06))*100).toFixed(1)
-        : '25';
-      nudges.push(makeNudge({
-        color:'var(--purple)', tag:'Director · Corp Tax',
-        headline:`Your corp tax rate is ~${rate}% — pension and expenses reduce it`,
-        sub:`At profits above £50,000 you're in marginal relief territory. Every £1 of deductible expenses or pension saves ${rate}p in corp tax.`,
-        breakdown:[
-          ['Small profits rate (≤£50k)','19%',false],
-          ['Main rate (>£250k)','25%',false],
-          ['Your effective rate',`~${rate}%`,false],
-        ],
-        cta:{text:'HMRC corp tax guidance →',url:'https://www.gov.uk/corporation-tax-rates',bg:'var(--coral)'}
-      }));
-    }
   }
 
   // 1. Pension match gap
@@ -2798,7 +2796,56 @@ function buildMissingOut() {
   const band = getSalaryBand(p.salary).band;
   const taxRate = p.salary > 50270 ? 0.4 : 0.2;
   const isPAYE = p.employment === 'paye' || p.employment === 'both';
+  const isDirector = p.employment === 'director';
   const cards = [];
+
+  // ── DIRECTOR-SPECIFIC MISSING OUT ──────────────────────
+  if (isDirector) {
+
+    // 1. Pension carry forward — only if they said no pension yet
+    if (p.hasDirPension === false) {
+      const corpRate = (p.corpProfit||50000) <= 50000 ? 0.19 : 0.25;
+      const maxCarry = 180000; // 3 years × £60k
+      const corpTaxSaving = Math.round(maxCarry * corpRate);
+      cards.push(makeNudge({_card:true, color:'var(--purple)', tag:'Director · Pension Carry Forward',
+        headline:`No pension yet? You may have up to £180,000 of unused allowance to use`,
+        impact:`Up to £${corpTaxSaving.toLocaleString()} corp tax saved`,
+        sub:`The annual pension allowance is £60,000. If you haven't contributed in the last 3 tax years, you can carry all of it forward and pay it in one go — straight from the company, reducing corp tax by ${Math.round(corpRate*100)}p per £1.`,
+        breakdown:[
+          ['Annual allowance','£60,000/yr',true],
+          ['Max carry forward (3 yrs)','£180,000',true],
+          ['Corp tax saved at your rate',`£${corpTaxSaving.toLocaleString()}`,true],
+        ],
+        cta:{text:'Pension carry forward — MoneyHelper →',url:'https://www.moneyhelper.org.uk/en/pensions-and-retirement/tax-and-pensions/carry-forward',bg:'var(--purple)'}
+      }));
+    }
+
+    // 2. Staff party exemption — £150/head per year, tax-free
+    cards.push(makeNudge({_card:true, color:'var(--purple)', tag:'Director · Staff Party',
+      headline:`£150 per head on annual events is completely tax-free`,
+      impact:`£150/head — fully deductible`,
+      sub:`HMRC allows up to £150 per person per year on annual staff events (Christmas party, summer do). As a director you count as staff. It's a legitimate business expense and no benefit-in-kind charge arises.`,
+      breakdown:[
+        ['HMRC exemption','£150 per head/yr',true],
+        ['Must be','An annual event open to all staff',false],
+        ['Can combine','E.g. £100 Christmas + £50 summer',true],
+      ],
+      cta:{text:'HMRC staff entertainment rules →',url:'https://www.gov.uk/expenses-and-benefits-social-functions-parties',bg:'var(--purple)'}
+    }));
+
+    // 3. Trivial benefits — up to £300/yr for directors, tax-free
+    cards.push(makeNudge({_card:true, color:'var(--purple)', tag:'Director · Trivial Benefits',
+      headline:`Give yourself up to £300/yr in tax-free gifts via your company`,
+      impact:`£300/yr — zero tax, zero NI`,
+      sub:`HMRC's trivial benefits exemption lets you receive gifts up to £50 each (not cash) completely free of income tax and NI. Directors have a £300/yr cap. Think wine, books, gift cards — all deductible for the company.`,
+      breakdown:[
+        ['Per gift limit','£50 (not cash or vouchers)',true],
+        ['Director annual cap','£300/yr',true],
+        ['Tax & NI on these','Zero',true],
+      ],
+      cta:{text:'HMRC trivial benefits guidance →',url:'https://www.gov.uk/expenses-and-benefits-trivial-benefits',bg:'var(--purple)'}
+    }));
+  }
 
   // Energy — always shown first
   cards.push(makeNudge({_card:true, color:'var(--blue)', tag:'Energy',
@@ -3012,8 +3059,8 @@ function buildMissingOut() {
     }));
   }
 
-  // Help to Save — low income
-  if (band === 'none' || band === 'basic') {
+  // Help to Save — low income (exclude mortgage/homeowners — clearly not on UC)
+  if ((band === 'none' || band === 'basic') && p.housing !== 'mortgage' && p.housing !== 'owned') {
     cards.push(makeNudge({_card:true, color:'var(--green)', tag:'Help to Save',
       headline:`Government tops up your savings by 50%`,
       impact:`Up to £1,200 free over 4 years`,
@@ -3263,8 +3310,8 @@ function buildPicture() {
   if (p.housing === 'mortgage') {
     document.getElementById('pic-mortgage-label').style.display = 'flex';
     document.getElementById('pic-mortgage-card').classList.remove('pic-mort-hidden');
-    document.getElementById('pic-mort-bal').textContent = `£${p.mortgageBal.toLocaleString()}`;
-    document.getElementById('pic-mort-pay').textContent = `£${p.mortgagePay.toLocaleString()}`;
+    document.getElementById('pic-mort-bal').textContent = `£${(p.mortgageBal||0).toLocaleString()}`;
+    document.getElementById('pic-mort-pay').textContent = `£${(p.mortgagePay||0).toLocaleString()}`;
     document.getElementById('pic-mort-rate').textContent = p.mortgageRate + '%';
     const annualInt = Math.round(p.mortgageBal * p.mortgageRate / 100);
     document.getElementById('pic-mort-int').textContent = `~£${annualInt.toLocaleString()}`;
