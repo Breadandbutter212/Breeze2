@@ -178,11 +178,11 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
 .sec-hd span{font-size:13px;color:var(--coral);font-weight:600;cursor:pointer;}
 
 /* Nudge tiles — For You grid */
-.nudge-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 14px;margin-bottom:8px;}
+.nudge-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 14px;margin-bottom:8px;align-items:start;}
 .nudge{background:var(--card);border:1px solid var(--border);border-radius:16px;cursor:pointer;transition:transform 0.15s;}
 .nudge:active{transform:scale(0.97);}
 .nudge.open{grid-column:span 2;}
-.nudge-face{padding:14px 13px;border-radius:16px 16px 0 0;overflow:hidden;}
+.nudge-face{padding:14px 13px;border-radius:16px 16px 0 0;overflow:hidden;display:flex;flex-direction:column;}
 .nudge-tag{font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px;color:var(--text2);}
 .nudge-amt{font-size:22px;font-weight:900;color:var(--green);letter-spacing:-0.05em;line-height:1;}
 .nudge-unit{font-size:11px;color:var(--text3);margin-top:3px;font-weight:500;}
@@ -2095,7 +2095,7 @@ function computeScore() {
   if (p.employment === 'director') {
     const corpRate = (p.corpProfit||50000) <= 50000 ? 0.19 : 0.25;
     const expSaving = Math.round(2000 * corpRate); // conservative £2k underclaimed expenses
-    segments.push({ label:'Director savings', val: expSaving + 500, color:'var(--purple)' });
+    segments.push({ label:'Director savings', val: expSaving + 500, color:'#A855F7' });
   }
 
   // Pension match gap (max ±8, not ±17)
@@ -2194,7 +2194,7 @@ function buildOpportunityBar() {
   if (p.pensionMatch && p.employment !== 'self' && p.myPct < p.empPct) {
     const gap = p.empPct - p.myPct;
     const gain = Math.round(p.salary * gap / 100);
-    segments.push({ label:'Pension match', val: gain, color:'var(--coral)' });
+    segments.push({ label:'Pension', val: gain, color:'#FF4F4F' });
   }
 
   // Savings rate
@@ -2202,7 +2202,7 @@ function buildOpportunityBar() {
     const currentRate = p.savingsRate || 1.5;
     if (currentRate < 4.0) {
       const gain = Math.round((p.savings||0) * (0.052 - currentRate/100));
-      if (gain > 50) segments.push({ label:'Savings rate', val: gain, color:'var(--blue)' });
+      if (gain > 50) segments.push({ label:'Savings', val: gain, color:'#4D8EFF' });
     }
   }
 
@@ -2210,16 +2210,16 @@ function buildOpportunityBar() {
   const isaRem = 20000 - (p.isaUsed||0);
   if (isaRem > 5000) {
     const taxSaving = band.band === 'higher' || band.band === 'sixty' ? Math.round(isaRem * 0.072 * 0.4) : Math.round(isaRem * 0.072 * 0.2);
-    if (taxSaving > 0) segments.push({ label:'ISA tax saving', val: taxSaving, color:'var(--amber)' });
+    if (taxSaving > 0) segments.push({ label:'ISA', val: taxSaving, color:'#FFB020' });
   }
 
   // Bills
-  segments.push({ label:'Bills switching', val: 892, color:'var(--purple)' });
+  segments.push({ label:'Bills', val: 892, color:'#A855F7' });
 
   // Credit card rewards
   if (p.creditCard === 'basic' || p.creditCard === 'none') {
     const spend = Math.round((p.salary||36000) * 0.25);
-    segments.push({ label:'Card rewards', val: Math.round(spend * 0.01), color:'#4DA8FF' });
+    segments.push({ label:'Cards', val: Math.round(spend * 0.01), color:'#4DA8FF' });
   }
 
   const total = segments.reduce((s, x) => s + x.val, 0);
@@ -2238,10 +2238,9 @@ function buildOpportunityBar() {
   document.getElementById('opp-legend').innerHTML = `
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:2px;">
       ${segments.map(s => `
-        <div style="display:flex;align-items:center;gap:5px;padding:5px 9px;border-radius:20px;background:${s.color}15;border:1px solid ${s.color}40;min-width:0;">
-          <div style="width:5px;height:5px;border-radius:50%;background:${s.color};flex-shrink:0;"></div>
-          <span style="font-size:10px;font-weight:700;color:${s.color};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${s.label}</span>
-          <span style="font-size:10px;font-weight:800;color:${s.color};flex-shrink:0;">£${s.val.toLocaleString()}</span>
+        <div style="display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:20px;background:${s.color}15;border:1px solid ${s.color}55;min-width:0;">
+          <div style="width:6px;height:6px;border-radius:50%;background:${s.color};flex-shrink:0;"></div>
+          <span style="font-size:12px;font-weight:700;color:${s.color};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${s.label} · £${s.val.toLocaleString()}</span>
         </div>`).join('')}
     </div>`;
 }
@@ -2413,7 +2412,7 @@ function buildNudges() {
     const netCost = Math.round(gainGross * (1 - taxRate - niRate));
     const relief = gainGross - netCost;
     nudges.push(makeNudge({
-      color:'var(--green)', tag:'Pension · Free Money',
+      color:'var(--green)', tag:'Pension · Match',
       headline: `Unclaimed employer match — ${p.empPct - p.myPct}% you're not taking`,
       impact: `+£${gainGross}/mo into your pension`,
       sub: `Your employer matches up to ${p.empPct}% but you only contribute ${p.myPct}%. The gap is pure free money.`,
@@ -2641,8 +2640,8 @@ function buildNudges() {
     nudges.push(makeNudge({
       color:'var(--coral)', tag:'ISA · Deadline',
       headline: `£${isaRem.toLocaleString()} ISA allowance expires 5 April`,
-      impact: `${daysLeft} days left`,
-      sub: `Savings outside a tax-free wrapper generate taxable interest. Once 5 April passes, this year's allowance is gone for good.`,
+      impact: `£${isaRem.toLocaleString()}/yr`,
+      sub: `${daysLeft} days left. Savings outside a tax-free wrapper generate taxable interest. Once 5 April passes, this year's allowance is gone for good.`,
       breakdown: [
         ['ISA used this tax year', `£${(p.isaUsed||0).toLocaleString()}`, false],
         ['Remaining allowance', `£${isaRem.toLocaleString()}`, true],
