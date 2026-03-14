@@ -163,14 +163,25 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
 .avatar{width:36px;height:36px;border-radius:50%;background:var(--coral);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;}
 
 /* Score card — in page content, scrolls normally */
-.score-card{margin:4px 14px 8px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;}
+.score-card{margin:8px 14px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;}
+.fy-total-wrap{padding:20px 20px 8px;}
+.fy-found-lbl{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;}
+.fy-total-amt{font-size:40px;font-weight:900;color:var(--green);letter-spacing:-0.05em;line-height:1;}
+.fy-total-sub{font-size:14px;color:var(--text3);font-weight:500;margin-top:4px;margin-bottom:16px;}
+.fy-pills{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;padding-bottom:20px;border-bottom:1px solid var(--border);}
+.fy-pill-item{font-size:13px;color:var(--text2);font-weight:500;padding:3px 0;}
+.fy-pill-item span{color:var(--text);font-weight:700;}
+.isa-banner{margin:10px 14px;background:#FFF8EC;border:1.5px solid var(--amber);border-radius:var(--radius);padding:12px 14px;display:none;}
+.isa-banner-title{font-size:14px;font-weight:800;color:var(--amber);letter-spacing:-0.02em;margin-bottom:4px;}
+.isa-banner-body{font-size:13px;color:var(--text2);line-height:1.4;}
+.isa-banner-body b{color:var(--text);}
 .score-row{display:flex;align-items:center;gap:14px;}
-.score-arc-wrap{position:relative;flex-shrink:0;width:56px;height:56px;display:flex;align-items:center;justify-content:center;}
+.score-arc-wrap{position:relative;flex-shrink:0;width:44px;height:44px;display:flex;align-items:center;justify-content:center;}
 .score-arc-wrap svg{position:absolute;top:0;left:0;}
 .score-num{position:relative;z-index:1;font-size:18px;font-weight:800;letter-spacing:-0.04em;}
 .score-body{flex:1;min-width:0;}
 .score-label{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;}
-.score-drag{font-size:14px;font-weight:700;color:var(--text);letter-spacing:-0.02em;margin-top:3px;line-height:1.2;}
+.score-drag{font-size:13px;font-weight:500;color:var(--text3);letter-spacing:-0.01em;margin-top:2px;line-height:1.3;}
 .score-sub{font-size:12px;color:var(--text3);font-weight:500;margin-top:3px;}
 
 .sec-hd{display:flex;justify-content:space-between;align-items:baseline;padding:14px 20px 6px;}
@@ -178,17 +189,27 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
 .sec-hd span{font-size:13px;color:var(--coral);font-weight:600;cursor:pointer;}
 
 /* Nudge tiles — For You grid */
-.nudge-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 14px;margin-bottom:8px;align-items:start;}
+.nudge-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 14px;margin-bottom:8px;align-items:stretch;}
 .nudge{background:var(--card);border:1px solid var(--border);border-radius:16px;cursor:pointer;transition:transform 0.15s;}
 .nudge:active{transform:scale(0.97);}
 .nudge.open{grid-column:span 2;}
 .nudge-face{padding:14px 13px;border-radius:16px 16px 0 0;overflow:hidden;display:flex;flex-direction:column;}
-.nudge-tag{font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px;color:var(--text2);}
-.nudge-amt{font-size:22px;font-weight:900;color:var(--green);letter-spacing:-0.05em;line-height:1;}
+.nudge-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px;flex-shrink:0;}
+.nudge-tag{font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:5px;color:var(--text3);}
+.nudge-amt{font-size:24px;font-weight:900;letter-spacing:-0.05em;line-height:1;}
 .nudge-unit{font-size:11px;color:var(--text3);margin-top:3px;font-weight:500;}
-.nudge-headline{font-size:12px;font-weight:600;color:var(--text2);margin-top:6px;line-height:1.35;display:none;}
-.nudge.open .nudge-headline{display:block;}
+.nudge-headline{font-size:11px;font-weight:500;color:var(--text3);margin-top:6px;line-height:1.4;display:block;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
 .nudge-dot{width:6px;height:6px;border-radius:50%;margin-bottom:8px;}
+.nudge-section-lbl{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;padding:16px 20px 8px;}
+.nudge-hero{margin:0 14px 12px;background:#1C1C1E;border-radius:18px;padding:20px 18px;cursor:pointer;overflow:hidden;}
+.nudge-hero-badge{display:inline-flex;align-items:center;gap:6px;background:#1A3D1A;border:1px solid #2a5a2a;border-radius:50px;padding:5px 12px;margin-bottom:14px;}
+.nudge-hero-badge-txt{font-size:11px;font-weight:700;color:#4ade80;text-transform:uppercase;letter-spacing:0.07em;}
+.nudge-hero-hed{font-size:17px;font-weight:800;color:#ffffff;letter-spacing:-0.03em;line-height:1.3;margin-bottom:10px;}
+.nudge-hero-hed em{font-style:italic;font-weight:900;}
+.nudge-hero-sub{font-size:12px;color:rgba(255,255,255,0.50);line-height:1.5;margin-bottom:16px;}
+.nudge-hero-cta{display:block;background:#00A862;color:#fff;font-size:15px;font-weight:700;text-align:center;padding:15px;border-radius:12px;text-decoration:none;letter-spacing:-0.02em;}
+.nudge-hero.open .nudge-hero-detail{display:block;}
+.nudge-hero-detail{display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.1);}
 .breakdown{display:none;border-top:1px solid var(--border);background:var(--card);padding:10px 13px 12px;}
 .nudge.open .breakdown{display:block;}
 .bd-row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px;gap:8px;}
@@ -1144,36 +1165,42 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
     <!-- ══ FOR YOU ══ -->
     <div id="page-home" class="page active">
 
-      <div class="sec-hd"><h2>For You</h2></div>
-
-      <!-- Score card — sits under For You heading -->
-      <div class="score-card">
-        <div class="score-row">
-          <div class="score-arc-wrap">
-            <svg width="56" height="56" viewBox="0 0 56 56">
-              <circle cx="28" cy="28" r="23" fill="none" stroke="rgba(0,0,0,0.07)" stroke-width="4"/>
-              <circle cx="28" cy="28" r="23" fill="none" stroke="#FFB020" stroke-width="4"
-                stroke-dasharray="144.5" stroke-dashoffset="43.4" id="score-arc"
-                stroke-linecap="round" transform="rotate(-90 28 28)"/>
-            </svg>
-            <div class="score-num" id="score-num" style="color:var(--amber);">68</div>
-          </div>
-          <div class="score-body">
-            <div class="score-label">Financial health score</div>
-            <div class="score-drag" id="score-drag">Pension contributions holding you back</div>
-          </div>
+      <!-- WE FOUND YOU — total & pills -->
+      <div style="margin:8px 14px 0;background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;">
+        <div class="fy-total-wrap">
+          <div class="fy-found-lbl">We found you</div>
+          <div class="fy-total-amt" id="opp-total">£—</div>
+          <div class="fy-total-sub">per year you're currently missing out on</div>
+          <div class="fy-pills" id="opp-legend"></div>
+          <div style="display:none;" id="opp-sub"></div>
+          <div style="display:none;" id="opp-bar"></div>
         </div>
       </div>
 
-      <!-- Opportunity bar -->
+      <!-- Financial health score — slim horizontal card -->
+      <div class="score-card">
+        <div class="score-row">
+          <div class="score-arc-wrap">
+            <svg width="44" height="44" viewBox="0 0 44 44">
+              <circle cx="22" cy="22" r="18" fill="none" stroke="rgba(0,0,0,0.07)" stroke-width="3.5"/>
+              <circle cx="22" cy="22" r="18" fill="none" stroke="#FFB020" stroke-width="3.5"
+                stroke-dasharray="113.1" stroke-dashoffset="33.9" id="score-arc"
+                stroke-linecap="round" transform="rotate(-90 22 22)"/>
+            </svg>
+            <div class="score-num" id="score-num" style="color:var(--amber);font-size:16px;">68</div>
+          </div>
+          <div class="score-body">
+            <div class="score-label">Financial health score</div>
+            <div class="score-drag" id="score-drag" style="font-size:13px;color:var(--text3);font-weight:500;margin-top:1px;">Looking good — a couple of tweaks left</div>
+          </div>
+          <div style="font-size:16px;color:var(--text3);">›</div>
+        </div>
+      </div>
 
-      <!-- Opportunity bar -->
-      <div style="margin:0 14px 12px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:11px 14px 12px;">
-        <div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:5px;">Total identified so far</div>
-        <div style="font-size:20px;font-weight:900;color:var(--green);letter-spacing:-0.04em;line-height:1;" id="opp-total">£—</div>
-        <div style="display:none;" id="opp-sub"></div>
-        <div style="display:none;" id="opp-bar"></div>
-        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;" id="opp-legend"></div>
+      <!-- ISA deadline banner — shown by JS if within 50 days -->
+      <div class="isa-banner" id="isa-deadline-banner">
+        <div class="isa-banner-title">⏳ ISA deadline in <span id="isa-days-left">24</span> days</div>
+        <div class="isa-banner-body">You have <b>£<span id="isa-rem-banner">15,800</span> allowance</b> left before 5 April. Use it or lose it.</div>
       </div>
 
       <!-- Debt alert -->
@@ -1183,7 +1210,7 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
       </div>
 
       <!-- Dynamic nudges populated by JS -->
-      <div class="nudge-grid" id="nudge-container"></div>
+      <div id="nudge-container"></div>
 
       <svg viewBox="0 0 312 44" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;margin:4px 0;">
         <rect width="312" height="44" fill="#F5F3EF"/>
@@ -2247,9 +2274,9 @@ function buildApp() {
   const score = computeScore();
   document.getElementById('score-num').textContent = score;
   document.getElementById('score-drag').textContent = getScoreDrag();
-  const arcColor = score>=70?'#00C97A':score>=50?'#FFB020':'#FF4F4F';
-  // circumference for r=23: 2*PI*23 = 144.5
-  const offset = 144.5 * (1 - score/100);
+  const arcColor = score>=70?'#00A862':score>=50?'#C8880A':'#E03A3A';
+  // circumference for r=18: 2*PI*18 = 113.1
+  const offset = 113.1 * (1 - score/100);
   document.getElementById('score-arc').setAttribute('stroke-dashoffset', offset.toFixed(1));
   document.getElementById('score-arc').setAttribute('stroke', arcColor);
   document.getElementById('score-num').style.color = arcColor;
@@ -2328,24 +2355,25 @@ function buildOpportunityBar() {
   const total = segments.reduce((s, x) => s + x.val, 0);
   if (total === 0) return;
 
-  document.getElementById('opp-total').textContent = `£${total.toLocaleString()}/yr`;
-  document.getElementById('opp-sub').textContent = `Across ${segments.length} actions above — plus more below`;
+  document.getElementById('opp-total').textContent = `£${total.toLocaleString()}`;
 
-  // Bar
-  const bar = document.getElementById('opp-bar');
-  bar.innerHTML = segments.map(s =>
-    `<div style="flex:${s.val};background:${s.color};height:100%;cursor:pointer;transition:opacity 0.15s;" title="${s.label}: £${s.val.toLocaleString()}"></div>`
+  // Plain text pills — 2 col, no borders, matching mockup
+  document.getElementById('opp-legend').innerHTML = segments.map(s =>
+    `<div class="fy-pill-item">${s.label} · <span>£${s.val.toLocaleString()}</span></div>`
   ).join('');
 
-  // Pills breakdown — replaces small legend
-  document.getElementById('opp-legend').innerHTML = `
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:2px;">
-      ${segments.map(s => `
-        <div style="display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:20px;background:${s.color}15;border:1px solid ${s.color}55;min-width:0;">
-          <div style="width:6px;height:6px;border-radius:50%;background:${s.color};flex-shrink:0;"></div>
-          <span style="font-size:12px;font-weight:700;color:${s.color};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${s.label} · £${s.val.toLocaleString()}</span>
-        </div>`).join('')}
-    </div>`;
+  // ISA deadline banner
+  const today = new Date();
+  const aprilFifth = new Date(today.getFullYear(), 3, 5);
+  if (aprilFifth < today) aprilFifth.setFullYear(today.getFullYear() + 1);
+  const daysLeft = Math.ceil((aprilFifth - today) / (1000*60*60*24));
+  const isaRemBanner = Math.max(0, 20000 - (p.isaUsed||0));
+  const banner = document.getElementById('isa-deadline-banner');
+  if (banner && daysLeft <= 50 && isaRemBanner > 1000) {
+    document.getElementById('isa-days-left').textContent = daysLeft;
+    document.getElementById('isa-rem-banner').textContent = isaRemBanner.toLocaleString();
+    banner.style.display = 'block';
+  }
 }
 
 // ═══════════════════════════════
@@ -2401,6 +2429,11 @@ function buildDonut() {
 // ═══════════════════════════════
 function buildNudges() {
   const nudges = [];
+  const _nudgeData = [];
+  function pushNudge(opts) {
+    _nudgeData.push(opts);
+    nudges.push(makeNudge(opts));
+  }
   const t = calcTax(p.salary);
   const band = getSalaryBand(p.salary);
   const taxRate = p.salary > 50270 ? 0.4 : 0.2;
@@ -2418,7 +2451,7 @@ function buildNudges() {
       const divTax = Math.round(divs * 0.0875); // basic rate dividend tax
       const incomeTax = Math.round(divs * 0.20); // basic rate income tax
       const saving = incomeTax - divTax;
-      if (saving > 0) nudges.push(makeNudge({
+      if (saving > 0) pushNudge({
         color:'var(--purple)', tag:'Director · Pay Structure',
         headline:`Taking salary above £12,570 may cost you £${saving.toLocaleString()}/yr`,
         impact:`£${saving.toLocaleString()}/yr`,
@@ -2429,11 +2462,11 @@ function buildNudges() {
           ['Potential annual saving',`£${saving.toLocaleString()}/yr`,true],
         ],
         cta:{text:'HMRC dividend guidance →',url:'https://www.gov.uk/tax-on-dividends',bg:'var(--green)'}
-      }));
+      });
     }
 
     // 2. Dividend allowance — only show if they're NOT already on the optimal split
-    if (p.dirPayType !== 'split') nudges.push(makeNudge({
+    if (p.dirPayType !== 'split') pushNudge({
       color:'var(--purple)', tag:'Director · Dividends',
       headline:`First £500 of dividends each year are completely tax-free`,
       impact:`£500/yr — tax-free`,
@@ -2444,13 +2477,13 @@ function buildNudges() {
         ['Resets','5 April each year',false],
       ],
       cta:{text:'HMRC dividend tax →',url:'https://www.gov.uk/tax-on-dividends',bg:'var(--amber)'}
-    }));
+    });
 
     // 3. Company pension contributions — most tax-efficient way to save
     const corpProfit = p.corpProfit || (p.salary || 50000);
     const corpRate = corpProfit <= 50000 ? 0.19 : 0.25;
     const pensionSaving = Math.round(10000 * corpRate); // example: £10k contribution
-    nudges.push(makeNudge({
+    pushNudge({
       color:'var(--purple)', tag:'Director · Pension',
       headline:`Pay into pension via your company — saves corp tax and NI`,
       impact:`£${pensionSaving.toLocaleString()}/yr corp tax saved`,
@@ -2461,11 +2494,11 @@ function buildNudges() {
         ['NI saving','£0 (vs salary)',true],
       ],
       cta:{text:'Pension via limited company →',url:'https://www.gov.uk/government/publications/pension-contributions-for-company-directors',bg:'var(--green)'}
-    }));
+    });
 
     // 4. Claimable expenses — most directors underclaim
     const expSavingNudge = Math.round(2000 * corpRate);
-    nudges.push(makeNudge({
+    pushNudge({
       color:'var(--purple)', tag:'Director · Expenses',
       headline:`Most directors underclaim expenses — reducing corp tax`,
       impact:`~£${expSavingNudge.toLocaleString()}/yr corp tax saved`,
@@ -2476,11 +2509,11 @@ function buildNudges() {
         ['Phone (100% if business use)','Full cost',true],
       ],
       cta:{text:'HMRC expenses for directors →',url:'https://www.gov.uk/expenses-and-benefits-directors',bg:'var(--blue)'}
-    }));
+    });
 
     // 5. Employment Allowance — if not claimed or unsure
     if (p.employmentAllowance === false || p.employmentAllowance === null) {
-      nudges.push(makeNudge({
+      pushNudge({
         color:'var(--purple)', tag:'Director · Employment Allowance',
         headline:`Employment Allowance could wipe out £5,000/yr of employer NI`,
         impact:`Up to £5,000/yr`,
@@ -2491,7 +2524,7 @@ function buildNudges() {
           ['Sole director-employee','Not eligible',false,true],
         ],
         cta:{text:'Check eligibility →',url:'https://www.gov.uk/claim-employment-allowance',bg:'var(--purple)'}
-      }));
+      });
     }
 
   }
@@ -2503,7 +2536,7 @@ function buildNudges() {
     const niRate = p.salary > 50270 ? 0.02 : 0.08;
     const netCost = Math.round(gainGross * (1 - taxRate - niRate));
     const relief = gainGross - netCost;
-    nudges.push(makeNudge({
+    pushNudge({
       color:'var(--green)', tag:'Pension · Match',
       headline: `Unclaimed employer match — ${p.empPct - p.myPct}% you're not taking`,
       impact: `+£${gainGross}/mo into your pension`,
@@ -2514,14 +2547,14 @@ function buildNudges() {
         ['Employer match gained', `£${gainGross}/mo`, true],
       ],
       cta: { text:'How to increase contributions →', url:'https://www.gov.uk/workplace-pensions/what-you-your-employer-and-the-government-pay', bg:'var(--green)' }
-    }));
+    });
   }
 
   // 2. Higher rate pension relief — only if NOT salary sacrifice
   if (isPAYE && p.salary > 50270 && p.myPct > 0 && p.salSac !== true) {
     const personalContrib = Math.round(p.salary * (p.myPct/100));
     const extraRelief = Math.round(personalContrib * 0.2);
-    nudges.push(makeNudge({
+    pushNudge({
       color:'var(--green)', tag:'Pension · Tax Relief',
       headline: `You're owed £${extraRelief.toLocaleString()} pension tax relief you haven't claimed`,
       impact: `£${extraRelief.toLocaleString()}/yr via Self Assessment`,
@@ -2532,7 +2565,7 @@ function buildNudges() {
         ['Extra 20% to claim', `£${extraRelief.toLocaleString()}`, true],
       ],
       cta: { text:'Claim via Self Assessment →', url:'https://www.gov.uk/self-assessment-tax-returns', bg:'var(--green)' }
-    }));
+    });
   }
 
   // 3. Tax band — only show if within £8k of threshold (actionable ~£667/mo pension)
@@ -2540,7 +2573,7 @@ function buildNudges() {
     const over = p.salary - 50270;
     if (over <= 8000) {
       const saving = Math.round(over * 0.2);
-      nudges.push(makeNudge({
+      pushNudge({
         color:'var(--coral)', tag:'Tax Band',
         headline: `£${Math.round(over/12).toLocaleString()}/mo pension could drop you to 20% tax`,
         impact: `£${saving.toLocaleString()}/yr`,
@@ -2551,12 +2584,12 @@ function buildNudges() {
           ['Tax saving if you do', `£${saving.toLocaleString()}/yr`, true],
         ],
         cta: { text:'How salary sacrifice works →', url:'https://www.gov.uk/guidance/salary-sacrifice-and-the-effects-on-paye', bg:'var(--amber)' }
-      }));
+      });
     }
   }
   if (band.band === 'sixty') {
     const saving = Math.round((p.salary - 100000) * 0.6);
-    nudges.push(makeNudge({
+    pushNudge({
       color:'var(--coral)', tag:'60% Tax Zone',
       headline: `You're in the 60% effective tax zone`,
       impact: `Up to £${saving.toLocaleString()}/yr at stake`,
@@ -2567,13 +2600,13 @@ function buildNudges() {
         ['Pension to exit zone', `~£${Math.round((p.salary-100000)/24).toLocaleString()}/mo`, false],
       ],
       cta: { text:'Understand your allowance →', url:'https://www.gov.uk/income-tax-rates/personal-allowances', bg:'var(--coral)' }
-    }));
+    });
   }
 
   // 4. WFH tax relief — PAYE employees
   if (isPAYE && p.wfh) {
     const relief = p.salary > 50270 ? 124.80 : 62.40;
-    nudges.push(makeNudge({
+    pushNudge({
       color:'var(--coral)', tag:'WFH Relief',
       headline: `Claim £${relief}/yr tax relief for working from home`,
       impact: `£${relief}/yr — takes 5 mins`,
@@ -2584,7 +2617,7 @@ function buildNudges() {
         ['Backdatable', 'Up to 4 tax years', true],
       ],
       cta: { text:'Claim via Personal Tax Account →', url:'https://www.gov.uk/tax-relief-for-employees/working-at-home', bg:'var(--blue)' }
-    }));
+    });
   }
 
 
@@ -2602,7 +2635,7 @@ function buildNudges() {
 
       if (isaFull) {
         // ISA maxed — show what to do NEXT with taxable savings
-        nudges.push(makeNudge({
+        pushNudge({
           color:'var(--amber)', tag:'Savings Tax',
           headline: `ISA full — still paying ~£${taxAmt}/yr tax on savings interest`,
           impact: `£${taxAmt}/yr`,
@@ -2617,10 +2650,10 @@ function buildNudges() {
             { text:'Top up your pension — tax relief on every £1', url:'https://www.gov.uk/workplace-pensions/what-you-your-employer-and-the-government-pay', bg:'var(--card3)', color:'var(--text)' },
             { text:'Compare all options — MoneySavingExpert', url:'https://www.moneysavingexpert.com/savings/savings-accounts-best-interest/', bg:'var(--card3)', color:'var(--text)' },
           ]
-        }));
+        });
       } else {
         // ISA has headroom — straightforward move
-        nudges.push(makeNudge({
+        pushNudge({
           color:'var(--amber)', tag:'Savings Tax',
           headline: `~£${taxAmt}/yr quietly taken by HMRC from your savings`,
           impact: `~£${taxAmt}/yr tax bill arriving`,
@@ -2635,7 +2668,7 @@ function buildNudges() {
             { text:'Moneybox Cash ISA — 4.6% AER', url:'https://www.moneyboxapp.com/cash-isa/', bg:'var(--purple)' },
             { text:'Vanguard S&S ISA — long-term growth', url:'https://www.vanguardinvestor.co.uk/investing-explained/stocks-shares-isa', bg:'var(--card3)', color:'var(--text)' },
           ]
-        }));
+        });
       }
     }
   }
@@ -2649,7 +2682,7 @@ function buildNudges() {
     const bestYr = Math.round((p.savings||0) * bestRate);
     const gain = bestYr - currentYr;
     if (gain > 50 && currentRate < 4.0) {
-      nudges.push(makeNudge({
+      pushNudge({
         color:'var(--green)', tag:'Savings Rate',
         headline: `${bankName} is costing you £${gain.toLocaleString()}/yr`,
         impact: `£${gain.toLocaleString()}/yr lost to low rate`,
@@ -2664,7 +2697,7 @@ function buildNudges() {
           { text:'Chip — up to 4.8% AER', url:'https://www.getchip.uk/savings-accounts', bg:'var(--card3)', color:'var(--text)' },
           { text:'Compare all rates — MoneySavingExpert', url:'https://www.moneysavingexpert.com/savings/savings-accounts-best-interest/', bg:'var(--card3)', color:'var(--text)' },
         ]
-      }));
+      });
     }
   }
 
@@ -2672,7 +2705,7 @@ function buildNudges() {
   if (p.creditCard === 'basic' || p.creditCard === 'none') {
     const spend = Math.round((p.salary||36000) * 0.25);
     const cashbackEst = Math.round(spend * 0.01);
-    nudges.push(makeNudge({
+    pushNudge({
       color:'var(--amber)', tag:'Rewards Card',
       headline: `Same spending, ~£${cashbackEst}/yr cashback — for free`,
       impact: `~£${cashbackEst}/yr on existing spend`,
@@ -2687,12 +2720,12 @@ function buildNudges() {
         { text:'Amex BA Avios — 5,000 bonus', url:'https://www.americanexpress.com/en-gb/credit-cards/british-airways/', bg:'var(--card3)', color:'var(--text)' },
         { text:'Chase Cashback — 1% all spending', url:'https://www.chase.co.uk/gb/en/product/debit-card/', bg:'var(--card3)', color:'var(--text)' },
       ]
-    }));
+    });
   }
 
   // 12. Rent reporting (renters)
   if (p.housing === 'rent') {
-    nudges.push(makeNudge({
+    pushNudge({
       color:'var(--purple)', tag:'Credit Score',
       headline: `Your rent isn't building your credit score — it should be`,
       impact: `+20–40 credit pts · free`,
@@ -2703,12 +2736,12 @@ function buildNudges() {
         ['Cost', 'Free', true],
       ],
       cta: { text:'Start with CreditLadder — free →', url:'https://www.creditladder.co.uk', bg:'var(--purple)' }
-    }));
+    });
   }
 
   // 13. Check tax code — if payslip scanned and code is non-standard
   if (p.taxCode && p.taxCode !== '1257L' && p.taxCode !== '1257L W1' && p.taxCode !== '1257L M1') {
-    nudges.push(makeNudge({
+    pushNudge({
       color:'var(--coral)', tag:'Tax Code',
       headline: `Your tax code (${p.taxCode}) may be wrong — check it`,
       impact: `Could mean £200–£500 overpaid`,
@@ -2719,38 +2752,60 @@ function buildNudges() {
         ['Avg overpayment if wrong', '£200–£500+/yr', false, true],
       ],
       cta: { text:'Check via Personal Tax Account →', url:'https://www.gov.uk/check-income-tax-current-year', bg:'var(--coral)' }
-    }));
+    });
   }
 
   // ISA deadline — always last, only within 50 days of 5 April
-  const isaRem = 20000 - (p.isaUsed||0);
-  const today = new Date();
-  const aprilFifth = new Date(today.getFullYear(), 3, 5); // April = month 3
-  if (aprilFifth < today) aprilFifth.setFullYear(today.getFullYear() + 1);
-  const daysLeft = Math.ceil((aprilFifth - today) / (1000*60*60*24));
-  if (daysLeft <= 50 && isaRem > 1000) {
-    nudges.push(makeNudge({
-      color:'var(--coral)', tag:'ISA · Deadline',
-      headline: `£${isaRem.toLocaleString()} ISA allowance expires 5 April`,
-      impact: `£${isaRem.toLocaleString()}/yr`,
-      sub: `${daysLeft} days left. Savings outside a tax-free wrapper generate taxable interest. Once 5 April passes, this year's allowance is gone for good.`,
-      breakdown: [
-        ['ISA used this tax year', `£${(p.isaUsed||0).toLocaleString()}`, false],
-        ['Remaining allowance', `£${isaRem.toLocaleString()}`, true],
-        ['Days until deadline', `${daysLeft} days`, daysLeft <= 14],
-      ],
-      ctaMulti: [
-        { text:'Vanguard S&S ISA — low cost index funds', url:'https://www.vanguardinvestor.co.uk/investing-explained/stocks-shares-isa', bg:'var(--coral)' },
-        { text:'Moneybox Cash ISA — 4.6% AER', url:'https://www.moneyboxapp.com/cash-isa/', bg:'var(--card3)', color:'var(--text)' },
-        { text:'Trading 212 — 0% commission', url:'https://www.trading212.com/isa', bg:'var(--card3)', color:'var(--text)' },
-      ]
-    }));
+  // Hero card: convert first nudge into full-width dark card
+  let heroCard = '';
+  if (nudges.length > 0 && _nudgeData.length > 0) {
+    const n = _nudgeData[0];
+    const m = (n.impact||'').match(/([+~]?£[\d,]+)\s*\/?(\w+)?/);
+    let amtInline = '';
+    if (m) {
+      const rawUnit = (m[2]||'yr').toLowerCase();
+      const unit = rawUnit === 'mo' || rawUnit === 'month' ? '/mo' : '/yr';
+      amtInline = ` <em style="color:#4ade80;font-style:italic">${m[1]}${unit}</em>`;
+    }
+    const ctaUrl = n.cta ? n.cta.url : (n.ctaMulti ? n.ctaMulti[0].url : '#');
+    heroCard = `<div class="nudge-hero" onclick="this.classList.toggle('open')">
+      <div class="nudge-hero-badge"><span class="nudge-hero-badge-txt">Biggest win</span></div>
+      <div class="nudge-hero-hed">${n.headline.replace(/(\+?£[\d,]+\/?(mo|yr)?)/gi, '<em style="color:#4ade80;font-style:italic">$1</em>')}</div>
+      <div class="nudge-hero-sub">${n.sub}</div>
+      <a class="nudge-hero-cta" href="${ctaUrl}" target="_blank">See how to do this →</a>
+    </div>`;
   }
-
-  document.getElementById('nudge-container').innerHTML = nudges.join('');
+  const heroLabel = heroCard ? '<div class="nudge-section-lbl">Your #1 move right now</div>' : '';
+  const restLabel = nudges.length > 1 ? '<div class="nudge-section-lbl">Other opportunities</div>' : '';
+  const restGrid = nudges.length > 1
+    ? '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 14px;margin-bottom:8px;align-items:stretch;">' + nudges.slice(1).join('') + '</div>'
+    : '';
+  document.getElementById('nudge-container').innerHTML = heroLabel + heroCard + restLabel + restGrid;
 }
 
-function makeNudge({color, tag, headline, sub, breakdown, cta, ctaMulti, impact, wide, _card}) {
+const NUDGE_ICONS = {
+  'Pension · Match': {icon:'💰', bg:'rgba(0,168,98,0.12)'},
+  'Pension · Tax Relief': {icon:'📋', bg:'rgba(0,168,98,0.12)'},
+  'Tax Band': {icon:'📊', bg:'rgba(200,136,10,0.12)'},
+  '60% Tax Zone': {icon:'⚠️', bg:'rgba(224,58,58,0.12)'},
+  'WFH Relief': {icon:'🏠', bg:'rgba(58,122,224,0.12)'},
+  'Savings Rate': {icon:'🏦', bg:'rgba(58,122,224,0.12)'},
+  'Savings Tax': {icon:'💸', bg:'rgba(200,136,10,0.12)'},
+  'Director · Pay Structure': {icon:'🏢', bg:'rgba(168,85,247,0.12)'},
+  'Director · Pension': {icon:'🎯', bg:'rgba(168,85,247,0.12)'},
+  'Director · Dividends': {icon:'💵', bg:'rgba(168,85,247,0.12)'},
+  'Director · Expenses': {icon:'🧾', bg:'rgba(168,85,247,0.12)'},
+  'Director · Employment Allowance': {icon:'✅', bg:'rgba(168,85,247,0.12)'},
+};
+function getIconData(tag) {
+  for (const k of Object.keys(NUDGE_ICONS)) { if (tag.includes(k) || k.includes(tag)) return NUDGE_ICONS[k]; }
+  return {icon:'💡', bg:'rgba(0,0,0,0.06)'};
+}
+function makeHeroNudge(tileHtml) {
+  // We'll use a _hero flag on the first nudge instead
+  return tileHtml;
+}
+function makeNudge({color, tag, headline, sub, breakdown, cta, ctaMulti, impact, wide, _card, _hero}) {
   const rows = (breakdown||[]).slice(0,3).map(([label, val, pos, neg]) =>
     `<div class="bd-row"><span class="bd-label">${label}</span><span class="bd-val${pos?' pos':neg?' neg':''}">${val}</span></div>`
   ).join('');
@@ -2779,24 +2834,24 @@ function makeNudge({color, tag, headline, sub, breakdown, cta, ctaMulti, impact,
     </div>`;
   }
 
-  // Tile mode — For You grid
-  // Parse impact: extract £ amount, normalise unit label, always green
+  // Tile mode — For You grid with icon
   let amtHtml = '';
+  let amtColor = color;
   if (impact) {
-    // Match patterns like £184/mo, £1,240/yr, ~£348/yr, +£184/mo
     const m = impact.match(/([+~]?£[\d,]+)\s*\/?(\w+)?/);
     if (m) {
       const amt = m[1];
       const rawUnit = (m[2] || 'yr').toLowerCase();
       const unit = rawUnit === 'mo' || rawUnit === 'month' ? 'per month' : 'per year';
-      amtHtml = `<div class="nudge-amt">${amt}</div><div class="nudge-unit">${unit}</div>`;
+      amtHtml = `<div class="nudge-amt" style="color:${amtColor}">${amt}</div><div class="nudge-unit">${unit}</div>`;
     } else {
-      amtHtml = `<div class="nudge-amt" style="font-size:14px;">${impact}</div>`;
+      amtHtml = `<div class="nudge-amt" style="font-size:14px;color:${amtColor}">${impact}</div>`;
     }
   }
+  const iconData = getIconData(tag);
   return `<div class="nudge" onclick="toggleNudge(this)">
     <div class="nudge-face">
-      <div class="nudge-dot" style="background:${color}"></div>
+      <div class="nudge-icon" style="background:${iconData.bg}">${iconData.icon}</div>
       <div class="nudge-tag">${tag}</div>
       ${amtHtml}
       <div class="nudge-headline">${headline}</div>
