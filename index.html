@@ -200,6 +200,13 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
 .fy-pill-item{font-size:13px;color:var(--text2);font-weight:500;padding:3px 0;}
 .fy-pill-item span{color:var(--text);font-weight:700;}
 .isa-banner{margin:10px 14px;background:#FFF8EC;border:1.5px solid var(--amber);border-radius:var(--radius);padding:12px 14px;display:none;}
+.dark-mode .isa-banner{background:#2A1F00;}
+.dark-mode .isa-banner-body{color:rgba(255,255,255,0.75);}
+.dark-mode .isa-banner-body b{color:#fff;}
+.breeze-divider > div:first-child{background:rgba(0,0,0,0.12);}
+.dark-mode .breeze-divider > div:first-child{background:rgba(255,255,255,0.15);}
+.breeze-divider .breeze-dot{background:rgba(0,0,0,0.18);}
+.dark-mode .breeze-divider .breeze-dot{background:rgba(255,255,255,0.45);}
 .isa-banner-title{font-size:14px;font-weight:800;color:var(--amber);letter-spacing:-0.02em;margin-bottom:4px;}
 .isa-banner-body{font-size:13px;color:var(--text2);line-height:1.4;}
 .isa-banner-body b{color:var(--text);}
@@ -1304,12 +1311,12 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
       <!-- Dynamic nudges populated by JS -->
       <div id="nudge-container"></div>
 
-      <div style="display:flex;align-items:center;padding:14px 0;margin:4px 0;">
+      <div class="breeze-divider" style="display:flex;align-items:center;padding:14px 0;margin:4px 0;">
         <div style="flex:1;height:1px;background:var(--border);"></div>
         <div style="display:flex;align-items:center;gap:6px;padding:0 10px;">
-          <div style="width:5px;height:5px;border-radius:50%;background:var(--border);"></div>
-          <div style="width:5px;height:5px;border-radius:50%;background:var(--border);opacity:0.6;"></div>
-          <div style="width:5px;height:5px;border-radius:50%;background:var(--border);opacity:0.35;"></div>
+          <div class="breeze-dot" style="width:5px;height:5px;border-radius:50%;"></div>
+          <div class="breeze-dot" style="width:5px;height:5px;border-radius:50%;opacity:0.6;"></div>
+          <div class="breeze-dot" style="width:5px;height:5px;border-radius:50%;opacity:0.35;"></div>
         </div>
       </div>
 
@@ -1843,13 +1850,11 @@ function updateTaxBand() {
   else { pill.className='ob-band-pill ob-band-add'; pill.textContent='Additional rate · 45%'; }
 }
 function submitSalary() {
-  const v = parseInt(document.getElementById('inp-salary').value);
+  const v = parseInt(document.getElementById('inp-salary').value) || 0;
   const bonus = parseInt(document.getElementById('inp-bonus')?.value) || 0;
-  if (v > 0) {
-    p.baseSalary = v;
-    p.bonus = bonus;
-    p.salary = v + bonus; // total comp for tax calcs
-  }
+  p.baseSalary = v;
+  p.bonus = bonus;
+  p.salary = v + bonus;
   if (p.employment === 'director') { goOb('3c'); return; }
   if (p.employment === 'self') { goOb(5); return; }
   goObSL();
@@ -2099,7 +2104,7 @@ function setDebt(val, el) {
   document.getElementById('debt-details').style.display = val ? 'block' : 'none';
 }
 function submitDebt() {
-  if (p.hasDebt) { const v = parseInt(document.getElementById('inp-debt').value); if (v>0) p.debtAmt = v; }
+  if (p.hasDebt) { p.debtAmt = parseInt(document.getElementById('inp-debt').value) || 0; }
   // credit card type already captured in p.creditCard via setCreditCard()
   goOb(6);
 }
@@ -2113,12 +2118,9 @@ function setHousing(type, el) {
 }
 function submitHousing() {
   if (p.housing === 'mortgage') {
-    const pay  = parseInt(document.getElementById('inp-mortgage-pay').value);
-    const bal  = parseInt(document.getElementById('inp-mortgage-bal').value);
-    const rate = parseFloat(document.getElementById('inp-mortgage-rate').value);
-    if (pay > 0)  p.mortgagePay  = pay;
-    if (bal > 0)  p.mortgageBal  = bal;
-    if (rate > 0) p.mortgageRate = rate;
+    p.mortgagePay  = parseInt(document.getElementById('inp-mortgage-pay').value) || 0;
+    p.mortgageBal  = parseInt(document.getElementById('inp-mortgage-bal').value) || 0;
+    p.mortgageRate = parseFloat(document.getElementById('inp-mortgage-rate').value) || 0;
   }
   goOb(7);
 }
@@ -2150,10 +2152,10 @@ function updateIsaHint() {
   else el.textContent = '';
 }
 function submitSavings() {
-  const sav = parseInt(document.getElementById('inp-savings').value);
-  const isa = parseInt(document.getElementById('inp-isa').value);
-  if (sav > 0) p.savings = sav;
-  if (!isNaN(isa) && isa >= 0) p.isaUsed = isa;
+  const sav = parseInt(document.getElementById('inp-savings').value) || 0;
+  const isa = parseInt(document.getElementById('inp-isa').value) || 0;
+  p.savings = sav;
+  p.isaUsed = isa;
   goOb(8);
 }
 
@@ -2878,17 +2880,26 @@ function buildNudges() {
   let heroCard = '';
   if (nudges.length > 0 && _nudgeData.length > 0) {
     const n = _nudgeData[0];
-    const m = (n.impact||'').match(/([+~]?£[\d,]+)\s*\/?(\w+)?/);
-    let amtInline = '';
+    // Convert monthly to annual for hero card consistency
+    const m = (n.impact||'').match(/([+~]?£[\d,]+)\s*\/?\s*(mo|month|yr|year)?/i);
+    let heroImpact = n.impact || '';
     if (m) {
-      const rawUnit = (m[2]||'yr').toLowerCase();
-      const unit = rawUnit === 'mo' || rawUnit === 'month' ? '/mo' : '/yr';
-      amtInline = ` <em style="color:#4ade80;font-style:italic">${m[1]}${unit}</em>`;
+      const rawAmt = parseInt((m[1]||'').replace(/[£,+~]/g,'')) || 0;
+      const isMo = m[2] && (m[2].toLowerCase()==='mo'||m[2].toLowerCase()==='month');
+      const annualAmt = isMo ? rawAmt * 12 : rawAmt;
+      heroImpact = `£${annualAmt.toLocaleString()}/yr`;
     }
+    // Rewrite headline to use annual if it had monthly
+    let heroHed = n.headline.replace(/\+?£([\d,]+)\/(mo|month)/gi, (_, amt, _u) => {
+      const annual = parseInt(amt.replace(/,/g,'')) * 12;
+      return `£${annual.toLocaleString()}/yr`;
+    });
+    // Highlight amounts in green italic
+    heroHed = heroHed.replace(/(£[\d,]+\/yr)/gi, '<em style="color:#4ade80;font-style:italic">$1</em>');
     const ctaUrl = n.cta ? n.cta.url : (n.ctaMulti ? n.ctaMulti[0].url : '#');
     heroCard = `<div class="nudge-hero" onclick="this.classList.toggle('open')">
       <div class="nudge-hero-badge"><span class="nudge-hero-badge-txt">Biggest win</span></div>
-      <div class="nudge-hero-hed">${n.headline.replace(/(\+?£[\d,]+\/?(mo|yr)?)/gi, '<em style="color:#4ade80;font-style:italic">$1</em>')}</div>
+      <div class="nudge-hero-hed">${heroHed}</div>
       <div class="nudge-hero-sub">${n.sub}</div>
       <a class="nudge-hero-cta" href="${ctaUrl}" target="_blank">See how to do this →</a>
     </div>`;
@@ -3409,12 +3420,12 @@ function buildAllocate() {
   if (hasMortgage) {
     const intSaved = Math.round(300 * (p.mortgageRate/100) * 20); // rough
     document.getElementById('sprive-section').innerHTML = `
-      <div style="display:flex;align-items:center;padding:14px 0;margin:4px 0;">
+      <div class="breeze-divider" style="display:flex;align-items:center;padding:14px 0;margin:4px 0;">
         <div style="flex:1;height:1px;background:var(--border);"></div>
         <div style="display:flex;align-items:center;gap:6px;padding:0 10px;">
-          <div style="width:5px;height:5px;border-radius:50%;background:var(--border);"></div>
-          <div style="width:5px;height:5px;border-radius:50%;background:var(--border);opacity:0.6;"></div>
-          <div style="width:5px;height:5px;border-radius:50%;background:var(--border);opacity:0.35;"></div>
+          <div class="breeze-dot" style="width:5px;height:5px;border-radius:50%;"></div>
+          <div class="breeze-dot" style="width:5px;height:5px;border-radius:50%;opacity:0.6;"></div>
+          <div class="breeze-dot" style="width:5px;height:5px;border-radius:50%;opacity:0.35;"></div>
         </div>
       </div>
       <div class="sec-hd" style="padding-top:6px;"><h2>Mortgage overpayment</h2></div>
@@ -3443,12 +3454,12 @@ function buildAllocate() {
     // No mortgage — show Lifetime ISA + emergency fund tips
     const lisaEligible = p.salary < 100000; // rough proxy, real check is age <40
     document.getElementById('sprive-section').innerHTML = `
-      <div style="display:flex;align-items:center;padding:14px 0;margin:4px 0;">
+      <div class="breeze-divider" style="display:flex;align-items:center;padding:14px 0;margin:4px 0;">
         <div style="flex:1;height:1px;background:var(--border);"></div>
         <div style="display:flex;align-items:center;gap:6px;padding:0 10px;">
-          <div style="width:5px;height:5px;border-radius:50%;background:var(--border);"></div>
-          <div style="width:5px;height:5px;border-radius:50%;background:var(--border);opacity:0.6;"></div>
-          <div style="width:5px;height:5px;border-radius:50%;background:var(--border);opacity:0.35;"></div>
+          <div class="breeze-dot" style="width:5px;height:5px;border-radius:50%;"></div>
+          <div class="breeze-dot" style="width:5px;height:5px;border-radius:50%;opacity:0.6;"></div>
+          <div class="breeze-dot" style="width:5px;height:5px;border-radius:50%;opacity:0.35;"></div>
         </div>
       </div>
       <div class="sec-hd" style="padding-top:6px;"><h2>Worth knowing</h2></div>
@@ -3725,8 +3736,7 @@ function toggleDarkMode() {
     if (s === '#C8C4BC' || s === '#252530') l.setAttribute('stroke', isDark ? '#252530' : '#C8C4BC');
   });
   // Fix ISA banner bg
-  const isa = document.getElementById('isa-deadline-banner');
-  if (isa) isa.style.background = isDark ? '#2A1A00' : '#FFF8EC';
+  // ISA banner bg handled by CSS dark-mode class
   // Persist
   try { localStorage.setItem('breeze-dark', isDark ? '1' : '0'); } catch(e) {}
 }
