@@ -46,7 +46,7 @@
 .toggle::after{content:'';position:absolute;width:22px;height:22px;background:#fff;border-radius:50%;top:3px;left:3px;transition:transform 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2);}
 .toggle.on::after{transform:translateX(20px);}
 /* Settings gear icon in header */
-.settings-btn{width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;}
+.settings-btn{width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;color:var(--text2);}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 body{background:#07070A;display:flex;justify-content:center;align-items:flex-start;min-height:100vh;font-family:var(--font);padding:32px 16px 48px;}
 .phone{width:390px;height:844px;background:var(--bg);border-radius:52px;border:8px solid #2A2A30;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.06),0 50px 100px rgba(0,0,0,0.7),0 16px 32px rgba(0,0,0,0.4);overflow:hidden;position:relative;display:flex;flex-direction:column;}
@@ -100,7 +100,7 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
 .ob-prog.done{background:var(--coral);}
 .ob-prog.cur{background:var(--coral);opacity:0.4;}
 .ob-back{background:none;border:none;font-size:24px;color:var(--text3);cursor:pointer;padding:10px 24px 0;display:block;font-family:var(--font);text-align:left;}
-.ob-body{padding:8px 24px 0;flex:1;}
+.ob-body{padding:8px 20px 0;flex:1;}
 .ob-q{font-size:25px;font-weight:800;color:var(--text);letter-spacing:-0.04em;line-height:1.2;margin-bottom:6px;}
 .ob-hint{font-size:13px;color:var(--text3);line-height:1.55;margin-bottom:24px;}
 .ob-hint b{color:var(--text2);font-weight:600;}
@@ -146,7 +146,7 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
 .ob-acc-row .ar{font-weight:600;color:var(--text);text-align:right;}
 
 /* Open Banking */
-.ob-bank-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;}
+.ob-bank-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;margin:0 auto;}
 .ob-bank{padding:16px;background:var(--card);border:1.5px solid var(--border);border-radius:14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:border-color 0.2s,background 0.2s;}
 .ob-bank.connecting{border-color:var(--amber);}
 .ob-bank.connected{border-color:var(--green);background:var(--green-bg);}
@@ -1587,6 +1587,17 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
       </div>
     </div>
 
+  <!-- Info popup -->
+  <div id="info-popup" style="display:none;position:absolute;inset:0;z-index:200;background:rgba(0,0,0,0.5);align-items:center;justify-content:center;padding:20px;" onclick="if(event.target.id==='info-popup')closeInfoPopup()">
+    <div id="info-popup-panel" style="background:var(--card);border-radius:24px 24px 0 0;padding:20px 20px 40px;width:100%;max-height:80%;overflow-y:auto;">
+      <div id="info-popup-tag" style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--text3);margin-bottom:8px;"></div>
+      <div id="info-popup-title" style="font-size:18px;font-weight:800;color:var(--text);letter-spacing:-0.03em;line-height:1.25;margin-bottom:10px;"></div>
+      <div id="info-popup-body" style="font-size:14px;color:var(--text2);line-height:1.6;"></div>
+      <div id="info-popup-breakdown" style="margin-top:14px;padding:12px;background:var(--card2);border-radius:12px;display:none;"></div>
+      <div id="info-popup-cta" style="margin-top:16px;"></div>
+    </div>
+  </div>
+
   <!-- Settings panel -->
   <div class="settings-overlay" id="settings-overlay" onclick="if(event.target===this)closeSettings()">
     <div class="settings-panel">
@@ -2285,64 +2296,62 @@ function startLoading() {
 }
 
 function computeScore() {
-  let s = 0;
+  // Base of 40 — acknowledges that simply being here and tracking is positive
+  let s = 40;
 
-  // ── PENSION (0–25) ──
+  // ── PENSION (0–20) ──
   if (p.employment === 'director') {
-    // Director: using company pension is best practice
-    s += p.hasDirPension ? 20 : 8;
+    s += p.hasDirPension ? 20 : 10;
   } else if (p.pensionMatch && p.employment !== 'self') {
     const gap = Math.max(0, (p.empPct||0) - (p.myPct||0));
-    if (gap === 0) s += 25;       // fully claiming match
-    else if (gap <= 2) s += 15;   // small gap
-    else s += 5;                  // large gap — significant miss
+    if (gap === 0) s += 20;
+    else if (gap <= 2) s += 12;
+    else s += 4;
   } else if (p.employment === 'self') {
-    s += p.myPct > 0 ? 18 : 8;   // self-employed with/without pension
+    s += p.myPct > 0 ? 14 : 5;
   } else {
-    s += 8; // no pension info
+    s += 8;
   }
 
-  // ── ISA USAGE (0–15) ──
+  // ── ISA USAGE (0–10) ──
   const isaUsed = p.isaUsed || 0;
-  if (isaUsed >= 15000) s += 15;
-  else if (isaUsed >= 5000) s += 10;
-  else if (isaUsed >= 1000) s += 5;
-  // 0 if untouched
+  if (isaUsed >= 10000) s += 10;
+  else if (isaUsed >= 3000) s += 7;
+  else if (isaUsed >= 500) s += 4;
+  else s += 1; // even having an ISA is a point
 
-  // ── SAVINGS RATE (0–15) ──
+  // ── SAVINGS RATE (0–10) ──
   const rate = p.savingsRate || 0;
-  if (rate >= 4.0) s += 15;
-  else if (rate >= 2.5) s += 8;
-  else if (rate >= 1.0) s += 3;
-  // 0 if very low or no savings
+  if (rate >= 4.0) s += 10;
+  else if (rate >= 2.5) s += 7;
+  else if (rate >= 1.0) s += 4;
+  else if ((p.savings||0) > 0) s += 2; // has savings, just low rate
 
-  // ── EMERGENCY FUND (0–10) ──
+  // ── EMERGENCY FUND (0–8) ──
   const monthlyExp = (p.salary||0) / 12 * 0.6;
   const sav = p.savings || 0;
-  if (sav >= monthlyExp * 6) s += 10;
-  else if (sav >= monthlyExp * 3) s += 7;
+  if (sav >= monthlyExp * 6) s += 8;
+  else if (sav >= monthlyExp * 3) s += 6;
   else if (sav >= monthlyExp) s += 3;
+  else if (sav > 0) s += 1;
 
-  // ── DEBT (-15 if carrying high-interest debt) ──
-  if (p.hasDebt) s -= 15;
+  // ── DEBT (−10 if carrying debt, not −15) ──
+  if (p.hasDebt) s -= 10;
 
-  // ── TAX EFFICIENCY (0–15) ──
+  // ── TAX EFFICIENCY (0–8) ──
   const sal = p.salary || 0;
-  if (sal >= 100000 && sal <= 125140) s += 0;  // in 60% trap — no points
-  else if (sal > 50270 && p.myPct > 0) s += 12; // higher rate + contributing
-  else if (sal > 50270) s += 4;                 // higher rate, not contributing
-  else if (sal > 12570) s += 10;                // basic rate, reasonably efficient
-  else s += 15;                                 // below PA — no tax to worry about
+  if (sal >= 100000 && sal <= 125140) s += 2;
+  else if (sal > 50270 && (p.myPct||0) > 0) s += 8;
+  else if (sal > 50270) s += 3;
+  else if (sal > 12570) s += 7;
+  else s += 8;
 
-  // ── BILLS (0–5) ──
-  // Everyone loses until they switch — no way to know yet, penalise gently
-  s += 2;
-
-  // ── HOUSING (0–5) ──
-  if (p.housing === 'owned') s += 5;
+  // ── HOUSING bonus (0–4) ──
+  if (p.housing === 'owned') s += 4;
   else if (p.housing === 'mortgage') s += 3;
+  else if (p.housing === 'rent') s += 1;
 
-  return Math.max(10, Math.min(92, Math.round(s)));
+  return Math.max(20, Math.min(94, Math.round(s)));
 }
 
 function getScoreDrag() {
@@ -2946,8 +2955,12 @@ function makeNudge({color, tag, headline, sub, breakdown, cta, ctaMulti, impact,
     ctaHtml = `<a class="cta" style="background:${cta.bg}" href="${cta.url}" target="_blank">${cta.text}</a>`;
   }
 
-  // Full card mode — used by Missing Out section (pure CSS toggle, no inline display)
+  // Full card mode — used by Missing Out section
   if (_card) {
+    const idx = window._nudgeRegistry ? window._nudgeRegistry.length : 0;
+    if (!window._nudgeRegistry) window._nudgeRegistry = [];
+    window._nudgeRegistry.push({tag, headline, sub, breakdown, cta, ctaMulti, color});
+    const moreInfoBtn = `<button onclick="event.stopPropagation();openInfoByIndex(${idx})" style="background:none;border:none;color:var(--blue);font-size:13px;font-weight:600;cursor:pointer;padding:8px 0 4px;font-family:inherit;">More info →</button>`;
     return `<div class="nudge" style="margin:0 14px 7px;border-radius:var(--radius);overflow:hidden;cursor:pointer;" onclick="toggleNudge(this)">
       <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;">
         <div style="width:8px;height:8px;border-radius:50%;flex-shrink:0;background:${color}"></div>
@@ -2959,7 +2972,7 @@ function makeNudge({color, tag, headline, sub, breakdown, cta, ctaMulti, impact,
         </div>
         <div class="nudge-caret">›</div>
       </div>
-      <div class="breakdown">${rows}${ctaHtml}</div>
+      <div class="breakdown">${rows}${ctaHtml}${moreInfoBtn}</div>
     </div>`;
   }
 
@@ -3070,6 +3083,7 @@ function showLoginScreen() {
 // BUILD MISSING OUT — universal
 // ═══════════════════════════════
 function buildMissingOut() {
+  window._nudgeRegistry = []; // reset registry each build
   const band = getSalaryBand(p.salary).band;
   const taxRate = p.salary > 50270 ? 0.4 : 0.2;
   const isPAYE = p.employment === 'paye' || p.employment === 'both';
@@ -3712,6 +3726,103 @@ function setBankMode(mode, el) {
   ['bank-own','bank-partner','bank-second'].forEach(id => document.getElementById(id)?.classList.remove('selected'));
   el.classList.add('selected');
 }
+function openInfoPopup(tag, title, body, breakdown, ctaText, ctaUrl, color) {
+  const popup = document.getElementById('info-popup');
+  document.getElementById('info-popup-tag').textContent = tag;
+  document.getElementById('info-popup-tag').style.color = color || 'var(--text3)';
+  document.getElementById('info-popup-title').textContent = title;
+  document.getElementById('info-popup-body').innerHTML = body;
+  const bdEl = document.getElementById('info-popup-breakdown');
+  if (breakdown) {
+    bdEl.innerHTML = breakdown;
+    bdEl.style.display = 'block';
+  } else {
+    bdEl.style.display = 'none';
+  }
+  const ctaEl = document.getElementById('info-popup-cta');
+  if (ctaText && ctaUrl) {
+    ctaEl.innerHTML = `<a href="${ctaUrl}" target="_blank" style="display:block;background:var(--green);color:#fff;font-size:15px;font-weight:700;text-align:center;padding:15px;border-radius:12px;text-decoration:none;">${ctaText}</a>`;
+  } else { ctaEl.innerHTML = ''; }
+  popup.style.display = 'flex';
+}
+function closeInfoPopup() {
+  document.getElementById('info-popup').style.display = 'none';
+}
+function getSimpleExplanation(tag) {
+  const t = tag.toLowerCase();
+  if (t.includes('energy'))
+    return "Your energy supplier charges you for gas and electricity. Different suppliers charge different prices — sometimes hundreds of pounds apart — for the exact same supply. Switching just means moving your account. Your pipes and wires don't change, your supply never stops, and the new supplier organises it all.";
+  if (t.includes('broadband'))
+    return "Broadband is just your internet connection. Most providers offer very similar speeds, but charge very different prices. After your initial deal ends, your price often jumps up quietly. Switching providers is usually a quick online form — the new provider contacts your old one and arranges the swap.";
+  if (t.includes('pension') && t.includes('match'))
+    return "A workplace pension is a savings pot for retirement. Your employer adds money to it too — but usually only if you're paying in enough yourself. If you're not, your employer keeps that money. It's essentially free pay you're not collecting.";
+  if (t.includes('pension') && t.includes('tax relief'))
+    return "When you pay into a pension, the government puts money in too — based on the tax you've already paid on those earnings. For basic rate taxpayers, every £80 you put in becomes £100. Higher rate taxpayers can get even more back by claiming it through a tax return.";
+  if (t.includes('pension') && t.includes('carry'))
+    return "Each year, there's a limit on how much you can put into a pension and still get the tax top-up. If you didn't use your full limit in recent years, you can roll that unused space into this year. This can let you put in a much larger lump sum and still get the full tax benefit.";
+  if (t.includes('director') && t.includes('pension'))
+    return "As a company director, your company can pay directly into your pension as a business cost. The company pays less tax on its profits. You don't pay income tax or National Insurance on it. Your pension grows. It's one of the most tax-efficient ways for a director to save for retirement.";
+  if (t.includes('director') && t.includes('expenses'))
+    return "When your company spends money on genuine business needs — your phone, equipment, home office costs, accountant — those costs reduce the profit your company gets taxed on. Lower profit means lower corporation tax bill. Most directors don't claim everything they're entitled to.";
+  if (t.includes('director') && t.includes('pay structure'))
+    return "Directors can choose how to take money out of their company. Dividends (a share of profits) are taxed at a lower rate than regular salary income. Most tax-efficient directors take a small salary — just enough to count for state pension — and take the rest as dividends.";
+  if (t.includes('director') && t.includes('staff party'))
+    return "HMRC lets companies spend up to £150 per person per year on social events — a Christmas dinner, a summer party — completely free of tax. As a director, you count as a member of staff. The company gets a tax deduction and you don't pay any personal tax on it.";
+  if (t.includes('trivial'))
+    return "HMRC lets companies give small gifts to employees without any tax being due. As a director, you can receive gifts worth up to £50 each (not cash, not a voucher exchangeable for cash) up to £300 a year. The company pays for it as a business expense, and no one pays tax on it.";
+  if (t.includes('isa') && t.includes('savings'))
+    return "An ISA is just an ordinary savings or investment account with one big difference: you never pay tax on the interest or profit inside it. The government gives everyone £20,000 of ISA space each year. If you don't use it before 5 April, it disappears — you can't carry it forward to next year.";
+  if (t.includes('lifetime'))
+    return "A Lifetime ISA is a savings account with a government bonus built in. For every £4 you save, the government adds £1 — up to £1,000 free per year. You can only use the money to buy your first home, or take it out penalty-free from age 60. You must open one before you turn 40.";
+  if (t.includes('tax band'))
+    return "Everyone pays income tax at different rates depending on how much they earn. The basic rate is 20%. Once you earn above a certain amount, you pay 40% on the extra — but only on the part above the threshold. Putting money into a pension reduces your taxable income, which can bring you back into the lower band.";
+  if (t.includes('60%'))
+    return "Between £100,000 and £125,140, a strange thing happens: the government starts removing your tax-free personal allowance. This creates an effective tax rate of 60% on income in that range. Pension contributions directly reduce your income, which can restore your personal allowance and eliminate this trap entirely.";
+  if (t.includes('savings tax'))
+    return "When your savings earn interest, that interest counts as income and can be taxed. Most people get a tax-free allowance of £1,000 (or £500 if you pay higher rate tax). If your interest goes above that, HMRC usually collects the extra by adjusting your tax code — meaning your take-home pay quietly drops.";
+  if (t.includes('savings rate'))
+    return "Banks pay interest on savings, but the rates vary hugely. The big high street banks often pay much less than smaller digital banks and building societies. Your money does the same job wherever it is — it just earns more elsewhere. Switching a savings account usually takes 10 minutes online.";
+  if (t.includes('premium bonds'))
+    return "Premium Bonds are a savings product run by NS&I, which is owned by the government. Instead of paying interest each month, your savings are entered into a prize draw. Prizes range from £25 to £1 million and are completely tax-free. Your money is 100% safe and you can withdraw it any time.";
+  if (t.includes('wfh') || t.includes('work from home'))
+    return "If your employer specifically requires you to work from home — not just allows it, but requires it — HMRC lets you claim a standard amount per week without needing receipts. This reduces your taxable income slightly each year and can be claimed for up to four past tax years too.";
+  if (t.includes('mileage'))
+    return "HMRC allows people who drive their own car for work (not the commute to your regular office) to claim back a set amount per mile. This covers fuel, wear and tear, and insurance. If your employer doesn't already pay you this, or pays less than the HMRC rate, you can claim the difference.";
+  if (t.includes('gift aid'))
+    return "When you give money to a registered charity, you can tick a box to say you're a UK taxpayer. The charity can then claim 20% tax back from HMRC on top of your donation — at no cost to you. If you pay higher rate tax, you can also claim the extra 20% back yourself through a tax return.";
+  if (t.includes('council tax'))
+    return "Council tax is a local tax most households pay. If you live alone, you're entitled to a 25% discount — but it doesn't get applied automatically. You have to tell your local council. It takes about five minutes and backdating may be possible if you've been living alone for a while.";
+  if (t.includes('marriage allowance'))
+    return "Everyone has a personal allowance — an amount they can earn each year before paying any income tax. If one partner earns less than their allowance and doesn't use all of it, they can transfer a chunk to their partner. This reduces the higher earner's tax bill by up to £252 a year.";
+  if (t.includes('cycle'))
+    return "Cycle to Work is a government scheme where you pay for a bike and safety equipment through your employer before tax is taken. This means you save on income tax and National Insurance — typically 32-42% off the cost depending on your tax rate. Most medium and large employers offer a scheme.";
+  if (t.includes('professional subs'))
+    return "If you pay annual membership fees to a professional organisation connected to your job — like a medical association, engineering institute or law society — HMRC lets you claim tax relief on those fees. It just reduces your taxable income by the cost of the subscription each year.";
+  if (t.includes('cgt') || t.includes('capital gains'))
+    return "Capital gains tax applies when you sell something for more than you paid for it — most commonly investments like shares or funds. Everyone gets a tax-free allowance each year. If you have gains below that, no tax is due. Any gains not used by 5 April are lost — they don't roll over.";
+  if (t.includes('partner isa'))
+    return "ISA allowances are personal — they belong to each individual, not shared by couples. Your partner has their own £20,000 a year ISA allowance, completely separate to yours. If they're not using it, you're collectively leaving tax-free savings space unused every year.";
+  if (t.includes('help to save'))
+    return "Help to Save is a government savings account for people on lower incomes. For every pound you save, the government adds 50p — so if you save £200/month for 4 years, the government adds £1,200 on top. It's available to people receiving certain benefits like Universal Credit.";
+  if (t.includes('uniform') || t.includes('occupation'))
+    return "If your job involves wearing a uniform, protective clothing, or regularly buying specialist tools, HMRC allows a standard annual deduction from your taxable income. You don't need receipts — different jobs have different flat rates approved by HMRC. Most people who qualify never claim it.";
+  if (t.includes('child benefit'))
+    return "Child Benefit is a regular payment for families with children. If either parent earns over £60,000, some of it has to be paid back through a tax return — and fully paid back above £80,000. Pension contributions reduce your income on paper, which can reduce or stop this claw-back completely.";
+  if (t.includes('mortgage') || t.includes('overpay') || t.includes('sprive'))
+    return "A mortgage charges interest on what you owe. When you overpay — even by a small amount — you reduce the debt faster. Less debt means less interest charged over time. This can save thousands over the life of a mortgage and shorten how long it takes to pay off.";
+  if (t.includes('vct') || t.includes('eis'))
+    return "EIS and VCT schemes let you invest in small UK businesses and get a significant chunk of the investment back immediately as a reduction in your income tax bill. The investments are risky — these are early-stage companies — but the tax relief is one of the most generous the government offers.";
+  return "This is an opportunity to save money or reduce your tax. Tap any link in the card above to find out more about taking action.";
+}
+
+function openInfoByIndex(idx) {
+  const n = window._nudgeRegistry && window._nudgeRegistry[idx];
+  if (!n) return;
+  const ctaFirst = n.cta ? n.cta : (n.ctaMulti ? n.ctaMulti[0] : null);
+  const explanation = getSimpleExplanation(n.tag);
+  openInfoPopup(n.tag, n.headline, explanation, null, null, null, n.color);
+}
+
 function openSettings() {
   document.getElementById('settings-overlay').classList.add('open');
 }
