@@ -146,7 +146,7 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
 .ob-acc-row .ar{font-weight:600;color:var(--text);text-align:right;}
 
 /* Open Banking */
-.ob-bank-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.ob-bank-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;}
 .ob-bank{padding:16px;background:var(--card);border:1.5px solid var(--border);border-radius:14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:border-color 0.2s,background 0.2s;}
 .ob-bank.connecting{border-color:var(--amber);}
 .ob-bank.connected{border-color:var(--green);background:var(--green-bg);}
@@ -1148,8 +1148,69 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
           </div>
         </div>
         <div class="ob-bank-note">Your login credentials are never seen by Breeze.<br>Powered by TrueLayer · FCA authorised.</div>
-        <button class="ob-next" id="bank-next-btn" style="display:none;" onclick="startLoading()">Continue →</button>
+        <button class="ob-next" id="bank-next-btn" style="display:none;" onclick="goOb('9b')">Continue →</button>
         <span class="ob-skip" onclick="startLoading()">Skip for now — connect later</span>
+      </div>
+    </div>
+
+
+    <!-- 9b. Add second / partner account -->
+    <div class="ob-page" id="ob-9b">
+      <div class="ob-prog-wrap" id="prog-9b"></div>
+      <button class="ob-back" onclick="goOb(9)">‹</button>
+      <div class="ob-body">
+        <div class="ob-q">Want a fuller picture?</div>
+        <div class="ob-hint">Connecting a second account helps us spot more — and be more accurate.</div>
+        <div class="ob-opts" style="gap:10px;margin-bottom:20px;" id="second-type-opts">
+          <button class="ob-opt" onclick="selectSecondBank('partner',this)" id="second-partner">
+            👫 Add partner's account
+            <span class="sub">We can see your combined savings, flag duplicate subscriptions, and check you're both using your £20k ISA allowances</span>
+          </button>
+          <button class="ob-opt" onclick="selectSecondBank('savings',this)" id="second-savings">
+            🏦 Add a savings or ISA account
+            <span class="sub">If your savings are in a separate account (Chase, Monzo, Chip, trading account) we can include them in your picture</span>
+          </button>
+        </div>
+        <div id="second-bank-section" style="display:none;">
+          <div style="font-size:13px;font-weight:600;color:var(--text2);margin-bottom:10px;" id="second-bank-label">Select the bank to connect</div>
+                  <div class="ob-bank-grid" id="second-bank-grid">
+          <div class="ob-bank" onclick="connectBank(this,'Barclays',true)">
+            <div class="ob-bank-icon" style="background:#1a3a6b;"><img src="https://www.google.com/s2/favicons?domain=barclays.co.uk&sz=32" style="width:26px;height:26px;border-radius:4px;" onerror="this.outerHTML='<span style=\'color:#fff;font-weight:700\'>B</span>'"></div>
+            <div><div class="ob-bank-name">Barclays</div><div class="ob-bank-status">Tap to connect</div></div>
+          </div>
+          <div class="ob-bank" onclick="connectBank(this,'HSBC',true)">
+            <div class="ob-bank-icon" style="background:#db0011;"><img src="https://www.google.com/s2/favicons?domain=hsbc.co.uk&sz=32" style="width:26px;height:26px;border-radius:4px;" onerror="this.outerHTML='<span style=\'color:#fff;font-weight:700\'>H</span>'"></div>
+            <div><div class="ob-bank-name">HSBC</div><div class="ob-bank-status">Tap to connect</div></div>
+          </div>
+          <div class="ob-bank" onclick="connectBank(this,'Lloyds',true)">
+            <div class="ob-bank-icon" style="background:#006a4d;"><img src="https://www.google.com/s2/favicons?domain=lloydsbank.com&sz=32" style="width:26px;height:26px;border-radius:4px;" onerror="this.outerHTML='<span style=\'color:#fff;font-weight:700\'>Ll</span>'"></div>
+            <div><div class="ob-bank-name">Lloyds</div><div class="ob-bank-status">Tap to connect</div></div>
+          </div>
+          <div class="ob-bank" onclick="connectBank(this,'NatWest',true)">
+            <div class="ob-bank-icon" style="background:#4a1d7c;"><img src="https://www.google.com/s2/favicons?domain=natwest.com&sz=32" style="width:26px;height:26px;border-radius:4px;" onerror="this.outerHTML='<span style=\'color:#fff;font-weight:700\'>N</span>'"></div>
+            <div><div class="ob-bank-name">NatWest</div><div class="ob-bank-status">Tap to connect</div></div>
+          </div>
+          <div class="ob-bank" onclick="connectBank(this,'Monzo',true)">
+            <div class="ob-bank-icon" style="background:#ff3a43;"><img src="https://www.google.com/s2/favicons?domain=monzo.com&sz=32" style="width:26px;height:26px;border-radius:4px;" onerror="this.outerHTML='<span style=\'color:#fff;font-weight:700\'>M</span>'"></div>
+            <div><div class="ob-bank-name">Monzo</div><div class="ob-bank-status">Tap to connect</div></div>
+          </div>
+          <div class="ob-bank" onclick="connectBank(this,'Chase',true)">
+            <div class="ob-bank-icon" style="background:#117aca;"><img src="https://www.google.com/s2/favicons?domain=chase.co.uk&sz=32" style="width:26px;height:26px;border-radius:4px;" onerror="this.outerHTML='<span style=\'color:#fff;font-weight:700\'>Ch</span>'"></div>
+            <div><div class="ob-bank-name">Chase</div><div class="ob-bank-status">Tap to connect</div></div>
+          </div>
+          <div class="ob-bank" onclick="connectBank(this,'Starling',true)">
+            <div class="ob-bank-icon" style="background:#6935d3;"><img src="https://www.google.com/s2/favicons?domain=starlingbank.com&sz=32" style="width:26px;height:26px;border-radius:4px;" onerror="this.outerHTML='<span style=\'color:#fff;font-weight:700\'>St</span>'"></div>
+            <div><div class="ob-bank-name">Starling</div><div class="ob-bank-status">Tap to connect</div></div>
+          </div>
+          <div class="ob-bank" onclick="connectBank(this,'Santander',true)">
+            <div class="ob-bank-icon" style="background:#ec0000;"><img src="https://www.google.com/s2/favicons?domain=santander.co.uk&sz=32" style="width:26px;height:26px;border-radius:4px;" onerror="this.outerHTML='<span style=\'color:#fff;font-weight:700\'>Sa</span>'"></div>
+            <div><div class="ob-bank-name">Santander</div><div class="ob-bank-status">Tap to connect</div></div>
+          </div>
+        </div>
+          <div class="ob-bank-note" style="margin-top:12px;">Read-only · FCA authorised · Powered by TrueLayer</div>
+          <button class="ob-next" id="second-next-btn" style="display:none;margin-top:16px;" onclick="startLoading()">Continue →</button>
+        </div>
+        <span class="ob-skip" onclick="startLoading()">Skip — analyse with one account</span>
       </div>
     </div>
 
@@ -1187,7 +1248,7 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
           <div class="header-name" id="greeting">Morning, Sarah.</div>
         </div>
         <div style="display:flex;align-items:center;gap:10px;">
-          <div class="settings-btn" onclick="openSettings()" title="Settings">⚙</div>
+          <div class="settings-btn" onclick="openSettings()" title="Settings"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="2.2" stroke="currentColor" stroke-width="1.6"/><path d="M8 1v1.5M8 13.5V15M15 8h-1.5M2.5 8H1M12.95 3.05l-1.06 1.06M4.11 11.89l-1.06 1.06M12.95 12.95l-1.06-1.06M4.11 4.11L3.05 3.05" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
           <div class="avatar" id="avatar-el" onclick="doLogout()" title="Sign out" style="cursor:pointer;">S</div>
         </div>
       </div>
@@ -1243,22 +1304,14 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
       <!-- Dynamic nudges populated by JS -->
       <div id="nudge-container"></div>
 
-      <svg viewBox="0 0 312 44" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;margin:4px 0;">
-        <rect width="312" height="44" fill="#F5F3EF"/>
-        <line x1="0" y1="22" x2="230" y2="22" stroke="#C8C4BC" stroke-width="0.8"/>
-        <circle cx="244" cy="11" r="1.5" fill="#1A1A1A" opacity="0.20"/>
-        <circle cx="256" cy="11" r="1.5" fill="#1A1A1A" opacity="0.15"/>
-        <circle cx="268" cy="11" r="1.5" fill="#1A1A1A" opacity="0.10"/>
-        <circle cx="280" cy="11" r="1.5" fill="#1A1A1A" opacity="0.06"/>
-        <circle cx="244" cy="22" r="1.5" fill="#1A1A1A" opacity="0.28"/>
-        <circle cx="256" cy="22" r="1.5" fill="#1A1A1A" opacity="0.20"/>
-        <circle cx="268" cy="22" r="1.5" fill="#1A1A1A" opacity="0.13"/>
-        <circle cx="280" cy="22" r="1.5" fill="#1A1A1A" opacity="0.07"/>
-        <circle cx="244" cy="33" r="1.5" fill="#1A1A1A" opacity="0.20"/>
-        <circle cx="256" cy="33" r="1.5" fill="#1A1A1A" opacity="0.15"/>
-        <circle cx="268" cy="33" r="1.5" fill="#1A1A1A" opacity="0.10"/>
-        <circle cx="280" cy="33" r="1.5" fill="#1A1A1A" opacity="0.06"/>
-      </svg>
+      <div style="display:flex;align-items:center;padding:14px 0;margin:4px 0;">
+        <div style="flex:1;height:1px;background:var(--border);"></div>
+        <div style="display:flex;align-items:center;gap:6px;padding:0 10px;">
+          <div style="width:5px;height:5px;border-radius:50%;background:var(--border);"></div>
+          <div style="width:5px;height:5px;border-radius:50%;background:var(--border);opacity:0.6;"></div>
+          <div style="width:5px;height:5px;border-radius:50%;background:var(--border);opacity:0.35;"></div>
+        </div>
+      </div>
 
       <div class="sec-hd" style="padding-top:6px;"><h2>You could be missing out on</h2></div>
       <!-- Missing out nudges — populated by JS -->
@@ -2118,7 +2171,7 @@ function selectChildren(val, el) {
 }
 
 // Screen 9
-function connectBank(el, name) {
+function connectBank(el, name, isSecond) {
   if (el.classList.contains('connected') || el.classList.contains('connecting')) return;
   el.classList.add('connecting');
   el.querySelector('.ob-bank-status').textContent = 'Connecting...';
@@ -2126,9 +2179,22 @@ function connectBank(el, name) {
     el.classList.remove('connecting');
     el.classList.add('connected');
     el.querySelector('.ob-bank-status').textContent = '✓ Connected';
-    p.connectedBank = name;
-    document.getElementById('bank-next-btn').style.display = 'block';
+    if (isSecond) {
+      p.connectedBank2 = name;
+      document.getElementById('second-next-btn').style.display = 'block';
+    } else {
+      p.connectedBank = name;
+      document.getElementById('bank-next-btn').style.display = 'block';
+    }
   }, 1200);
+}
+function selectSecondBank(type, el) {
+  p.secondBankType = type;
+  document.querySelectorAll('#second-type-opts .ob-opt').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  const label = document.getElementById('second-bank-label');
+  label.textContent = type === 'partner' ? "Select your partner's bank" : "Select your savings account bank";
+  document.getElementById('second-bank-section').style.display = 'block';
 }
 
 // ═══════════════════════════════
@@ -3343,22 +3409,14 @@ function buildAllocate() {
   if (hasMortgage) {
     const intSaved = Math.round(300 * (p.mortgageRate/100) * 20); // rough
     document.getElementById('sprive-section').innerHTML = `
-      <svg viewBox="0 0 312 44" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;margin:4px 0;">
-        <rect width="312" height="44" fill="#F5F3EF"/>
-        <line x1="0" y1="22" x2="230" y2="22" stroke="#C8C4BC" stroke-width="0.8"/>
-        <circle cx="244" cy="11" r="1.5" fill="#1A1A1A" opacity="0.20"/>
-        <circle cx="256" cy="11" r="1.5" fill="#1A1A1A" opacity="0.15"/>
-        <circle cx="268" cy="11" r="1.5" fill="#1A1A1A" opacity="0.10"/>
-        <circle cx="280" cy="11" r="1.5" fill="#1A1A1A" opacity="0.06"/>
-        <circle cx="244" cy="22" r="1.5" fill="#1A1A1A" opacity="0.28"/>
-        <circle cx="256" cy="22" r="1.5" fill="#1A1A1A" opacity="0.20"/>
-        <circle cx="268" cy="22" r="1.5" fill="#1A1A1A" opacity="0.13"/>
-        <circle cx="280" cy="22" r="1.5" fill="#1A1A1A" opacity="0.07"/>
-        <circle cx="244" cy="33" r="1.5" fill="#1A1A1A" opacity="0.20"/>
-        <circle cx="256" cy="33" r="1.5" fill="#1A1A1A" opacity="0.15"/>
-        <circle cx="268" cy="33" r="1.5" fill="#1A1A1A" opacity="0.10"/>
-        <circle cx="280" cy="33" r="1.5" fill="#1A1A1A" opacity="0.06"/>
-      </svg>
+      <div style="display:flex;align-items:center;padding:14px 0;margin:4px 0;">
+        <div style="flex:1;height:1px;background:var(--border);"></div>
+        <div style="display:flex;align-items:center;gap:6px;padding:0 10px;">
+          <div style="width:5px;height:5px;border-radius:50%;background:var(--border);"></div>
+          <div style="width:5px;height:5px;border-radius:50%;background:var(--border);opacity:0.6;"></div>
+          <div style="width:5px;height:5px;border-radius:50%;background:var(--border);opacity:0.35;"></div>
+        </div>
+      </div>
       <div class="sec-hd" style="padding-top:6px;"><h2>Mortgage overpayment</h2></div>
       <div class="alloc-card">
         <div class="alloc-card-hd">
@@ -3385,22 +3443,14 @@ function buildAllocate() {
     // No mortgage — show Lifetime ISA + emergency fund tips
     const lisaEligible = p.salary < 100000; // rough proxy, real check is age <40
     document.getElementById('sprive-section').innerHTML = `
-      <svg viewBox="0 0 312 44" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;margin:4px 0;">
-        <rect width="312" height="44" fill="#F5F3EF"/>
-        <line x1="0" y1="22" x2="230" y2="22" stroke="#C8C4BC" stroke-width="0.8"/>
-        <circle cx="244" cy="11" r="1.5" fill="#1A1A1A" opacity="0.20"/>
-        <circle cx="256" cy="11" r="1.5" fill="#1A1A1A" opacity="0.15"/>
-        <circle cx="268" cy="11" r="1.5" fill="#1A1A1A" opacity="0.10"/>
-        <circle cx="280" cy="11" r="1.5" fill="#1A1A1A" opacity="0.06"/>
-        <circle cx="244" cy="22" r="1.5" fill="#1A1A1A" opacity="0.28"/>
-        <circle cx="256" cy="22" r="1.5" fill="#1A1A1A" opacity="0.20"/>
-        <circle cx="268" cy="22" r="1.5" fill="#1A1A1A" opacity="0.13"/>
-        <circle cx="280" cy="22" r="1.5" fill="#1A1A1A" opacity="0.07"/>
-        <circle cx="244" cy="33" r="1.5" fill="#1A1A1A" opacity="0.20"/>
-        <circle cx="256" cy="33" r="1.5" fill="#1A1A1A" opacity="0.15"/>
-        <circle cx="268" cy="33" r="1.5" fill="#1A1A1A" opacity="0.10"/>
-        <circle cx="280" cy="33" r="1.5" fill="#1A1A1A" opacity="0.06"/>
-      </svg>
+      <div style="display:flex;align-items:center;padding:14px 0;margin:4px 0;">
+        <div style="flex:1;height:1px;background:var(--border);"></div>
+        <div style="display:flex;align-items:center;gap:6px;padding:0 10px;">
+          <div style="width:5px;height:5px;border-radius:50%;background:var(--border);"></div>
+          <div style="width:5px;height:5px;border-radius:50%;background:var(--border);opacity:0.6;"></div>
+          <div style="width:5px;height:5px;border-radius:50%;background:var(--border);opacity:0.35;"></div>
+        </div>
+      </div>
       <div class="sec-hd" style="padding-top:6px;"><h2>Worth knowing</h2></div>
       <div class="alloc-card">
         <div class="alloc-card-hd">
@@ -3646,6 +3696,11 @@ function sendMessage() {
   },1400);
 }
 
+function setBankMode(mode, el) {
+  p.bankMode = mode;
+  ['bank-own','bank-partner','bank-second'].forEach(id => document.getElementById(id)?.classList.remove('selected'));
+  el.classList.add('selected');
+}
 function openSettings() {
   document.getElementById('settings-overlay').classList.add('open');
 }
