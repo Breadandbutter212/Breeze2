@@ -1587,17 +1587,6 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
       </div>
     </div>
 
-  <!-- Info popup -->
-  <div id="info-popup" style="display:none;position:absolute;inset:0;z-index:200;background:rgba(0,0,0,0.5);align-items:center;justify-content:center;padding:20px;" onclick="if(event.target.id==='info-popup')closeInfoPopup()">
-    <div id="info-popup-panel" style="background:var(--card);border-radius:24px 24px 0 0;padding:20px 20px 40px;width:100%;max-height:80%;overflow-y:auto;">
-      <div id="info-popup-tag" style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--text3);margin-bottom:8px;"></div>
-      <div id="info-popup-title" style="font-size:18px;font-weight:800;color:var(--text);letter-spacing:-0.03em;line-height:1.25;margin-bottom:10px;"></div>
-      <div id="info-popup-body" style="font-size:14px;color:var(--text2);line-height:1.6;"></div>
-      <div id="info-popup-breakdown" style="margin-top:14px;padding:12px;background:var(--card2);border-radius:12px;display:none;"></div>
-      <div id="info-popup-cta" style="margin-top:16px;"></div>
-    </div>
-  </div>
-
   <!-- Settings panel -->
   <div class="settings-overlay" id="settings-overlay" onclick="if(event.target===this)closeSettings()">
     <div class="settings-panel">
@@ -1620,6 +1609,18 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
     </div>
   </div>
   </div><!-- /main-screen -->
+
+  <!-- Info popup — direct child of .phone so it overlays correctly -->
+  <div id="info-popup" style="display:none;position:absolute;top:0;left:0;right:0;bottom:0;z-index:9999;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;padding:24px;" onclick="if(event.target===this)closeInfoPopup()">
+    <div id="info-popup-panel" style="background:var(--card);border-radius:20px;padding:22px 20px 24px;width:100%;max-height:65%;overflow-y:auto;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.4);">
+      <button onclick="closeInfoPopup()" style="position:absolute;top:14px;right:14px;width:28px;height:28px;background:var(--card2);border:1px solid var(--border);border-radius:50%;cursor:pointer;font-size:15px;color:var(--text2);display:flex;align-items:center;justify-content:center;font-family:inherit;">✕</button>
+      <div id="info-popup-tag" style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px;padding-right:36px;"></div>
+      <div id="info-popup-title" style="font-size:16px;font-weight:800;color:var(--text);letter-spacing:-0.03em;line-height:1.3;margin-bottom:12px;padding-right:36px;"></div>
+      <div id="info-popup-body" style="font-size:14px;color:var(--text2);line-height:1.65;"></div>
+      <div id="info-popup-breakdown" style="margin-top:14px;padding:12px;background:var(--card2);border-radius:12px;display:none;"></div>
+      <div id="info-popup-cta" style="margin-top:16px;"></div>
+    </div>
+  </div>
 
   <!-- Nav -->
   <nav class="nav" id="main-nav" style="display:none;">
@@ -2960,7 +2961,7 @@ function makeNudge({color, tag, headline, sub, breakdown, cta, ctaMulti, impact,
     const idx = window._nudgeRegistry ? window._nudgeRegistry.length : 0;
     if (!window._nudgeRegistry) window._nudgeRegistry = [];
     window._nudgeRegistry.push({tag, headline, sub, breakdown, cta, ctaMulti, color});
-    const moreInfoBtn = `<button onclick="event.stopPropagation();openInfoByIndex(${idx})" style="background:none;border:none;color:var(--blue);font-size:13px;font-weight:600;cursor:pointer;padding:8px 0 4px;font-family:inherit;">More info →</button>`;
+    const moreInfoBtn = `<button onclick="event.stopPropagation();openInfoByIndex(${idx})" style="background:none;border:none;color:var(--blue);font-size:13px;font-weight:600;cursor:pointer;padding:0;font-family:inherit;display:inline;">More info →</button>`;
     return `<div class="nudge" style="margin:0 14px 7px;border-radius:var(--radius);overflow:hidden;cursor:pointer;" onclick="toggleNudge(this)">
       <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;">
         <div style="width:8px;height:8px;border-radius:50%;flex-shrink:0;background:${color}"></div>
@@ -2968,11 +2969,11 @@ function makeNudge({color, tag, headline, sub, breakdown, cta, ctaMulti, impact,
           <div style="font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:${color}">${tag}</div>
           <div style="font-size:14px;font-weight:700;color:var(--text);letter-spacing:-0.02em;line-height:1.25;margin-top:1px;">${headline}</div>
           ${impact ? `<div class="nudge-impact" style="color:${color}">${impact}</div>` : ''}
-          <div class="card-nudge-sub">${sub}</div>
+          <div class="card-nudge-sub">${sub} ${moreInfoBtn}</div>
         </div>
         <div class="nudge-caret">›</div>
       </div>
-      <div class="breakdown">${rows}${ctaHtml}${moreInfoBtn}</div>
+      <div class="breakdown">${rows}${ctaHtml}</div>
     </div>`;
   }
 
@@ -3744,6 +3745,7 @@ function openInfoPopup(tag, title, body, breakdown, ctaText, ctaUrl, color) {
     ctaEl.innerHTML = `<a href="${ctaUrl}" target="_blank" style="display:block;background:var(--green);color:#fff;font-size:15px;font-weight:700;text-align:center;padding:15px;border-radius:12px;text-decoration:none;">${ctaText}</a>`;
   } else { ctaEl.innerHTML = ''; }
   popup.style.display = 'flex';
+  document.getElementById('info-popup-panel').scrollTop = 0;
 }
 function closeInfoPopup() {
   document.getElementById('info-popup').style.display = 'none';
