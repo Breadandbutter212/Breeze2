@@ -1224,7 +1224,7 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
             <div class="score-label">Financial health score</div>
             <div class="score-drag" id="score-drag" style="font-size:13px;color:var(--text3);font-weight:500;margin-top:1px;">Looking good — a couple of tweaks left</div>
           </div>
-          <div style="font-size:16px;color:var(--text3);">›</div>
+
         </div>
       </div>
 
@@ -2836,17 +2836,17 @@ function buildNudges() {
 }
 
 const NUDGE_ICONS = {
-  'Pension · Match': {icon:'💰', bg:'rgba(0,168,98,0.12)'},
-  'Pension · Tax Relief': {icon:'📋', bg:'rgba(0,168,98,0.12)'},
-  'Tax Band': {icon:'📊', bg:'rgba(200,136,10,0.12)'},
-  '60% Tax Zone': {icon:'⚠️', bg:'rgba(224,58,58,0.12)'},
-  'WFH Relief': {icon:'🏠', bg:'rgba(58,122,224,0.12)'},
-  'Savings Rate': {icon:'🏦', bg:'rgba(58,122,224,0.12)'},
-  'Savings Tax': {icon:'💸', bg:'rgba(200,136,10,0.12)'},
-  'Director · Pay Structure': {icon:'🏢', bg:'rgba(168,85,247,0.12)'},
-  'Director · Pension': {icon:'🎯', bg:'rgba(168,85,247,0.12)'},
-  'Director · Dividends': {icon:'💵', bg:'rgba(168,85,247,0.12)'},
-  'Director · Expenses': {icon:'🧾', bg:'rgba(168,85,247,0.12)'},
+  'Pension · Match':  {icon:'🔒', bg:'rgba(0,168,98,0.12)'},
+  'Pension · Tax Relief': {icon:'💰', bg:'rgba(0,168,98,0.12)'},
+  'Tax Band':         {icon:'📉', bg:'rgba(200,136,10,0.12)'},
+  '60% Tax Zone':     {icon:'⚠️', bg:'rgba(224,58,58,0.12)'},
+  'WFH Relief':       {icon:'🏠', bg:'rgba(58,122,224,0.12)'},
+  'Savings Rate':     {icon:'🏦', bg:'rgba(58,122,224,0.12)'},
+  'Savings Tax':      {icon:'🧾', bg:'rgba(200,136,10,0.12)'},
+  'Director · Pay Structure': {icon:'⚖️', bg:'rgba(168,85,247,0.12)'},
+  'Director · Pension': {icon:'🏦', bg:'rgba(168,85,247,0.12)'},
+  'Director · Dividends': {icon:'💸', bg:'rgba(168,85,247,0.12)'},
+  'Director · Expenses': {icon:'📋', bg:'rgba(168,85,247,0.12)'},
   'Director · Employment Allowance': {icon:'✅', bg:'rgba(168,85,247,0.12)'},
 };
 function getIconData(tag) {
@@ -3303,37 +3303,37 @@ function buildAllocate() {
     rank++;
   }
   if (gap > 0) {
-    rows.push({ rank, rankClass:'best', name:'Increase pension', desc:`HMRC adds ${Math.round(taxRate*100)}% tax relief on every £1 you put in`, ret:pensionReturn, retColor:'var(--green)', note:'tax relief<br>added' });
+    rows.push({ rank, rankClass:'best', name:'Increase pension', desc:`HMRC adds ${Math.round(taxRate*100)}% tax relief on every £1 you put in`, ret:pensionReturn, retColor:'var(--green)', note:'tax relief<br>added', url:'https://www.gov.uk/workplace-pensions/what-you-your-employer-and-the-government-pay' });
     rank++;
   }
 
   const isaFull = (p.isaUsed||0) >= 20000;
   if (!isaFull) {
-    rows.push({ rank, rankClass: gap===0?'best':'', name:'Stocks & Shares ISA', desc:'Tax-free growth, flexible', ret:'~7.2%', retColor:'var(--blue)', note:'hist. avg<br>return' });
+    rows.push({ rank, rankClass: gap===0?'best':'', name:'Stocks & Shares ISA', desc:'Tax-free growth, flexible', ret:'~7.2%', retColor:'var(--blue)', note:'hist. avg<br>return', url:'https://www.vanguardinvestor.co.uk/investing-explained/stocks-shares-isa' });
     rank++;
   }
   if (hasMortgage) {
     rows.push({ rank, rankClass:'', name:'Overpay mortgage', desc:'Guaranteed, tax-free', ret:p.mortgageRate+'%', retColor:'var(--amber)', note:'your<br>rate' });
     rank++;
   }
-  rows.push({ rank, rankClass:'', name:'High-rate fixed savings', desc:'1-year fix, FSCS protected', ret:'~4.8%', retColor:'var(--text2)', note:'best rate<br>now' });
+  rows.push({ rank, rankClass:'', name:'High-rate fixed savings', desc:'1-year fix, FSCS protected', ret:'~4.8%', retColor:'var(--text2)', note:'best rate<br>now', url:'https://www.moneysavingexpert.com/savings/savings-accounts-best-interest/' });
   rank++;
   if (!isaFull) {
-    rows.push({ rank, rankClass:'', name:'Cash ISA', desc:'Safe, tax-free interest', ret:'4.3%', retColor:'var(--text3)', note:'best rate<br>now' });
+    rows.push({ rank, rankClass:'', name:'Cash ISA', desc:'Safe, tax-free interest', ret:'4.3%', retColor:'var(--text3)', note:'best rate<br>now', url:'https://www.getchip.uk/savings-accounts/cash-isa' });
     rank++;
   } else {
     // ISA is full — Premium Bonds is the next tax-free home for cash
-    rows.push({ rank, rankClass:'', name:'Premium Bonds', desc:'Tax-free, NS&I backed — ISA full so this is next', ret:'~4.4%', retColor:'var(--green)', note:'prize rate<br>(tax-free)' });
+    rows.push({ rank, rankClass:'', name:'Premium Bonds', desc:'Tax-free, NS&I backed — ISA full so this is next', ret:'~4.4%', retColor:'var(--green)', note:'prize rate<br>(tax-free)', url:'https://www.nsandi.com/products/premium-bonds' });
     rank++;
   }
   rows.push({ rank, rankClass:'', name:'Current account', desc:'Taxable, low interest', ret:'1.2%', retColor:'var(--text3)', note:'taxable' });
 
   const rowsHtml = rows.map(r =>
-    `<div class="alloc-row">
+    `<div class="alloc-row" ${r.url ? `onclick="window.open('${r.url}','_blank')" style="cursor:pointer;"` : ''}>
       <div class="alloc-rank ${r.rankClass}">${r.rank}</div>
       <div><div class="alloc-name">${r.name}</div><div class="alloc-desc">${r.desc}</div></div>
       <div class="alloc-return" style="color:${r.retColor}">${r.ret}</div>
-      <div class="alloc-note">${r.note}</div>
+      <div class="alloc-note">${r.url ? '<span style=\'color:var(--blue)\'>→</span>' : r.note}</div>
     </div>`
   ).join('');
 
@@ -3658,8 +3658,16 @@ function toggleDarkMode() {
   const isDark = phone.classList.toggle('dark-mode');
   toggle.classList.toggle('on', isDark);
   // Also fix divider SVG background
-  document.querySelectorAll('.phone svg rect[fill="#F5F3EF"]').forEach(r => {
-    r.setAttribute('fill', isDark ? '#0F0F12' : '#F5F3EF');
+  document.querySelectorAll('.phone svg rect').forEach(r => {
+    const f = r.getAttribute('fill');
+    if (f === '#F5F3EF' || f === '#0F0F12') r.setAttribute('fill', isDark ? '#0F0F12' : '#F5F3EF');
+  });
+  document.querySelectorAll('.phone svg circle[r="1.5"]').forEach(c => {
+    c.setAttribute('fill', isDark ? '#ffffff' : '#1A1A1A');
+  });
+  document.querySelectorAll('.phone svg line').forEach(l => {
+    const s = l.getAttribute('stroke');
+    if (s === '#C8C4BC' || s === '#252530') l.setAttribute('stroke', isDark ? '#252530' : '#C8C4BC');
   });
   // Fix ISA banner bg
   const isa = document.getElementById('isa-deadline-banner');
