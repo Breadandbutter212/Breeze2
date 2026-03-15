@@ -19,6 +19,34 @@
   --radius:16px;--nav-h:82px;
   --font:'Plus Jakarta Sans',system-ui,sans-serif;
 }
+.dark-mode {
+  --bg:#0F0F12;--card:#1A1A20;--card2:#15151A;--card3:#222228;
+  --text:#F2F2F5;--text2:#B0B0BB;--text3:#707078;
+  --border:rgba(255,255,255,0.07);
+  --coral:#FF4F4F;--coral-bg:rgba(255,79,79,0.12);
+  --green:#00C97A;--green-bg:rgba(0,201,122,0.12);
+  --blue:#4D8EFF;--blue-bg:rgba(77,142,255,0.12);
+  --amber:#FFB020;--amber-bg:rgba(255,176,32,0.12);
+  --purple:#A855F7;--purple-bg:rgba(168,85,247,0.12);
+}
+/* Settings panel */
+.settings-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.4);z-index:100;display:none;align-items:flex-end;}
+.settings-overlay.open{display:flex;}
+.settings-panel{width:100%;background:var(--card);border-radius:24px 24px 0 0;padding:20px 20px 40px;animation:slideUp 0.28s cubic-bezier(0.22,1,0.36,1);}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.settings-drag{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 20px;}
+.settings-title{font-size:17px;font-weight:800;color:var(--text);letter-spacing:-0.03em;margin-bottom:18px;}
+.settings-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border);}
+.settings-row:last-child{border-bottom:none;}
+.settings-row-label{font-size:15px;font-weight:600;color:var(--text);}
+.settings-row-sub{font-size:12px;color:var(--text3);margin-top:2px;}
+/* Toggle switch */
+.toggle{width:48px;height:28px;background:var(--border);border-radius:14px;position:relative;cursor:pointer;transition:background 0.2s;flex-shrink:0;}
+.toggle.on{background:var(--green);}
+.toggle::after{content:'';position:absolute;width:22px;height:22px;background:#fff;border-radius:50%;top:3px;left:3px;transition:transform 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2);}
+.toggle.on::after{transform:translateX(20px);}
+/* Settings gear icon in header */
+.settings-btn{width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 body{background:#07070A;display:flex;justify-content:center;align-items:flex-start;min-height:100vh;font-family:var(--font);padding:32px 16px 48px;}
 .phone{width:390px;height:844px;background:var(--bg);border-radius:52px;border:8px solid #2A2A30;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.06),0 50px 100px rgba(0,0,0,0.7),0 16px 32px rgba(0,0,0,0.4);overflow:hidden;position:relative;display:flex;flex-direction:column;}
@@ -1158,7 +1186,10 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
           <div class="header-date">Thursday, 12 March 2026</div>
           <div class="header-name" id="greeting">Morning, Sarah.</div>
         </div>
-        <div class="avatar" id="avatar-el" onclick="doLogout()" title="Sign out" style="cursor:pointer;">S</div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div class="settings-btn" onclick="openSettings()" title="Settings">⚙</div>
+          <div class="avatar" id="avatar-el" onclick="doLogout()" title="Sign out" style="cursor:pointer;">S</div>
+        </div>
       </div>
     </div>
 
@@ -1496,6 +1527,27 @@ body{background:#07070A;display:flex;justify-content:center;align-items:flex-sta
       </div>
     </div>
 
+  <!-- Settings panel -->
+  <div class="settings-overlay" id="settings-overlay" onclick="if(event.target===this)closeSettings()">
+    <div class="settings-panel">
+      <div class="settings-drag"></div>
+      <div class="settings-title">Settings</div>
+      <div class="settings-row">
+        <div>
+          <div class="settings-row-label">Dark mode</div>
+          <div class="settings-row-sub">Switch to dark theme</div>
+        </div>
+        <div class="toggle" id="dark-toggle" onclick="toggleDarkMode()"></div>
+      </div>
+      <div class="settings-row">
+        <div>
+          <div class="settings-row-label">Sign out</div>
+          <div class="settings-row-sub">Return to login screen</div>
+        </div>
+        <div style="font-size:14px;color:var(--coral);font-weight:600;cursor:pointer;" onclick="doLogout();closeSettings()">Sign out →</div>
+      </div>
+    </div>
+  </div>
   </div><!-- /main-screen -->
 
   <!-- Nav -->
@@ -3594,10 +3646,43 @@ function sendMessage() {
   },1400);
 }
 
+function openSettings() {
+  document.getElementById('settings-overlay').classList.add('open');
+}
+function closeSettings() {
+  document.getElementById('settings-overlay').classList.remove('open');
+}
+function toggleDarkMode() {
+  const phone = document.querySelector('.phone');
+  const toggle = document.getElementById('dark-toggle');
+  const isDark = phone.classList.toggle('dark-mode');
+  toggle.classList.toggle('on', isDark);
+  // Also fix divider SVG background
+  document.querySelectorAll('.phone svg rect[fill="#F5F3EF"]').forEach(r => {
+    r.setAttribute('fill', isDark ? '#0F0F12' : '#F5F3EF');
+  });
+  // Fix ISA banner bg
+  const isa = document.getElementById('isa-deadline-banner');
+  if (isa) isa.style.background = isDark ? '#2A1A00' : '#FFF8EC';
+  // Persist
+  try { localStorage.setItem('breeze-dark', isDark ? '1' : '0'); } catch(e) {}
+}
+// Load saved preference
+function loadDarkPref() {
+  try {
+    if (localStorage.getItem('breeze-dark') === '1') {
+      document.querySelector('.phone').classList.add('dark-mode');
+      const t = document.getElementById('dark-toggle');
+      if (t) t.classList.add('on');
+    }
+  } catch(e) {}
+}
+
 function flash(el, cb) { el.classList.add('selected'); setTimeout(cb, 220); }
 
 // Keyboard
 window.addEventListener('DOMContentLoaded', () => {
+  loadDarkPref();
   try {
     document.getElementById('inp-name')?.addEventListener('keydown', e => { if(e.key==='Enter') submitName(); });
     document.getElementById('ai-input')?.addEventListener('keydown', e => { if(e.key==='Enter') sendMessage(); });
